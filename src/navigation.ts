@@ -1,4 +1,4 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink, getBlogPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
@@ -115,7 +115,7 @@ export const headerData = {
       href: '#',
     },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
+  actions: [{ text: 'Candidater', href: '#candidater', class: 'bg-or-alpin hover:bg-[#d4912e] !text-bleu-abyssal border-or-alpin hover:border-[#d4912e] rounded-full hover:shadow-[0_0_20px_rgba(235,162,64,0.35)] tracking-[0.0625em] text-[16px] font-medium' }],
 };
 
 export const footerData = {

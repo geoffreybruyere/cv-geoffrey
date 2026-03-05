@@ -12,6 +12,12 @@ export default {
         accent: 'var(--aw-color-accent)',
         default: 'var(--aw-color-text-default)',
         muted: 'var(--aw-color-text-muted)',
+        /* Charte L'Aube sur la Roche */
+        'bleu-abyssal': '#0F172A',
+        'or-alpin': '#EBA240',
+        'blanc-brume': '#F8FAFC',
+        'gris-ardoise': '#64748B',
+        'vert-lichen': '#334155',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],

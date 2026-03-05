@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* Charte typographique — Montserrat for headings/logo, Inter for everything else */
+  h1, h2 {
+    font-family: 'Montserrat Variable', var(--aw-font-heading), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em; /* -1px equivalent */
+    text-transform: uppercase;
+    color: var(--aw-color-text-heading);
+  }
+  h1 {
+    font-size: clamp(2rem, 4vw, 4rem); /* 48px - 64px desktop */
+  }
+  h3, h4, h5, h6 {
+    font-family: 'Inter Variable', var(--aw-font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem; /* 20px */
+    color: var(--aw-color-text-heading);
+  }
+  body {
+    font-family: 'Inter Variable', var(--aw-font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 1.0625rem; /* 17px */
+  }
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
@@ -18,15 +43,64 @@
   .text-muted {
     color: var(--aw-color-text-muted);
   }
+
+  /* Noise overlay texture (3-5% opacity) */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Radial "brume" gradient */
+  .brume-gradient {
+    background: radial-gradient(ellipse at 30% 50%, rgba(235,162,64,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(15,23,42,0.04) 0%, transparent 50%);
+  }
+
+  /* Frosted glass */
+  .glass {
+    background: rgba(248, 250, 252, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .dark .glass,
+  .glass-dark {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent text-center leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-or-alpin focus:ring-offset-2 focus:ring-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+    font-family: 'Inter Variable', var(--aw-font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 1rem; /* 16px */
+    letter-spacing: 0.0625em; /* +1px */
+    color: var(--aw-color-text-default);
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+    @apply btn font-medium border-or-alpin hover:border-or-alpin dark:border-or-alpin dark:hover:border-or-alpin;
+    background-color: #EBA240;
+    color: #0F172A;
+    box-shadow: 0 0 0 0 rgba(235,162,64,0);
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #d4912e;
+    box-shadow: 0 0 20px rgba(235,162,64,0.35);
+    color: #0F172A;
   }
 
   .btn-secondary {
@@ -34,22 +108,71 @@
   }
 
   .btn-tertiary {
-    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+    @apply btn border-none shadow-none hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+    color: var(--aw-color-text-muted);
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  /* Charter card style — thin border + subtle depth */
+  .card-charter {
+    @apply rounded-2xl border border-gray-200/60 dark:border-slate-700/50;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 4px 16px rgba(15,23,42,0.03);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card-charter:hover {
+    box-shadow: 0 2px 8px rgba(15,23,42,0.06), 0 8px 32px rgba(15,23,42,0.06);
+    transform: translateY(-2px);
+  }
+  .dark .card-charter {
+    background: rgba(15,23,42,0.6);
   }
 }
 
-#header.scroll > div:first-child {
-  @apply bg-page md:bg-white/90 md:backdrop-blur-md;
-  box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
+/* ── Header: transition douce entre états ── */
+#header > div:first-child {
+  transition: background 0.6s ease, backdrop-filter 0.6s ease, box-shadow 0.6s ease;
 }
-.dark #header.scroll > div:first-child,
-#header.scroll.dark > div:first-child {
-  @apply bg-page md:bg-[#030621e6] border-b border-gray-500/20;
+#header > div:first-child * {
+  transition: color 0.6s ease;
+}
+
+/* ── Sticky header scrollé: bleu abyssal 80% opacité + blur ── */
+#header.scroll {
+  background: rgba(15, 23, 42, 0.80);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.2);
+}
+#header.scroll > div:first-child {
+  background: transparent;
   box-shadow: none;
 }
-/* #header.scroll > div:last-child {
-  @apply py-3;
-} */
+#header.scroll *,
+#header.scroll a,
+#header.scroll button,
+#header.scroll span,
+#header.scroll nav,
+#header.scroll li,
+#header.scroll p {
+  color: #FFFFFF !important;
+}
+#header.scroll a[class*="bg-or-alpin"],
+#header.scroll button[class*="bg-or-alpin"] {
+  color: #0F172A !important;
+}
+
+.dark #header.scroll,
+#header.scroll.dark {
+  background: rgba(15, 23, 42, 0.80);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: none;
+}
 
 #header.expanded nav {
   position: fixed;

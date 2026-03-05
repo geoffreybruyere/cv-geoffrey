@@ -164,6 +164,11 @@
 #header.scroll button[class*="bg-or-alpin"] {
   color: #0F172A !important;
 }
+/* Logo: inverser en blanc au scroll */
+#header.scroll img[alt="Core Summit"] {
+  filter: brightness(0) invert(1);
+  transition: filter 0.6s ease;
+}
 
 .dark #header.scroll,
 #header.scroll.dark {

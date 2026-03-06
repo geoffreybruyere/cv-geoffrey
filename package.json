@@ -26,7 +26,7 @@
     "@astrojs/sitemap": "^3.4.2",
     "@astrolib/analytics": "^0.6.1",
     "@astrolib/seo": "^1.0.0-beta.8",
-    "@fontsource-variable/inter": "^5.2.6",
+    "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource-variable/syne": "^5.2.7",
     "@fontsource/cinzel": "^5.2.8",

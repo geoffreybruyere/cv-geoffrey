@@ -1,0 +1,75 @@
+---
+import { Mail, Download } from "@lucide/astro";
+---
+
+<footer id="contact">
+  <!-- Separator -->
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6">
+    <div class="h-px bg-border" />
+  </div>
+
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6 pt-8 pb-12">
+    <div class="flex items-start justify-between max-md:flex-col max-md:gap-8" id="footer-content">
+
+      <!-- Left — Contact info -->
+      <div class="footer-col">
+        <p class="mb-1.5 font-serif text-base font-normal text-text-primary">Geoffrey Bruyère</p>
+        <p class="text-[11px] font-light text-text-secondary leading-[1.8]">
+          geoffreybruyere@gmail.com<br />
+          (+33)6 27 40 18 91<br />
+          Aix-en-Provence · Paris · Monde<br />
+          Bilingue anglais / français
+        </p>
+      </div>
+
+      <!-- Right — CTAs -->
+      <div class="footer-col flex flex-col gap-2 items-end max-md:items-stretch">
+        <!-- CTA primary -->
+        <a
+          href="mailto:geoffreybruyere@gmail.com"
+          class="inline-flex w-[200px] items-center justify-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em] transition-opacity hover:opacity-80 max-md:w-full"
+          style="background: #FEFE7D; color: #141210;"
+        >
+          <Mail size={16} strokeWidth={1.5} />
+          Me contacter
+        </a>
+
+        <!-- CTA secondary -->
+        <a
+          href="/geoffrey-bruyere-cv.pdf"
+          download
+          class="inline-flex w-[200px] items-center justify-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-text-primary transition-opacity hover:opacity-80 max-md:w-full"
+          style="border: 0.5px solid var(--color-border);"
+        >
+          <Download size={16} strokeWidth={1.5} />
+          Télécharger 1-pager
+        </a>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  import { inView } from "motion";
+
+  const cols = document.querySelectorAll<HTMLElement>(".footer-col");
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReduced && cols.length) {
+    cols.forEach((col) => {
+      col.style.opacity = "0";
+      col.style.transform = "translateY(12px)";
+      col.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+    });
+
+    inView("#footer-content", () => {
+      cols.forEach((col, i) => {
+        setTimeout(() => {
+          col.style.opacity = "1";
+          col.style.transform = "translateY(0)";
+        }, i * 100);
+      });
+    }, { amount: 0.2 });
+  }
+</script>

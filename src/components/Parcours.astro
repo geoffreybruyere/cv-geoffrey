@@ -1,0 +1,435 @@
+---
+/*
+  Parcours — scroll-driven stacking panels + sticky timeline
+  Panels stack vertically as user scrolls. Timeline updates progressively.
+*/
+const stations = [
+  { year: "2026–présent", duration: "", name: "Core Summit", role: "Co-fondateur", badges: ["Side project"], nameWeight: "font-bold" },
+  { year: "2024–2025", duration: "2 ans", name: "Voyage Privé", role: "CMO", badges: ["ComEx"], nameWeight: "font-bold" },
+  { year: "2010–2022", duration: "12 ans", name: "BonneGueule", role: "CEO", badges: ["Fondateur"], nameWeight: "font-bold" },
+  { year: "2009–2011", duration: "2 ans", name: "Wavestone · HeadMind", role: "Consultant en stratégie", badges: ["CDI"], nameWeight: "font-bold" },
+];
+const stationPositions = [12, 38, 65, 95];
+---
+
+<section id="parcours">
+
+  <!-- ══════ Sticky: label + timeline ══════ -->
+  <div
+    class="sticky top-0 z-30 pb-4 pt-5"
+    style="background: color-mix(in srgb, var(--color-bg-primary) 95%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"
+  >
+    <div class="mx-auto max-w-[768px] px-8 max-md:px-6">
+
+      <!-- Label + hint -->
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
+          01 · Parcours
+        </h2>
+        <span
+          id="scroll-hint"
+          class="text-[11px] font-light text-text-secondary transition-opacity duration-500"
+        >
+          Scrollez pour naviguer ↓
+        </span>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative" style="height: 68px;">
+        <!-- Base line -->
+        <div class="absolute top-[5px] left-0 right-0 h-[1.5px] bg-border" />
+        <!-- Progress line -->
+        <div
+          id="timeline-progress"
+          class="absolute top-[5px] left-0 h-[1.5px] bg-accent"
+          style="width: 0%; transition: width 0.5s cubic-bezier(0.25,0.1,0.25,1);"
+        />
+
+        <!-- Stations -->
+        {stations.map((s, i) => (
+          <button
+            type="button"
+            class="station-btn absolute flex flex-col items-start cursor-pointer"
+            style={`left: ${stationPositions[i]}%;`}
+            data-station={i}
+          >
+            <span
+              id={`dot-${i}`}
+              class="relative -left-[5px] block h-[11px] w-[11px] rounded-full bg-border transition-all duration-300"
+            />
+            <span class="mt-2 flex items-center gap-1.5 whitespace-nowrap text-[11px] uppercase tracking-[0.1em] text-text-secondary transition-colors duration-300" id={`date-${i}`}>
+              {s.year}
+              {s.duration && (
+                <span class="text-[10px] font-light normal-case tracking-[0.04em] text-text-secondary/50">· {s.duration}</span>
+              )}
+            </span>
+            <span class={`whitespace-nowrap font-serif text-base ${s.nameWeight} text-text-secondary transition-colors duration-300`} id={`name-${i}`}>
+              {s.name}
+            </span>
+            <span class="mt-0.5 flex items-center gap-1.5 whitespace-nowrap text-[11px] font-light text-text-secondary max-md:hidden">
+              {s.role}
+              {s.badges.map((b: string) => (
+                <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">
+                  {b}
+                </span>
+              ))}
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ Stacking panels ══════ -->
+  <div class="mx-auto max-w-[768px] px-8 max-md:px-6">
+
+    <!-- Panel 0: Core Summit -->
+    <div id="panel-0" class="panel-stack" data-index="0">
+      <div style="border-top: 0.5px solid var(--color-border);" class="pt-5">
+        <!-- Header -->
+        <div class="flex items-baseline justify-between mb-3">
+          <div class="flex items-baseline gap-2">
+            <span class="font-serif text-[1.2rem] font-bold text-text-primary">Core Summit</span>
+            <span class="text-[13px] font-light text-text-secondary">Co-fondateur</span>
+            <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Side project</span>
+          </div>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2026–présent</span>
+        </div>
+        <!-- Intro -->
+        <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
+          Séminaire d'executive coaching en immersion montagne pour fondateurs et CEOs.
+        </p>
+        <!-- Detail -->
+        <div class="mt-4 border-l-[1.5px] border-border pl-3">
+          <p class="text-[13px] font-light leading-[1.6] text-text-body">
+            Construction complète IA-first : site, tunnel de vente, pipeline de gestion des candidatures - développé avec Claude Code et agents IA.
+          </p>
+          <p class="mt-2 text-[13px] font-light leading-[1.6] text-text-body">
+            Sélection en cours pour lancement en juillet 2026.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sentinel 1 — placed after panel 0, triggers panel 1 -->
+    <div id="sentinel-1" class="h-4" />
+    <!-- Panel 1: Voyage Privé -->
+    <div id="panel-1" class="panel-stack" data-index="1">
+      <div style="border-top: 0.5px solid var(--color-border);" class="pt-5">
+        <!-- Header -->
+        <div class="flex items-baseline justify-between mb-3">
+          <div class="flex items-baseline gap-2">
+            <span class="font-serif text-[1.2rem] font-bold text-text-primary">Voyage Privé</span>
+            <span class="text-[13px] font-light text-text-secondary">CMO</span>
+            <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">ComEx</span>
+          </div>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2024–2025 · 2 ans</span>
+        </div>
+        <!-- Intro -->
+        <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
+          Stratégie marketing globale d'un acteur leader du voyage premium en ligne (C.A. >1Md€, CAGR >+10%) : acquisition online / offline dont TV / organique, CRM, branding, retail média.
+        </p>
+        <!-- KPI inline -->
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          {[
+            { v: ">1Md€", l: "CA" },
+            { v: "+10%", l: "CAGR" },
+            { v: ">10M€", l: "budget" },
+            { v: "35", l: "experts" },
+          ].map((k, i) => (
+            <div class="flex items-center gap-4">
+              {i > 0 && <div class="h-[18px] w-px bg-border" />}
+              <div class="flex flex-col items-center">
+                <span class="font-serif text-[1.3rem] font-bold leading-none text-text-primary">{k.v}</span>
+                <span class="mt-0.5 text-[11px] font-light uppercase tracking-[0.12em] text-text-secondary">{k.l}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <!-- Grid -->
+        <div class="mt-5 grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
+          <div class="border-l-[1.5px] border-border pl-3">
+            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Performance</span>
+            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Pilotage de la performance marketing (budget >10M€, reporting au CEO).</p>
+          </div>
+          <div class="border-l-[1.5px] border-border pl-3">
+            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Direction & Gouvernance (ComEx)</span>
+            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Alignement stratégie marketing / objectifs groupe, décisions cross-fonctions (tech, produit, commercial).</p>
+          </div>
+          <div class="border-l-[1.5px] border-border pl-3">
+            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Organisation & Chantiers</span>
+            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Réorganisation de l'équipe de 35 experts, création de la fonction branding et refonte complète de la plateforme de marque. Pilotage de chantiers transverses avec les équipes digitales : outils d'attribution, AB-testing, CRM…</p>
+          </div>
+          <div class="border-l-[1.5px] border-border pl-3">
+            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Transformation IA</span>
+            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Déploiement d'automatisations IA sur CRM, SEO et acquisition payante. Réduction de >50% des coûts de production SEO, renégociation >25% de tous les SaaS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sentinel 2 -->
+    <div id="sentinel-2" class="h-4" />
+    <!-- Panel 2: BonneGueule -->
+    <div id="panel-2" class="panel-stack" data-index="2">
+      <div style="border-top: 0.5px solid var(--color-border);" class="pt-5">
+        <!-- Header -->
+        <div class="flex items-baseline justify-between mb-3">
+          <div class="flex items-baseline gap-2">
+            <span class="font-serif text-[1.2rem] font-bold text-text-primary">BonneGueule</span>
+            <span class="text-[13px] font-light text-text-secondary">CEO</span>
+            <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Fondateur</span>
+          </div>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2010–2022 · 12 ans</span>
+        </div>
+        <!-- Intro -->
+        <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
+          Création d'un modèle pionnier, à la fois marque de mode masculine digitale et média communautaire. Croissance organique et rentable de 0 à 10M€ (+50% CAGR, 6,8% EBE).
+        </p>
+        <!-- KPI inline -->
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          {[
+            { v: "10M€", l: "CA" },
+            { v: "6,8%", l: "EBE" },
+            { v: "10", l: "boutiques" },
+            { v: "60", l: "pers." },
+            { v: "95", l: "NPS" },
+          ].map((k, i) => (
+            <div class="flex items-center gap-4">
+              {i > 0 && <div class="h-[18px] w-px bg-border" />}
+              <div class="flex flex-col items-center">
+                <span class="font-serif text-[1.3rem] font-bold leading-none text-text-primary">{k.v}</span>
+                <span class="mt-0.5 text-[11px] font-light uppercase tracking-[0.12em] text-text-secondary">{k.l}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <!-- Grid -->
+        <div class="mt-5 grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
+          <div class="border-l-[1.5px] border-border pl-3">
+            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Modèle économique</span>
+            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Précurseur du "nouveau luxe" et des marques digitales omnicanales (DNVB) — média comme moteur d'acquisition organique, boutiques comme extension de marque. Communauté de 4,5M V.U./an et 150k abonnés YouTube.</p>
+          </div>
+          <div class="border-l-[1.5px] border-border pl-3">
+            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Croissance et Marque</span>
+            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Désirabilité fondée sur le récit authentique, la transparence radicale et des lancements de produits en drop. Chaque pièce racontée, décryptée, rendue non-comparable. Aucun discount en 12 ans. NPS 95. 63% de repeat business.</p>
+          </div>
+          <div class="border-l-[1.5px] border-border pl-3">
+            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Distribution omnicanale digital-first</span>
+            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Ouverture de 10 magasins en propre — choix des emplacements, pilotage des financements et des travaux. Boutiques expérientielles comme extension de la marque.</p>
+          </div>
+          <div class="border-l-[1.5px] border-border pl-3">
+            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Leadership</span>
+            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">De 1 à 60 collaborateurs (Top 100 GPtW France) — de fondateur-exécutant à dirigeant d'organisation. Recrutements clé (COO, DAF, DA), 7,7M€ de fonds propres (seed / série A), constitution d'un board et d'un ComEx.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sentinel 3 -->
+    <!-- Bottom spacer -->
+    <div class="h-8" />
+  </div>
+</section>
+
+<style>
+  .panel-stack {
+    opacity: 0;
+    transform: translateY(20px);
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.6s ease;
+  }
+  .panel-stack.visible {
+    transform: translateY(0);
+    max-height: 1200px;
+    padding-bottom: 2.875rem;
+  }
+  .panel-stack.visible.active {
+    opacity: 1;
+  }
+  .panel-stack.visible.dimmed {
+    opacity: 0.15;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .panel-stack {
+      opacity: 1 !important;
+      transform: none !important;
+      max-height: none !important;
+      overflow: visible !important;
+      padding-bottom: 2.875rem !important;
+      transition: none !important;
+    }
+    #scroll-hint { display: none; }
+  }
+</style>
+
+<script>
+  const progressLine = document.getElementById("timeline-progress") as HTMLElement;
+  const scrollHint = document.getElementById("scroll-hint") as HTMLElement;
+  const progressStops = [12, 38, 65, 95];
+
+  let lastRevealed = -1;
+  const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ── Update timeline dots + progress ──
+  // activeIdx = the focused panel
+  function updateTimeline(activeIdx: number) {
+    for (let i = 0; i <= 3; i++) {
+      const dot = document.getElementById("dot-" + i);
+      const name = document.getElementById("name-" + i);
+      const date = document.getElementById("date-" + i);
+      if (!dot || !name || !date) continue;
+
+      if (i <= activeIdx) {
+        // Active or past (before active)
+        dot.style.backgroundColor = "var(--color-accent)";
+        dot.style.boxShadow = i === activeIdx ? "0 0 0 3px rgba(254,254,125,0.25)" : "none";
+        name.style.color = i === activeIdx ? "var(--color-text-primary)" : "#ACACAA";
+        date.style.color = i === activeIdx ? "#484800" : "#ACACAA";
+      } else {
+        // After active — grey regardless of revealed state
+        dot.style.backgroundColor = "var(--color-border)";
+        dot.style.boxShadow = "none";
+        name.style.color = "#ACACAA";
+        date.style.color = "#ACACAA";
+      }
+    }
+    // Progress bar follows the active panel
+    progressLine.style.width = progressStops[activeIdx] + "%";
+  }
+
+  // ── Focus system ──
+  let currentFocus = -1;
+
+  function setFocus(activeIdx: number) {
+    if (activeIdx === currentFocus) return;
+    currentFocus = activeIdx;
+    for (let i = 0; i <= 2; i++) {
+      const p = document.getElementById("panel-" + i);
+      if (!p || !p.classList.contains("visible")) continue;
+      p.classList.remove("active", "dimmed");
+      if (i === activeIdx) {
+        p.classList.add("active");
+      } else {
+        p.classList.add("dimmed");
+      }
+    }
+    updateTimeline(activeIdx);
+  }
+
+  function updateFocusOnScroll() {
+    const viewportCenter = window.innerHeight * 0.45;
+    let closestIdx = 0;
+    let closestDist = Infinity;
+
+    for (let i = 0; i <= 2; i++) {
+      const p = document.getElementById("panel-" + i);
+      if (!p || !p.classList.contains("visible")) continue;
+      const rect = p.getBoundingClientRect();
+      const panelCenter = rect.top + rect.height / 2;
+      const dist = Math.abs(panelCenter - viewportCenter);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestIdx = i;
+      }
+    }
+
+    setFocus(closestIdx);
+  }
+
+  // ── Reveal a panel + update timeline ──
+  function revealPanel(index: number) {
+    const panel = document.getElementById("panel-" + index);
+    if (panel && !panel.classList.contains("visible")) {
+      panel.classList.add("visible");
+    }
+    if (index > lastRevealed) {
+      lastRevealed = index;
+    }
+    if (scrollHint) scrollHint.style.opacity = "0";
+    setFocus(index); // this calls updateTimeline internally
+  }
+
+  // ── Click handler ──
+  function goToStation(index: number) {
+    for (let i = 0; i <= index; i++) {
+      revealPanel(i);
+    }
+    setFocus(index);
+    setTimeout(() => {
+      document.getElementById("panel-" + index)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 100);
+  }
+
+  // ── Scroll-based reveal ──
+  let ticking = false;
+  let lastRevealTime = 0;
+  const COOLDOWN = 700; // ms — wait for panel expand animation before checking next
+
+  function checkReveal() {
+    const now = Date.now();
+
+    // Panel 0: reveal when sticky timeline is visible
+    if (lastRevealed < 0) {
+      const sticky = document.querySelector("#parcours .sticky");
+      if (!sticky) return;
+      const rect = sticky.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight * 0.9) {
+        revealPanel(0);
+        lastRevealTime = now;
+      }
+      return;
+    }
+
+    // Cooldown: don't check next panel until previous has expanded
+    if (now - lastRevealTime < COOLDOWN) return;
+
+    // Panels 1-3: reveal when the corresponding sentinel enters viewport
+    const nextIdx = lastRevealed + 1;
+    if (nextIdx > 2) return;
+
+    const sentinel = document.getElementById("sentinel-" + nextIdx);
+    if (!sentinel) return;
+    const sentinelRect = sentinel.getBoundingClientRect();
+
+    // Sentinel must be in the top 80% of the viewport
+    if (sentinelRect.top < window.innerHeight * 0.8 && sentinelRect.bottom > 0) {
+      revealPanel(nextIdx);
+      lastRevealTime = now;
+    }
+  }
+
+  // ── Init ──
+  if (isReduced) {
+    for (let i = 0; i <= 2; i++) {
+      const p = document.getElementById("panel-" + i);
+      if (p) { p.classList.add("visible", "active"); }
+    }
+    lastRevealed = 2;
+    updateTimeline(2);
+  } else {
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          checkReveal();
+          updateFocusOnScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial check (delayed to let layout settle)
+    setTimeout(checkReveal, 100);
+
+    // Station click handlers
+    document.querySelectorAll<HTMLElement>(".station-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = Number(btn.dataset.station);
+        goToStation(idx);
+      });
+    });
+  }
+</script>

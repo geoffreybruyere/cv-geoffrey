@@ -1,0 +1,368 @@
+---
+import { Sun, Moon } from "@lucide/astro";
+---
+
+<!-- ════════════════ NAV (outside hero container to avoid overflow clip) ════════════════ -->
+<nav
+  id="site-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  style="border-bottom: 0.5px solid transparent;"
+>
+      <div class="mx-auto flex max-w-[768px] items-center justify-between px-8 max-md:px-6 py-4">
+        <!-- Links — hidden on mobile -->
+        <ul class="hidden md:flex items-center gap-6">
+          {["Parcours", "Compétences", "Contact"].map((label) => (
+            <li>
+              <a
+                href={`#${label.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+                class="text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary transition-colors hover:text-text-primary"
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Spacer on mobile -->
+        <div class="md:hidden" />
+
+        <!-- Right controls -->
+        <div class="flex items-center gap-3">
+          <!-- FR | EN toggle -->
+          <div class="flex items-center gap-1.5">
+            <button
+              id="lang-fr"
+              type="button"
+              class="cursor-pointer text-[11px] uppercase tracking-[0.06em] text-text-primary font-semibold border-b-[1.5px] border-text-primary pb-0.5 transition-all"
+            >
+              FR
+            </button>
+            <button
+              id="lang-en"
+              type="button"
+              class="cursor-pointer text-[11px] uppercase tracking-[0.06em] text-text-secondary font-normal border-b-[1.5px] border-transparent pb-0.5 transition-all"
+            >
+              EN
+            </button>
+          </div>
+
+          <!-- Separator -->
+          <div class="h-3.5 w-px bg-border" />
+
+          <!-- Dark mode toggle -->
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Basculer le mode sombre"
+            class="relative h-5 w-9 cursor-pointer rounded-[10px] bg-bg-secondary transition-colors duration-300"
+          >
+            <span
+              id="theme-thumb"
+              class="absolute top-0.5 left-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-bg-primary transition-all duration-300"
+            >
+              <Sun class="h-2.5 w-2.5 text-text-secondary transition-opacity duration-300 dark:opacity-0" />
+              <Moon class="absolute h-2.5 w-2.5 text-text-primary opacity-0 transition-opacity duration-300 dark:opacity-100" />
+            </span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+<!-- ════════════════ HERO CONTAINER (particles + content) ════════════════ -->
+<header id="hero-container" class="relative overflow-hidden">
+
+  <!-- Canvas particles -->
+  <canvas
+    id="hero-particles"
+    class="absolute top-0 left-0 z-[1] h-full w-full"
+    aria-hidden="true"
+    role="presentation"
+  ></canvas>
+
+  <!-- Content layer — pointer-events-none so mouse events pass to container -->
+  <div class="relative z-[2] pointer-events-none">
+
+    <!-- ════════════════ HERO CONTENT ════════════════ -->
+    <section class="pt-20 pb-18">
+      <div class="mx-auto max-w-[768px] px-8 max-md:px-6">
+
+        <!-- Identity row -->
+        <div class="flex flex-row items-start gap-7 max-md:flex-col max-md:items-center max-md:text-center">
+          <!-- Photo placeholder -->
+          <div class="h-[110px] w-[110px] shrink-0 overflow-hidden rounded-full bg-bg-secondary">
+            <!-- <img src="/photo.jpg" alt="Geoffrey Bruyère" class="h-full w-full object-cover" /> -->
+          </div>
+
+          <!-- Text -->
+          <div class="flex-1 pt-1">
+            <h1
+              class="font-serif leading-[1.05]"
+              style="font-size: clamp(2.5rem, 6vw, 3.5rem);"
+              aria-label="Geoffrey Bruyère"
+            >
+              <span class="name-line" aria-hidden="true">
+                {["G","e","o","f","f","r","e","y"].map((c, i) => (
+                  <span class="letter" style={`--i:${i}`}>{c}</span>
+                ))}
+              </span>
+              <br />
+              <span class="name-line" aria-hidden="true">
+                {["B","r","u","y","è","r","e"].map((c, i) => (
+                  <span class="letter" style={`--i:${i}`}>{c}</span>
+                ))}
+              </span>
+            </h1>
+
+            <p class="mt-2.5 text-[0.95rem] font-normal tracking-[0.02em] text-text-primary">
+              CEO · CMO · Marque, Croissance &amp; Transformation IA
+            </p>
+
+            <!-- Eyebrow -->
+            <div class="mt-3 flex items-center gap-2 max-md:justify-center">
+              <span class="inline-block rounded-sm border border-accent px-1.5 py-px text-[10px] font-medium uppercase tracking-[0.08em] text-accent-dark">
+                En recherche active
+              </span>
+              <span class="text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary">
+                Aix-en-Provence · Paris · Monde
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statement -->
+        <blockquote class="mt-10 border-l-2 border-accent pl-5" style="border-radius: 0;">
+          <p class="text-[0.88rem] font-light leading-[1.75] text-text-body">
+            Diriger une marque B2C, c'est tenir deux exigences contradictoires en même temps : créer du
+            <span class="font-normal text-text-emphasis">désir</span> et produire de la
+            <span class="font-normal text-text-emphasis">performance</span>. J'ai passé 16&nbsp;ans à faire les
+            deux — de zéro à 10&nbsp;M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme.
+          </p>
+          <p class="mt-3 text-[0.88rem] font-light leading-[1.75] text-text-body">
+            C'est ce que je veux construire à nouveau, avec
+            <span class="font-normal text-text-emphasis">l'IA comme levier</span>.
+          </p>
+        </blockquote>
+
+        <!-- KPI row -->
+        <div class="mt-8 flex flex-wrap items-center gap-y-2">
+          <div class="flex items-baseline gap-[5px] pr-4">
+            <span class="font-serif text-[1.8rem] font-bold leading-none text-text-primary">15 ans</span>
+            <span class="text-[11px] font-light text-text-secondary">de direction B2C</span>
+          </div>
+          <div class="h-[20px] w-px bg-border max-md:hidden" />
+          <div class="flex items-baseline gap-[5px] px-4 max-md:pl-0">
+            <span class="font-serif text-[1.8rem] font-bold leading-none text-text-primary">0→10M€</span>
+            <span class="text-[11px] font-light text-text-secondary">from scratch</span>
+          </div>
+          <div class="h-[20px] w-px bg-border max-md:hidden" />
+          <div class="flex items-baseline gap-[5px] pl-4 max-md:pl-0">
+            <span class="font-serif text-[1.8rem] font-bold leading-none text-text-primary">95</span>
+            <span class="text-[11px] font-light text-text-secondary">NPS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</header>
+
+<!-- ════════════════ STYLES ════════════════ -->
+<style>
+  .name-line {
+    display: inline-block;
+  }
+
+  .letter {
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    transition: font-weight 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+                letter-spacing 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-delay: 0ms;
+  }
+
+  @media (hover: hover) {
+    .name-line:hover .letter {
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      transition-delay: calc(var(--i) * 30ms);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .letter {
+      transition: none !important;
+    }
+  }
+</style>
+
+<!-- ════════════════ SCRIPTS ════════════════ -->
+<script>
+  const nav = document.getElementById("site-nav");
+  const toggle = document.getElementById("theme-toggle");
+  const thumb = document.getElementById("theme-thumb");
+
+  // ── Dark mode toggle ──
+  function applyDarkUI(isDark: boolean) {
+    if (!toggle || !thumb) return;
+    if (isDark) {
+      toggle.classList.remove("bg-bg-secondary");
+      toggle.classList.add("bg-accent");
+      thumb.classList.remove("left-0.5", "bg-bg-primary");
+      thumb.classList.add("left-[18px]", "bg-[#141210]");
+    } else {
+      toggle.classList.remove("bg-accent");
+      toggle.classList.add("bg-bg-secondary");
+      thumb.classList.remove("left-[18px]", "bg-[#141210]");
+      thumb.classList.add("left-0.5", "bg-bg-primary");
+    }
+  }
+
+  applyDarkUI(document.documentElement.classList.contains("dark"));
+
+  toggle?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    applyDarkUI(isDark);
+  });
+
+  // ── Nav backdrop on scroll ──
+  function updateNav() {
+    if (!nav) return;
+    if (window.scrollY > 10) {
+      nav.classList.add("backdrop-blur-md");
+      nav.style.backgroundColor = "color-mix(in srgb, var(--color-bg-primary) 80%, transparent)";
+      nav.style.borderBottomColor = "var(--color-border)";
+    } else {
+      nav.classList.remove("backdrop-blur-md");
+      nav.style.backgroundColor = "transparent";
+      nav.style.borderBottomColor = "transparent";
+    }
+  }
+
+  window.addEventListener("scroll", updateNav, { passive: true });
+  updateNav();
+
+  // ── Lang toggle ──
+  const frBtn = document.getElementById("lang-fr");
+  const enBtn = document.getElementById("lang-en");
+
+  function setLang(lang: "fr" | "en") {
+    if (!frBtn || !enBtn) return;
+    const active = lang === "fr" ? frBtn : enBtn;
+    const inactive = lang === "fr" ? enBtn : frBtn;
+    active.classList.add("font-semibold", "text-text-primary", "border-text-primary");
+    active.classList.remove("font-normal", "text-text-secondary", "border-transparent");
+    inactive.classList.add("font-normal", "text-text-secondary", "border-transparent");
+    inactive.classList.remove("font-semibold", "text-text-primary", "border-text-primary");
+  }
+
+  frBtn?.addEventListener("click", () => setLang("fr"));
+  enBtn?.addEventListener("click", () => setLang("en"));
+
+  // ── Particle canvas ──
+  const canvas = document.getElementById("hero-particles") as HTMLCanvasElement;
+  const container = document.getElementById("hero-container") as HTMLElement;
+  const ctx = canvas?.getContext("2d");
+
+  const hasHover = window.matchMedia("(hover: hover)").matches;
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  interface Dot {
+    ox: number;
+    oy: number;
+    baseSize: number;
+    size: number;
+    baseOpacity: number;
+  }
+
+  let dots: Dot[] = [];
+  let mouse = { x: -999, y: -999 };
+
+  function createDots(w: number, h: number) {
+    dots = [];
+    const spacing = 10;
+    for (let x = spacing / 2; x < w; x += spacing) {
+      for (let y = spacing / 2; y < h; y += spacing) {
+        const yFactor = 1 - (y / h) * 0.5;
+        if (Math.random() < 0.92 * yFactor) {
+          const size = 0.9 * (0.4 + Math.random() * 0.6) * (0.5 + yFactor * 0.5);
+          dots.push({
+            ox: x,
+            oy: y,
+            baseSize: size,
+            size: size,
+            baseOpacity: 0.40 * (0.3 + yFactor * 0.7),
+          });
+        }
+      }
+    }
+  }
+
+  function resize() {
+    if (!canvas || !ctx || !container) return;
+    const rect = container.getBoundingClientRect();
+    canvas.width = rect.width * 2;
+    canvas.height = rect.height * 2;
+    canvas.style.width = rect.width + "px";
+    canvas.style.height = rect.height + "px";
+    ctx.setTransform(2, 0, 0, 2, 0, 0);
+    createDots(rect.width, rect.height);
+  }
+
+  function getDotColor(opacity: number): string {
+    const isDark = document.documentElement.classList.contains("dark");
+    return isDark
+      ? "rgba(44,44,42," + opacity + ")"
+      : "rgba(172,172,170," + opacity + ")";
+  }
+
+  function draw() {
+    if (!ctx || !canvas) return;
+    const w = canvas.width / 2;
+    const h = canvas.height / 2;
+    ctx.clearRect(0, 0, w, h);
+    const radius = 70;
+
+    for (let i = 0; i < dots.length; i++) {
+      const d = dots[i];
+      const dx = d.ox - mouse.x;
+      const dy = d.oy - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < radius) {
+        const factor = dist / radius;
+        const target = d.baseSize * factor * factor;
+        d.size += (target - d.size) * 0.14;
+      } else {
+        d.size += (d.baseSize - d.size) * 0.07;
+      }
+
+      if (d.size > 0.08) {
+        const opacity = d.baseOpacity * (d.size / d.baseSize);
+        ctx.beginPath();
+        ctx.arc(d.ox, d.oy, d.size, 0, Math.PI * 2);
+        ctx.fillStyle = getDotColor(opacity);
+        ctx.fill();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  if (hasHover && !prefersReduced && canvas && ctx && container) {
+    container.addEventListener("mousemove", (e) => {
+      const rect = container.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    container.addEventListener("mouseleave", () => {
+      mouse.x = -999;
+      mouse.y = -999;
+    });
+
+    resize();
+    draw();
+    window.addEventListener("resize", resize);
+  }
+</script>

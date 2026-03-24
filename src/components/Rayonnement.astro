@@ -1,0 +1,73 @@
+---
+---
+
+<section id="rayonnement">
+  <!-- Separator -->
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6">
+    <div class="h-px bg-border" />
+  </div>
+
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6 py-10">
+    <!-- Screen reader heading -->
+    <h2 class="sr-only">Rayonnement</h2>
+
+    <!-- Section label -->
+    <div aria-hidden="true" class="mb-6 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
+      04 · Rayonnement
+    </div>
+
+    <!-- Three columns -->
+    <div class="grid grid-cols-3 gap-6 max-md:grid-cols-1" id="rayonnement-cols">
+      <!-- Distinctions -->
+      <div class="ray-col">
+        <div class="mb-2.5 h-[1.5px] w-5 bg-accent" />
+        <h3 class="mb-1.5 font-serif text-base font-normal text-text-primary">Distinctions</h3>
+        <p class="text-[12px] font-light leading-[1.65] text-text-body">
+          FT1000 — Financial Times Europe's Fastest Growing Companies (#580). Membre de la délégation française G20 Young Entrepreneurs 2018, Buenos Aires.
+        </p>
+      </div>
+
+      <!-- Conférences & conseil -->
+      <div class="ray-col">
+        <div class="mb-2.5 h-[1.5px] w-5 bg-accent" />
+        <h3 class="mb-1.5 font-serif text-base font-normal text-text-primary">Conférences & conseil</h3>
+        <p class="text-[12px] font-light leading-[1.65] text-text-body">
+          Interventions facturées : <span class="font-normal text-text-emphasis">Hermès</span>, <span class="font-normal text-text-emphasis">Moët</span>, <span class="font-normal text-text-emphasis">Weston</span>, <span class="font-normal text-text-emphasis">Galeries Lafayette</span>, <span class="font-normal text-text-emphasis">IADS</span>, <span class="font-normal text-text-emphasis">IFM</span>. Thèmes : marque, e-commerce, entrepreneuriat digital.
+        </p>
+      </div>
+
+      <!-- Business cases -->
+      <div class="ray-col">
+        <div class="mb-2.5 h-[1.5px] w-5 bg-accent" />
+        <h3 class="mb-1.5 font-serif text-base font-normal text-text-primary">Business cases</h3>
+        <p class="text-[12px] font-light leading-[1.65] text-text-body">
+          BonneGueule a été étudié dans les programmes MBA de HEC Entrepreneurs, ESSEC et IFM.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { inView } from "motion";
+
+  const cols = document.querySelectorAll<HTMLElement>(".ray-col");
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReduced && cols.length) {
+    cols.forEach((col) => {
+      col.style.opacity = "0";
+      col.style.transform = "translateY(16px)";
+      col.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    });
+
+    inView("#rayonnement-cols", () => {
+      cols.forEach((col, i) => {
+        setTimeout(() => {
+          col.style.opacity = "1";
+          col.style.transform = "translateY(0)";
+        }, i * 80);
+      });
+    }, { amount: 0.2 });
+  }
+</script>

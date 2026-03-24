@@ -1,0 +1,62 @@
+---
+const pillars = [
+  { title: "Esthétique et matières", text: "Mode masculine, architecture, arts graphiques, objets bien faits." },
+  { title: "Montagne", text: "Randonnées engagées (bivouac, multi-jours, hiver), alpinisme, escalade." },
+  { title: "Spiritualité", text: "Méditation, Zen Sōtō, médecines ancestrales." },
+];
+---
+
+<section id="culture">
+  <!-- Separator -->
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6">
+    <div class="h-px bg-border" />
+  </div>
+
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6 py-10">
+    <h2 class="sr-only">Culture personnelle</h2>
+
+    <div aria-hidden="true" class="mb-5 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
+      05 · Culture personnelle
+    </div>
+
+    <div id="culture-list">
+      {pillars.map((p, i) => (
+        <div
+          class={`culture-row flex items-baseline gap-4 py-2.5 max-md:flex-col max-md:gap-1 ${i < pillars.length - 1 ? "" : ""}`}
+          style={i < pillars.length - 1 ? "border-bottom: 0.5px solid var(--color-border);" : ""}
+        >
+          <span class="shrink-0 font-serif text-[13px] font-normal text-text-primary max-md:min-w-0" style="min-width: 160px;">
+            {p.title}
+          </span>
+          <span class="text-[12px] font-light leading-[1.65] text-text-body">
+            {p.text}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { inView } from "motion";
+
+  const rows = document.querySelectorAll<HTMLElement>(".culture-row");
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReduced && rows.length) {
+    rows.forEach((row) => {
+      row.style.opacity = "0";
+      row.style.transform = "translateY(12px)";
+      row.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+    });
+
+    inView("#culture-list", () => {
+      rows.forEach((row, i) => {
+        setTimeout(() => {
+          row.style.opacity = "1";
+          row.style.transform = "translateY(0)";
+        }, i * 60);
+      });
+    }, { amount: 0.2 });
+  }
+</script>

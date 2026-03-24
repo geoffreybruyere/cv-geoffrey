@@ -1,0 +1,64 @@
+---
+const formations = [
+  { year: "2017", school: "ESCP / Institut Français de la Mode", detail: "Accélérateur Mode & Luxe · IFM Labels · Paris" },
+  { year: "2010", school: "Bosphore University", detail: "MBA Program · Istanbul" },
+  { year: "2006", school: "Mines-Télécom Business School", detail: "MSc in Management · Paris" },
+  { year: "2004", school: "CPGE Lycée Albert Schweitzer", detail: "Maths Sup / Maths Spé · Mulhouse" },
+];
+---
+
+<section id="formation">
+  <!-- Separator -->
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6">
+    <div class="h-px bg-border" />
+  </div>
+
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6 py-10">
+    <!-- Screen reader heading -->
+    <h2 class="sr-only">Formation</h2>
+
+    <!-- Section label -->
+    <div aria-hidden="true" class="mb-5 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
+      03 · Formation
+    </div>
+
+    <!-- Formation list -->
+    <div id="formation-list">
+      {formations.map((f, i) => (
+        <div class={`formation-row flex items-baseline gap-4 py-3 ${i < formations.length - 1 ? "border-b" : ""}`} style={i < formations.length - 1 ? "border-bottom-width:0.5px;border-color:var(--color-border);" : ""}>
+          <span class="shrink-0 text-right text-[11px] font-light text-text-secondary" style="min-width:36px;">
+            {f.year}
+          </span>
+          <span class="text-[0.95rem]">
+            <span class="font-serif font-normal text-text-primary">{f.school}</span>
+            <span class="font-light text-text-body"> — {f.detail}</span>
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { inView } from "motion";
+
+  const rows = document.querySelectorAll<HTMLElement>(".formation-row");
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReduced && rows.length) {
+    rows.forEach((row) => {
+      row.style.opacity = "0";
+      row.style.transform = "translateY(12px)";
+      row.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+    });
+
+    inView("#formation-list", () => {
+      rows.forEach((row, i) => {
+        setTimeout(() => {
+          row.style.opacity = "1";
+          row.style.transform = "translateY(0)";
+        }, i * 80);
+      });
+    }, { amount: 0.2 });
+  }
+</script>

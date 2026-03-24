@@ -1,0 +1,97 @@
+---
+const leftTags = [
+  "Direction d'entreprise",
+  "Leadership (jusqu'à 60 p.)",
+  "Transformation digitale",
+  "Financement",
+  "Stratégie de croissance",
+  "Retail expérientiel",
+  "E-commerce",
+  "Branding",
+];
+
+const rightTags = [
+  "Augmentation des fonctions clé",
+  "Orchestration d'agents IA",
+  "Génération d'assets",
+  "Prototypage full-stack",
+  "Audit stacks IA",
+  "Automatisations (workers)",
+  "SEO pour LLMs (GEO)",
+];
+---
+
+<section id="competences">
+  <!-- Separator -->
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6">
+    <div class="h-px bg-border" />
+  </div>
+
+  <div class="mx-auto max-w-[640px] px-8 max-md:px-6 py-10">
+    <!-- Screen reader heading -->
+    <h2 class="sr-only">Compétences</h2>
+
+    <!-- Section label -->
+    <div aria-hidden="true" class="mb-6 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
+      02 · Compétences
+    </div>
+
+    <!-- Two columns -->
+    <div class="grid grid-cols-2 gap-8 max-md:grid-cols-1" id="competences-cols">
+      <!-- Left column -->
+      <div class="comp-col">
+        <h3 class="mb-2.5 font-serif text-[1.05rem] font-normal text-text-primary">
+          Savoir-faire dirigeant
+        </h3>
+        <div class="flex flex-wrap gap-1.5">
+          {leftTags.map((tag) => (
+            <span class="rounded-sm px-2.5 py-1 text-[12px] font-light text-text-body" style="border: 0.5px solid var(--color-border);">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div class="comp-col">
+        <h3 class="mb-2.5 font-serif text-[1.05rem] font-normal text-text-primary">
+          IA — Stratégie & exécution
+        </h3>
+        <div class="flex flex-wrap gap-1.5">
+          {rightTags.map((tag) => (
+            <span class="rounded-sm px-2.5 py-1 text-[12px] font-light text-text-body" style="border: 0.5px solid var(--color-border);">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { inView } from "motion";
+
+  const cols = document.querySelectorAll<HTMLElement>(".comp-col");
+
+  // Check reduced motion
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReduced && cols.length) {
+    // Set initial state
+    cols.forEach((col) => {
+      col.style.opacity = "0";
+      col.style.transform = "translateY(20px)";
+      col.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    });
+
+    inView("#competences-cols", () => {
+      cols.forEach((col, i) => {
+        setTimeout(() => {
+          col.style.opacity = "1";
+          col.style.transform = "translateY(0)";
+        }, i * 100);
+      });
+    }, { amount: 0.2 });
+  }
+</script>

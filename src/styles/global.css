@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Use class-based dark mode instead of prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Light mode colors (default) */
+  --color-bg-primary: #FCFCFA;
+  --color-bg-secondary: #EEEEE8;
+  --color-text-primary: #141210;
+  --color-text-secondary: #ACACAA;
+  --color-text-body: #888780;
+  --color-text-emphasis: #5F5E5A;
+  --color-accent: #FEFE7D;
+  --color-accent-dark: #484800;
+  --color-border: #EEEEE8;
+
+  /* Fonts */
+  --font-sans: "Figtree", sans-serif;
+  --font-serif: "Rufina", serif;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-bg-primary: #141210;
+  --color-bg-secondary: #2C2C2A;
+  --color-text-primary: #FCFCFA;
+  --color-text-secondary: #ACACAA;
+  --color-text-body: #888780;
+  --color-text-emphasis: #D3D1C7;
+  --color-accent: #FEFE7D;
+  --color-accent-dark: #FEFE7D;
+  --color-border: #2C2C2A;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition: background-color 300ms ease, color 300ms ease;
+}

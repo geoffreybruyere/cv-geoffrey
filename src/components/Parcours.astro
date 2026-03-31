@@ -336,6 +336,16 @@ const stationPositions = [12, 38, 65, 95];
       }
     }
 
+    // Activate station 3 (Wavestone) briefly when scrolled past last panel
+    const lastPanel = document.getElementById("panel-2");
+    if (lastPanel && lastPanel.classList.contains("visible")) {
+      const lastRect = lastPanel.getBoundingClientRect();
+      if (lastRect.bottom < window.innerHeight * 0.4) {
+        updateTimeline(3);
+        return;
+      }
+    }
+
     setFocus(closestIdx);
   }
 
@@ -354,12 +364,20 @@ const stationPositions = [12, 38, 65, 95];
 
   // ── Click handler ──
   function goToStation(index: number) {
-    for (let i = 0; i <= index; i++) {
+    const maxPanel = Math.min(index, 2);
+    for (let i = 0; i <= maxPanel; i++) {
       revealPanel(i);
     }
-    setFocus(index);
+    if (index <= 2) {
+      setFocus(index);
+    } else {
+      // Station 3 (Wavestone) — no panel, just light up timeline
+      setFocus(2);
+      updateTimeline(3);
+    }
     setTimeout(() => {
-      document.getElementById("panel-" + index)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const target = document.getElementById("panel-" + maxPanel);
+      target?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 100);
   }
 

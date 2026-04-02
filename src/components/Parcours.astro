@@ -12,7 +12,7 @@ const stations = [
 const stationPositions = [12, 38, 65, 95];
 ---
 
-<section id="parcours">
+<section id="parcours" style="scroll-margin-top: 70px;">
 
   <!-- ══════ Sticky: label + timeline ══════ -->
   <div
@@ -35,7 +35,7 @@ const stationPositions = [12, 38, 65, 95];
       </div>
 
       <!-- Timeline -->
-      <div class="relative overflow-hidden" style="height: 68px;">
+      <div class="relative overflow-hidden h-[68px] max-sm:h-[42px]">
         <!-- Base line -->
         <div class="absolute top-[4px] left-0 right-0 h-[3px] rounded-full bg-border" />
         <!-- Progress line -->
@@ -57,13 +57,13 @@ const stationPositions = [12, 38, 65, 95];
               id={`dot-${i}`}
               class="relative -left-[5px] block h-[11px] w-[11px] rounded-full bg-border transition-all duration-300"
             />
-            <span class="mt-2 flex items-center gap-1.5 whitespace-nowrap text-[11px] max-md:text-[9px] uppercase tracking-[0.1em] text-text-secondary transition-colors duration-300" id={`date-${i}`}>
+            <span class="mt-1.5 max-sm:mt-1 flex items-center gap-1.5 whitespace-nowrap text-[11px] max-sm:text-[8px] uppercase tracking-[0.1em] text-text-secondary transition-colors duration-300" id={`date-${i}`}>
               {s.year}
               {s.duration && (
-                <span class="text-[10px] max-md:text-[8px] font-light normal-case tracking-[0.04em] text-text-secondary/50">· {s.duration}</span>
+                <span class="text-[10px] max-sm:hidden font-light normal-case tracking-[0.04em] text-text-secondary/50">· {s.duration}</span>
               )}
             </span>
-            <span class={`whitespace-nowrap font-serif text-base max-md:text-sm ${s.nameWeight} text-text-secondary transition-colors duration-300`} id={`name-${i}`}>
+            <span class={`whitespace-nowrap font-serif text-base max-sm:text-[10px] ${s.nameWeight} text-text-secondary transition-colors duration-300 max-sm:sr-only`} id={`name-${i}`}>
               {s.name}
             </span>
             <span class="mt-0.5 flex items-center gap-1.5 whitespace-nowrap text-[11px] font-light text-text-secondary max-md:hidden">
@@ -81,7 +81,7 @@ const stationPositions = [12, 38, 65, 95];
   </div>
 
   <!-- ══════ Stacking panels ══════ -->
-  <div class="mx-auto max-w-[768px] px-8 max-md:px-6">
+  <div class="mx-auto max-w-[768px] px-8 max-md:px-6 mt-6">
 
     <!-- Panel 0: Core Summit -->
     <div id="panel-0" class="panel-stack" data-index="0">
@@ -90,6 +90,7 @@ const stationPositions = [12, 38, 65, 95];
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">Core Summit</span>
+            <a href="https://www.coresummit.fr/" target="_blank" rel="noopener noreferrer" aria-label="Voir Core Summit" class="inline-flex items-center ml-1.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
             <span class="text-[13px] font-light text-text-secondary">Co-fondateur</span>
             <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Side project</span>
           </div>
@@ -120,6 +121,7 @@ const stationPositions = [12, 38, 65, 95];
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">Voyage Privé</span>
+            <a href="https://www.voyage-prive.com/" target="_blank" rel="noopener noreferrer" aria-label="Voir Voyage Privé" class="inline-flex items-center ml-1.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
             <span class="text-[13px] font-light text-text-secondary">CMO</span>
             <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">ComEx</span>
           </div>
@@ -180,6 +182,7 @@ const stationPositions = [12, 38, 65, 95];
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">BonneGueule</span>
+            <a href="https://bonnegueule.fr/" target="_blank" rel="noopener noreferrer" aria-label="Voir BonneGueule" class="inline-flex items-center ml-1.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
             <span class="text-[13px] font-light text-text-secondary">CEO</span>
             <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Fondateur</span>
           </div>

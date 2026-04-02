@@ -1,0 +1,114 @@
+<!-- Custom cursor — dot + ring with lag. Desktop only (pointer: fine). -->
+<div id="cursor-dot" class="custom-cursor" aria-hidden="true"></div>
+<div id="cursor-ring" class="custom-cursor" aria-hidden="true"></div>
+
+<style>
+  /* Hide system cursor on desktop */
+  @media (pointer: fine) {
+    :global(html) {
+      cursor: none !important;
+    }
+    :global(a, button, [role="button"], label, input, textarea, select) {
+      cursor: none !important;
+    }
+  }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+  }
+
+  #cursor-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--color-text-primary);
+  }
+
+  #cursor-ring {
+    width: 24px;
+    height: 24px;
+    border: 1.5px solid var(--color-text-primary);
+    opacity: 0.5;
+    transition: width 150ms ease-out, height 150ms ease-out, opacity 150ms ease-out;
+  }
+
+  #cursor-ring.hover {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
+  }
+
+  /* Hide on touch/mobile */
+  @media (pointer: coarse) {
+    .custom-cursor {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  const dot = document.getElementById("cursor-dot");
+  const ring = document.getElementById("cursor-ring");
+
+  // Bail on touch devices
+  if (window.matchMedia("(pointer: coarse)").matches || !dot || !ring) {
+    if (dot) dot.style.display = "none";
+    if (ring) ring.style.display = "none";
+  } else {
+    let mx = -100;
+    let my = -100;
+    let rx = -100;
+    let ry = -100;
+    const LERP = 0.12;
+
+    // Hide until first move
+    dot.style.opacity = "0";
+    ring.style.opacity = "0";
+
+    document.addEventListener("mousemove", (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+      dot.style.opacity = "1";
+      ring.style.opacity = "";
+    });
+
+    // Ring follows with lag
+    function animateRing() {
+      rx += (mx - rx) * LERP;
+      ry += (my - ry) * LERP;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animateRing);
+    }
+    requestAnimationFrame(animateRing);
+
+    // Hover detection on clickable elements
+    const CLICKABLE = "a, button, [role='button'], label";
+
+    document.addEventListener("mouseover", (e) => {
+      const target = (e.target as Element)?.closest?.(CLICKABLE);
+      if (target) ring.classList.add("hover");
+    });
+
+    document.addEventListener("mouseout", (e) => {
+      const target = (e.target as Element)?.closest?.(CLICKABLE);
+      if (target) ring.classList.remove("hover");
+    });
+
+    // Hide when cursor leaves window
+    document.addEventListener("mouseleave", () => {
+      dot.style.opacity = "0";
+      ring.style.opacity = "0";
+    });
+    document.addEventListener("mouseenter", () => {
+      dot.style.opacity = "1";
+      ring.style.opacity = "";
+    });
+  }
+</script>

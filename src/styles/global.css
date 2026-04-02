@@ -9,7 +9,7 @@
   --color-bg-secondary: #EEEEE8;
   --color-text-primary: #141210;
   --color-text-secondary: #ACACAA;
-  --color-text-body: #888780;
+  --color-text-body: #747470;
   --color-text-emphasis: #5F5E5A;
   --color-accent: #FEFE7D;
   --color-accent-dark: #484800;
@@ -26,7 +26,7 @@
   --color-bg-secondary: #2C2C2A;
   --color-text-primary: #FCFCFA;
   --color-text-secondary: #ACACAA;
-  --color-text-body: #888780;
+  --color-text-body: #9A9A96;
   --color-text-emphasis: #D3D1C7;
   --color-accent: #FEFE7D;
   --color-accent-dark: #FEFE7D;
@@ -36,6 +36,7 @@
 /* Base styles */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -43,4 +44,5 @@ body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   transition: background-color 300ms ease, color 300ms ease;
+  overflow-x: hidden;
 }

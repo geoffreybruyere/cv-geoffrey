@@ -35,13 +35,13 @@ const stationPositions = [12, 38, 65, 95];
       </div>
 
       <!-- Timeline -->
-      <div class="relative" style="height: 68px;">
+      <div class="relative overflow-hidden" style="height: 68px;">
         <!-- Base line -->
-        <div class="absolute top-[5px] left-0 right-0 h-[1.5px] bg-border" />
+        <div class="absolute top-[4px] left-0 right-0 h-[3px] rounded-full bg-border" />
         <!-- Progress line -->
         <div
           id="timeline-progress"
-          class="absolute top-[5px] left-0 h-[1.5px] bg-accent"
+          class="absolute top-[4px] left-0 h-[3px] rounded-full bg-accent"
           style="width: 0%; transition: width 0.5s cubic-bezier(0.25,0.1,0.25,1);"
         />
 
@@ -57,13 +57,13 @@ const stationPositions = [12, 38, 65, 95];
               id={`dot-${i}`}
               class="relative -left-[5px] block h-[11px] w-[11px] rounded-full bg-border transition-all duration-300"
             />
-            <span class="mt-2 flex items-center gap-1.5 whitespace-nowrap text-[11px] uppercase tracking-[0.1em] text-text-secondary transition-colors duration-300" id={`date-${i}`}>
+            <span class="mt-2 flex items-center gap-1.5 whitespace-nowrap text-[11px] max-md:text-[9px] uppercase tracking-[0.1em] text-text-secondary transition-colors duration-300" id={`date-${i}`}>
               {s.year}
               {s.duration && (
-                <span class="text-[10px] font-light normal-case tracking-[0.04em] text-text-secondary/50">· {s.duration}</span>
+                <span class="text-[10px] max-md:text-[8px] font-light normal-case tracking-[0.04em] text-text-secondary/50">· {s.duration}</span>
               )}
             </span>
-            <span class={`whitespace-nowrap font-serif text-base ${s.nameWeight} text-text-secondary transition-colors duration-300`} id={`name-${i}`}>
+            <span class={`whitespace-nowrap font-serif text-base max-md:text-sm ${s.nameWeight} text-text-secondary transition-colors duration-300`} id={`name-${i}`}>
               {s.name}
             </span>
             <span class="mt-0.5 flex items-center gap-1.5 whitespace-nowrap text-[11px] font-light text-text-secondary max-md:hidden">
@@ -129,40 +129,43 @@ const stationPositions = [12, 38, 65, 95];
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
           Stratégie marketing globale d'un acteur leader du voyage premium en ligne (C.A. >1Md€, CAGR >+10%) : acquisition online / offline dont TV / organique, CRM, branding, retail média.
         </p>
-        <!-- KPI inline -->
-        <div class="mt-4 flex flex-wrap items-center gap-4">
-          {[
-            { v: ">1Md€", l: "CA" },
-            { v: "+10%", l: "CAGR" },
-            { v: ">10M€", l: "budget" },
-            { v: "35", l: "experts" },
-          ].map((k, i) => (
-            <div class="flex items-center gap-4">
-              {i > 0 && <div class="h-[18px] w-px bg-border" />}
-              <div class="flex flex-col items-center">
-                <span class="font-serif text-[1.3rem] font-bold leading-none text-text-primary">{k.v}</span>
-                <span class="mt-0.5 text-[11px] font-light uppercase tracking-[0.12em] text-text-secondary">{k.l}</span>
-              </div>
+        <!-- KPI sidebar + Grid -->
+        <div class="mt-5 flex gap-6 max-md:flex-col">
+          <!-- KPIs vertical -->
+          <div class="flex flex-col gap-3 shrink-0 max-md:flex-row max-md:flex-wrap max-md:gap-4">
+            {[
+              { v: ">1Md€", l: "CA" },
+              { v: "+10%", l: "CAGR" },
+              { v: ">10M€", l: "budget" },
+              { v: "35", l: "experts" },
+            ].map((k, i) => (
+              <>
+                {i > 0 && <div class="h-px w-full bg-border max-md:hidden" />}
+                <div class="flex flex-col items-center min-w-[60px]">
+                  <span class="font-serif text-[1.3rem] font-bold leading-none text-text-primary">{k.v}</span>
+                  <span class="mt-0.5 text-[11px] font-light uppercase tracking-[0.12em] text-text-secondary">{k.l}</span>
+                </div>
+              </>
+            ))}
+          </div>
+          <!-- Grid -->
+          <div class="grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
+            <div class="border-l-[1.5px] border-border pl-3">
+              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Performance</span>
+              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Pilotage de la performance marketing (budget >10M€, reporting au CEO).</p>
             </div>
-          ))}
-        </div>
-        <!-- Grid -->
-        <div class="mt-5 grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
-          <div class="border-l-[1.5px] border-border pl-3">
-            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Performance</span>
-            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Pilotage de la performance marketing (budget >10M€, reporting au CEO).</p>
-          </div>
-          <div class="border-l-[1.5px] border-border pl-3">
-            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Direction & Gouvernance (ComEx)</span>
-            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Alignement stratégie marketing / objectifs groupe, décisions cross-fonctions (tech, produit, commercial).</p>
-          </div>
-          <div class="border-l-[1.5px] border-border pl-3">
-            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Organisation & Chantiers</span>
-            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Réorganisation de l'équipe de 35 experts, création de la fonction branding et refonte complète de la plateforme de marque. Pilotage de chantiers transverses avec les équipes digitales : outils d'attribution, AB-testing, CRM…</p>
-          </div>
-          <div class="border-l-[1.5px] border-border pl-3">
-            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Transformation IA</span>
-            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Déploiement d'automatisations IA sur CRM, SEO et acquisition payante. Réduction de >50% des coûts de production SEO, renégociation >25% de tous les SaaS.</p>
+            <div class="border-l-[1.5px] border-border pl-3">
+              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Direction & Gouvernance (ComEx)</span>
+              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Alignement stratégie marketing / objectifs groupe, décisions cross-fonctions (tech, produit, commercial).</p>
+            </div>
+            <div class="border-l-[1.5px] border-border pl-3">
+              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Organisation & Chantiers</span>
+              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Réorganisation de l'équipe de 35 experts, création de la fonction branding et refonte complète de la plateforme de marque. Pilotage de chantiers transverses avec les équipes digitales : outils d'attribution, AB-testing, CRM…</p>
+            </div>
+            <div class="border-l-[1.5px] border-border pl-3">
+              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Transformation IA</span>
+              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Déploiement d'automatisations IA sur CRM, SEO et acquisition payante. Réduction de >50% des coûts de production SEO, renégociation >25% de tous les SaaS.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -186,41 +189,44 @@ const stationPositions = [12, 38, 65, 95];
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
           Création d'un modèle pionnier, à la fois marque de mode masculine digitale et média communautaire. Croissance organique et rentable de 0 à 10M€ (+50% CAGR, 6,8% EBE).
         </p>
-        <!-- KPI inline -->
-        <div class="mt-4 flex flex-wrap items-center gap-4">
-          {[
-            { v: "10M€", l: "CA" },
-            { v: "6,8%", l: "EBE" },
-            { v: "10", l: "boutiques" },
-            { v: "60", l: "pers." },
-            { v: "95", l: "NPS" },
-          ].map((k, i) => (
-            <div class="flex items-center gap-4">
-              {i > 0 && <div class="h-[18px] w-px bg-border" />}
-              <div class="flex flex-col items-center">
-                <span class="font-serif text-[1.3rem] font-bold leading-none text-text-primary">{k.v}</span>
-                <span class="mt-0.5 text-[11px] font-light uppercase tracking-[0.12em] text-text-secondary">{k.l}</span>
-              </div>
+        <!-- KPI sidebar + Grid -->
+        <div class="mt-5 flex gap-6 max-md:flex-col">
+          <!-- KPIs vertical -->
+          <div class="flex flex-col gap-3 shrink-0 max-md:flex-row max-md:flex-wrap max-md:gap-4">
+            {[
+              { v: "10M€", l: "CA" },
+              { v: "6,8%", l: "EBE" },
+              { v: "10", l: "boutiques" },
+              { v: "60", l: "pers." },
+              { v: "95", l: "NPS" },
+            ].map((k, i) => (
+              <>
+                {i > 0 && <div class="h-px w-full bg-border max-md:hidden" />}
+                <div class="flex flex-col items-center min-w-[60px]">
+                  <span class="font-serif text-[1.3rem] font-bold leading-none text-text-primary">{k.v}</span>
+                  <span class="mt-0.5 text-[11px] font-light uppercase tracking-[0.12em] text-text-secondary">{k.l}</span>
+                </div>
+              </>
+            ))}
+          </div>
+          <!-- Grid -->
+          <div class="grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
+            <div class="border-l-[1.5px] border-border pl-3">
+              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Modèle économique</span>
+              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Précurseur du "nouveau luxe" et des marques digitales omnicanales (DNVB) — média comme moteur d'acquisition organique, boutiques comme extension de marque. Communauté de 4,5M V.U./an et 150k abonnés YouTube.</p>
             </div>
-          ))}
-        </div>
-        <!-- Grid -->
-        <div class="mt-5 grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
-          <div class="border-l-[1.5px] border-border pl-3">
-            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Modèle économique</span>
-            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Précurseur du "nouveau luxe" et des marques digitales omnicanales (DNVB) — média comme moteur d'acquisition organique, boutiques comme extension de marque. Communauté de 4,5M V.U./an et 150k abonnés YouTube.</p>
-          </div>
-          <div class="border-l-[1.5px] border-border pl-3">
-            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Croissance et Marque</span>
-            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Désirabilité fondée sur le récit authentique, la transparence radicale et des lancements de produits en drop. Chaque pièce racontée, décryptée, rendue non-comparable. Aucun discount en 12 ans. NPS 95. 63% de repeat business.</p>
-          </div>
-          <div class="border-l-[1.5px] border-border pl-3">
-            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Distribution omnicanale digital-first</span>
-            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Ouverture de 10 magasins en propre — choix des emplacements, pilotage des financements et des travaux. Boutiques expérientielles comme extension de la marque.</p>
-          </div>
-          <div class="border-l-[1.5px] border-border pl-3">
-            <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Leadership</span>
-            <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">De 1 à 60 collaborateurs (Top 100 GPtW France) — de fondateur-exécutant à dirigeant d'organisation. Recrutements clé (COO, DAF, DA), 7,7M€ de fonds propres (seed / série A), constitution d'un board et d'un ComEx.</p>
+            <div class="border-l-[1.5px] border-border pl-3">
+              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Croissance et Marque</span>
+              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Désirabilité fondée sur le récit authentique, la transparence radicale et des lancements de produits en drop. Chaque pièce racontée, décryptée, rendue non-comparable. Aucun discount en 12 ans. NPS 95. 63% de repeat business.</p>
+            </div>
+            <div class="border-l-[1.5px] border-border pl-3">
+              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Distribution omnicanale digital-first</span>
+              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Ouverture de 10 magasins en propre — choix des emplacements, pilotage des financements et des travaux. Boutiques expérientielles comme extension de la marque.</p>
+            </div>
+            <div class="border-l-[1.5px] border-border pl-3">
+              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Leadership</span>
+              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">De 1 à 60 collaborateurs (Top 100 GPtW France) — de fondateur-exécutant à dirigeant d'organisation. Recrutements clé (COO, DAF, DA), 7,7M€ de fonds propres (seed / série A), constitution d'un board et d'un ComEx.</p>
+            </div>
           </div>
         </div>
       </div>

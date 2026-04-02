@@ -1,5 +1,5 @@
 ---
-import { Sun, Moon } from "@lucide/astro";
+import { Sun, Moon, Download } from "@lucide/astro";
 ---
 
 <!-- ════════════════ NAV (outside hero container to avoid overflow clip) ════════════════ -->
@@ -11,7 +11,7 @@ import { Sun, Moon } from "@lucide/astro";
       <div class="mx-auto flex max-w-[768px] items-center justify-between px-8 max-md:px-6 py-4">
         <!-- Links — hidden on mobile -->
         <ul class="hidden md:flex items-center gap-6">
-          {["Parcours", "Compétences", "Contact"].map((label) => (
+          {["Parcours", "Compétences", "Formation"].map((label) => (
             <li>
               <a
                 href={`#${label.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
@@ -21,26 +21,34 @@ import { Sun, Moon } from "@lucide/astro";
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="#contact"
+              class="inline-block rounded-sm bg-accent px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-accent-dark transition-opacity hover:opacity-80"
+            >
+              Contact
+            </a>
+          </li>
         </ul>
 
         <!-- Spacer on mobile -->
         <div class="md:hidden" />
 
         <!-- Right controls -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 max-md:gap-1.5 shrink-0">
           <!-- FR | EN toggle -->
           <div class="flex items-center gap-1.5">
             <button
               id="lang-fr"
               type="button"
-              class="cursor-pointer text-[11px] uppercase tracking-[0.06em] text-text-primary font-semibold border-b-[1.5px] border-text-primary pb-0.5 transition-all"
+              class="cursor-pointer text-[11px] uppercase tracking-[0.06em] text-text-primary font-semibold border-b-[1.5px] border-text-primary pb-0.5 transition-all min-h-[44px] flex items-center"
             >
               FR
             </button>
             <button
               id="lang-en"
               type="button"
-              class="cursor-pointer text-[11px] uppercase tracking-[0.06em] text-text-secondary font-normal border-b-[1.5px] border-transparent pb-0.5 transition-all"
+              class="cursor-pointer text-[11px] uppercase tracking-[0.06em] text-text-secondary font-normal border-b-[1.5px] border-transparent pb-0.5 transition-all min-h-[44px] flex items-center"
             >
               EN
             </button>
@@ -64,6 +72,30 @@ import { Sun, Moon } from "@lucide/astro";
               <Moon class="absolute h-2.5 w-2.5 text-text-primary opacity-0 transition-opacity duration-300 dark:opacity-100" />
             </span>
           </button>
+
+          <!-- Separator — hidden on small mobile -->
+          <div class="h-3.5 w-px bg-border max-sm:hidden" />
+
+          <!-- Download PDF -->
+          <a
+            href="/geoffrey-bruyere-cv.pdf"
+            download
+            aria-label="Télécharger le CV en PDF"
+            class="flex items-center justify-center min-w-[44px] min-h-[44px] text-text-secondary transition-colors hover:text-text-primary max-sm:hidden"
+          >
+            <Download size={16} strokeWidth={1.5} />
+          </a>
+
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/in/geoffreybruyere/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Profil LinkedIn"
+            class="flex items-center justify-center min-w-[44px] min-h-[44px] text-text-secondary transition-colors hover:text-text-primary max-sm:hidden"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
         </div>
       </div>
     </nav>
@@ -79,8 +111,8 @@ import { Sun, Moon } from "@lucide/astro";
     role="presentation"
   ></canvas>
 
-  <!-- Content layer — pointer-events-none so mouse events pass to container -->
-  <div class="relative z-[2] pointer-events-none">
+  <!-- Content layer -->
+  <div class="relative z-[2]">
 
     <!-- ════════════════ HERO CONTENT ════════════════ -->
     <section class="pt-20 pb-18">
@@ -89,8 +121,8 @@ import { Sun, Moon } from "@lucide/astro";
         <!-- Identity row -->
         <div class="flex flex-row items-start gap-7 max-md:flex-col max-md:items-center max-md:text-center">
           <!-- Photo placeholder -->
-          <div class="h-[110px] w-[110px] shrink-0 overflow-hidden rounded-full" style="background: var(--color-bg-primary);">
-            <img src="/photo.jpg" alt="Geoffrey Bruyère" class="h-full w-full object-cover" style="mix-blend-mode: multiply; filter: brightness(1.15) contrast(0.95);" />
+          <div class="photo-container h-[110px] w-[110px] shrink-0 overflow-hidden rounded-full" style="background: var(--color-bg-primary);">
+            <img src="/photo.jpg" alt="Geoffrey Bruyère" class="photo-img h-full w-full object-cover" />
           </div>
 
           <!-- Text -->
@@ -119,7 +151,7 @@ import { Sun, Moon } from "@lucide/astro";
 
             <!-- Eyebrow -->
             <div class="mt-3 flex items-center gap-2 max-md:justify-center">
-              <span class="inline-block rounded-sm border border-accent px-1.5 py-px text-[10px] font-medium uppercase tracking-[0.08em] text-accent-dark">
+              <span class="inline-block rounded-sm bg-accent px-1.5 py-px text-[10px] font-medium uppercase tracking-[0.08em]" style="color: #484800;">
                 En recherche active
               </span>
               <span class="text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary">
@@ -130,16 +162,13 @@ import { Sun, Moon } from "@lucide/astro";
         </div>
 
         <!-- Statement -->
-        <blockquote class="mt-10 border-l-2 border-accent pl-5" style="border-radius: 0;">
+        <blockquote class="mt-10 border-l-[3px] border-accent pl-5" style="border-radius: 0;">
           <p class="text-[0.88rem] font-light leading-[1.75] text-text-body">
-            Diriger une marque B2C, c'est tenir deux exigences contradictoires en même temps : créer du
-            <span class="font-normal text-text-emphasis">désir</span> et produire de la
-            <span class="font-normal text-text-emphasis">performance</span>. J'ai passé 16&nbsp;ans à faire les
+            Diriger une marque B2C, c'est tenir deux exigences contradictoires en même temps : <span class="font-normal text-text-emphasis">créer du désir</span> et <span class="font-normal text-text-emphasis">produire de la performance</span>. J'ai passé 16&nbsp;ans à faire les
             deux — de zéro à 10&nbsp;M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme.
           </p>
           <p class="mt-3 text-[0.88rem] font-light leading-[1.75] text-text-body">
-            C'est ce que je veux construire à nouveau, avec
-            <span class="font-normal text-text-emphasis">l'IA comme levier</span>.
+            C'est ce que je veux construire à nouveau, <span class="font-normal text-text-emphasis">avec l'IA comme levier</span>.
           </p>
         </blockquote>
 
@@ -157,7 +186,7 @@ import { Sun, Moon } from "@lucide/astro";
           <div class="h-[20px] w-px bg-border max-md:hidden" />
           <div class="flex items-baseline gap-[5px] pl-4 max-md:pl-0">
             <span class="font-serif text-[1.8rem] font-bold leading-none text-text-primary">95</span>
-            <span class="text-[11px] font-light text-text-secondary">NPS</span>
+            <span class="text-[11px] font-light text-text-secondary">NPS pour BonneGueule</span>
           </div>
         </div>
       </div>
@@ -168,6 +197,14 @@ import { Sun, Moon } from "@lucide/astro";
 
 <!-- ════════════════ STYLES ════════════════ -->
 <style>
+  .photo-img {
+    mix-blend-mode: multiply;
+    filter: brightness(1.15) contrast(0.95);
+  }
+  :global(.dark) .photo-img {
+    mix-blend-mode: screen;
+    filter: brightness(0.85) contrast(0.95);
+  }
   .name-line {
     display: inline-block;
   }

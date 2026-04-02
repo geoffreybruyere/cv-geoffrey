@@ -89,8 +89,8 @@ import { Sun, Moon } from "@lucide/astro";
         <!-- Identity row -->
         <div class="flex flex-row items-start gap-7 max-md:flex-col max-md:items-center max-md:text-center">
           <!-- Photo placeholder -->
-          <div class="h-[110px] w-[110px] shrink-0 overflow-hidden rounded-full bg-bg-secondary">
-            <!-- <img src="/photo.jpg" alt="Geoffrey Bruyère" class="h-full w-full object-cover" /> -->
+          <div class="h-[110px] w-[110px] shrink-0 overflow-hidden rounded-full" style="background: var(--color-bg-primary);">
+            <img src="/photo.jpg" alt="Geoffrey Bruyère" class="h-full w-full object-cover" style="mix-blend-mode: multiply; filter: brightness(1.15) contrast(0.95);" />
           </div>
 
           <!-- Text -->
@@ -242,6 +242,45 @@ import { Sun, Moon } from "@lucide/astro";
 
   window.addEventListener("scroll", updateNav, { passive: true });
   updateNav();
+
+  // ── Active nav link on scroll ──
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>("#site-nav a[href^='#']");
+  const sectionMap: { id: string; link: HTMLAnchorElement }[] = [];
+  navLinks.forEach((link) => {
+    const id = link.getAttribute("href")!.slice(1);
+    sectionMap.push({ id, link });
+  });
+
+  function updateActiveLink() {
+    const scrollY = window.scrollY + 100;
+    // If near bottom of page, activate "contact"
+    const atBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
+    let activeId = "";
+    if (atBottom) {
+      activeId = "contact";
+    } else {
+      for (const { id } of sectionMap) {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= scrollY) {
+          activeId = id;
+        }
+      }
+    }
+    for (const { id, link } of sectionMap) {
+      if (id === activeId) {
+        link.style.color = "var(--color-text-primary)";
+        link.style.borderBottom = "1.5px solid var(--color-text-primary)";
+        link.style.paddingBottom = "2px";
+      } else {
+        link.style.color = "";
+        link.style.borderBottom = "1.5px solid transparent";
+        link.style.paddingBottom = "2px";
+      }
+    }
+  }
+
+  window.addEventListener("scroll", updateActiveLink, { passive: true });
+  updateActiveLink();
 
   // ── Lang toggle ──
   const frBtn = document.getElementById("lang-fr");

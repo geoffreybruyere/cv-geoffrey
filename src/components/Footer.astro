@@ -1,105 +1,218 @@
 ---
-import { Mail, Download, Copy } from "@lucide/astro";
+import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
 ---
 
-<footer id="contact" style="scroll-margin-top: 70px;">
-  <!-- Separator -->
-  <div class="mx-auto max-w-[768px] px-8 max-md:px-6">
-    <div class="h-px bg-border" />
-  </div>
+<footer id="contact" style="scroll-margin-top: 70px; background: color-mix(in srgb, var(--color-accent) 6%, var(--color-bg-primary));">
+  <div class="mx-auto max-w-[768px] px-8 max-md:px-6" style="border-top: 0.5px solid var(--color-border);">
 
-  <div class="mx-auto max-w-[768px] px-8 max-md:px-6 pt-8 pb-12">
-    <div class="flex items-start justify-between max-md:flex-col max-md:gap-8" id="footer-content">
+    <!-- ══════ HOOK ══════ -->
+    <div class="pt-7 max-md:pt-6">
+      <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
+        Contact
+      </h2>
+    </div>
 
-      <!-- Left — Contact info -->
-      <div class="footer-col">
-        <p class="mb-1.5 flex items-center gap-2 font-serif text-base font-normal text-text-primary">
-          Geoffrey Bruyère
-          <a href="https://www.linkedin.com/in/geoffreybruyere/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" class="text-text-secondary/50 hover:text-text-primary transition-colors">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-        </p>
-        <div class="flex flex-col gap-0.5">
-          <div class="flex items-center gap-1.5">
-            <span class="text-[11px] font-light text-text-secondary">geoffreybruyere@gmail.com</span>
-            <button type="button" data-copy="geoffreybruyere@gmail.com" aria-label="Copier l'email" class="copy-btn text-text-secondary/50 hover:text-text-primary transition-colors cursor-pointer">
-              <Copy size={12} strokeWidth={1.5} />
-            </button>
+    <!-- ══════ TWO COLUMNS ══════ -->
+    <div class="grid max-md:grid-cols-1" style="grid-template-columns: 1fr 0.5px 1fr;">
+      <!-- Left column -->
+      <div class="flex flex-col gap-4 py-8 pr-10 max-md:pr-0 max-md:py-6">
+        <div class="footer-name-block cursor-default">
+          <!-- Name -->
+          <p class="footer-name font-serif text-[1.25rem] font-bold text-text-primary transition-transform duration-300">Geoffrey Bruyère</p>
+
+          <!-- Role -->
+          <p class="footer-role mt-1 text-[13px] font-normal leading-[1.65] text-text-emphasis transition-colors duration-200">CEO · CMO · Entrepreneur</p>
+
+          <!-- Tags -->
+          <div class="mt-2.5 flex flex-wrap gap-1">
+            {["Marque", "Digital-first", "Transfo IA", "B2C", "Créativité"].map((tag) => (
+              <span class="inline-block rounded-full px-2 py-px text-[10px] font-medium text-text-secondary transition-all duration-200 hover:text-text-primary hover:border-text-primary cursor-default" style="border: 0.5px solid #E4E4DC;">
+                {tag}
+              </span>
+            ))}
           </div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-[11px] font-light text-text-secondary">(+33)6 27 40 18 91</span>
-            <button type="button" data-copy="+33627401891" aria-label="Copier le numéro" class="copy-btn text-text-secondary/50 hover:text-text-primary transition-colors cursor-pointer">
-              <Copy size={12} strokeWidth={1.5} />
-            </button>
+        </div>
+
+        <div>
+          <!-- Location -->
+          <div class="footer-loc mb-3 flex items-center gap-1.5 text-[11px] font-normal text-text-secondary cursor-default">
+            <MapPin size={12} strokeWidth={1.5} class="footer-loc-icon" />
+            Aix-en-Provence
           </div>
-          <span class="text-[11px] font-light text-text-secondary">Aix-en-Provence · Paris · Monde</span>
-          <span class="text-[11px] font-light text-text-secondary">Bilingue anglais / français</span>
+
+          <!-- 1-pager + LinkedIn -->
+          <div class="flex items-center gap-3">
+            <a
+              href="/geoffrey-bruyere-cv.pdf"
+              target="_blank"
+              class="btn-cta-secondary inline-flex items-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.09em] text-text-primary"
+              style="border: 0.5px solid #C8C8C4;"
+            >
+              <Download size={11} strokeWidth={1.5} />
+              1-pager
+            </a>
+            <a href="https://www.linkedin.com/in/geoffreybruyere/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" class="text-text-secondary/50 hover:text-text-primary transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Right — CTAs -->
-      <div class="footer-col flex flex-col gap-2 items-end max-md:items-stretch">
-        <!-- CTA primary -->
-        <a
-          href="mailto:geoffreybruyere@gmail.com"
-          class="inline-flex w-[200px] items-center justify-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em] transition-opacity hover:opacity-80 max-md:w-full"
-          style="background: #FEFE7D; color: #141210;"
-        >
-          <Mail size={16} strokeWidth={1.5} />
-          Me contacter
-        </a>
+      <!-- Divider -->
+      <div class="max-md:hidden" style="background: var(--color-border);" />
+      <!-- Mobile divider -->
+      <div class="hidden max-md:block h-px" style="background: var(--color-border);" />
 
-        <!-- CTA secondary -->
-        <a
-          href="/geoffrey-bruyere-cv.pdf"
-          download
-          class="inline-flex w-[200px] items-center justify-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-text-primary transition-opacity hover:opacity-80 max-md:w-full"
-          style="border: 0.5px solid var(--color-border);"
-        >
-          <Download size={16} strokeWidth={1.5} />
-          1-pager
-        </a>
+      <!-- Right column -->
+      <div class="flex flex-col gap-4 py-8 pl-10 max-md:pl-0 max-md:py-6">
+        <div class="footer-search-block cursor-default">
+          <!-- Label -->
+          <span class="footer-search-label text-[9px] font-semibold uppercase tracking-[0.14em] text-accent-dark transition-transform duration-300 inline-block">Ce que je recherche</span>
+
+          <!-- Intention -->
+          <p class="footer-search-text mt-3 text-[13px] font-normal leading-[1.65] text-text-emphasis transition-colors duration-200">
+            Construire une marque désirable et rentable, avec le digital comme levier.
+          </p>
+
+          <!-- Sub-text -->
+          <p class="footer-search-text mt-2 text-[11px] font-light text-text-secondary transition-colors duration-200" style="line-height: 1.8;">
+            CEO (20–50p) ou CMO (20–100p).<br />
+            Phase de scale · Ambitions réelles.
+          </p>
+        </div>
+
+        <div>
+          <!-- Location -->
+          <div class="footer-loc mb-3 flex items-center gap-1.5 text-[11px] font-normal text-text-secondary cursor-default">
+            <Globe size={12} strokeWidth={1.5} class="footer-loc-icon" />
+            France · Monde · FR / EN
+          </div>
+
+          <!-- Me contacter -->
+          <a
+            href="mailto:geoffreybruyere@gmail.com"
+            class="btn-cta-primary inline-flex items-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em]"
+            style="background: var(--color-accent); color: #141210;"
+          >
+            <Mail size={16} strokeWidth={1.5} class="btn-icon" />
+            Me contacter
+          </a>
+
+          <!-- Email + Tel -->
+          <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+            <div class="footer-contact-line flex items-center gap-2">
+              <span class="text-[11px] font-light text-text-secondary footer-contact-text">geoffreybruyere@gmail.com</span>
+              <button type="button" data-copy="geoffreybruyere@gmail.com" aria-label="Copier l'email" class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
+                <Copy size={10} strokeWidth={1.5} class="text-text-secondary copy-icon" />
+                <Check size={10} strokeWidth={1.5} class="text-accent-dark check-icon hidden" />
+              </button>
+            </div>
+            <div class="footer-contact-line flex items-center gap-2">
+              <span class="text-[11px] font-light text-text-secondary footer-contact-text">(+33)6 27 40 18 91</span>
+              <button type="button" data-copy="+33627401891" aria-label="Copier le numéro" class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
+                <Copy size={10} strokeWidth={1.5} class="text-text-secondary copy-icon" />
+                <Check size={10} strokeWidth={1.5} class="text-accent-dark check-icon hidden" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
-    <!-- Copyright centered -->
-    <p class="mt-8 text-center text-[11px] font-light text-text-secondary/55">&copy; Geoffrey Bruyère &middot; Vibe-coded with &lt;3</p>
+
+
   </div>
 </footer>
 
-<script>
-  import { inView } from "motion";
+<!-- Vertical credit — fixed bottom left -->
+<div class="fixed bottom-4 left-4 z-40 flex flex-col items-center gap-1 max-md:hidden" style="writing-mode: vertical-rl; text-orientation: mixed;">
+  <span class="text-[9px] font-normal text-text-secondary/30">&copy; Geoffrey Bruyère · Vibe-coded with ♥</span>
+</div>
 
-  const cols = document.querySelectorAll<HTMLElement>(".footer-col");
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (!prefersReduced && cols.length) {
-    cols.forEach((col) => {
-      col.style.opacity = "0";
-      col.style.transform = "translateY(12px)";
-      col.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-    });
-
-    inView("#footer-content", () => {
-      cols.forEach((col, i) => {
-        setTimeout(() => {
-          col.style.opacity = "1";
-          col.style.transform = "translateY(0)";
-        }, i * 100);
-      });
-    }, { amount: 0.2 });
+<style is:global>
+  .btn-cta-primary {
+    transition: background 0.22s ease, color 0.22s ease;
+  }
+  .btn-cta-primary:hover {
+    background: #E8E850 !important;
+    color: #141210 !important;
+  }
+  .btn-cta-primary .btn-icon {
+    transition: transform 0.25s ease;
+  }
+  .btn-cta-primary:hover .btn-icon {
+    transform: translateX(4px);
   }
 
-  // Copy buttons
+  .btn-cta-secondary {
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+  }
+  .btn-cta-secondary:hover {
+    background: #7A7A76;
+    color: #FCFCFA;
+    border-color: #5F5E5A !important;
+  }
+  .btn-cta-secondary svg {
+    transition: transform 0.25s ease;
+  }
+  .btn-cta-secondary:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Location pin/globe lift on hover */
+  .footer-loc-icon {
+    transition: transform 0.2s ease;
+  }
+  .footer-loc:hover .footer-loc-icon {
+    transform: translateY(-2px);
+  }
+
+  /* Email/phone text darkens on hover */
+  .footer-contact-text {
+    transition: color 0.2s ease;
+  }
+  .footer-contact-line:hover .footer-contact-text {
+    color: var(--color-text-primary);
+  }
+
+  /* Copy button lift on hover */
+  .footer-copy-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Name block hover */
+  .footer-name-block:hover .footer-name {
+    transform: scale(1.01);
+  }
+  .footer-name-block:hover .footer-role {
+    color: var(--color-text-primary);
+  }
+
+  /* Search block hover */
+  .footer-search-block:hover .footer-search-label {
+    transform: scale(1.01);
+  }
+  .footer-search-block:hover .footer-search-text {
+    color: var(--color-text-primary);
+  }
+</style>
+
+<script>
+  // Copy buttons with check feedback
   document.querySelectorAll<HTMLButtonElement>(".copy-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const text = btn.dataset.copy;
       if (!text) return;
       await navigator.clipboard.writeText(text);
-      const svg = btn.querySelector("svg");
-      if (svg) {
-        svg.style.color = "var(--color-accent-dark)";
-        setTimeout(() => { svg.style.color = ""; }, 1200);
+
+      const copyIcon = btn.querySelector(".copy-icon") as HTMLElement;
+      const checkIcon = btn.querySelector(".check-icon") as HTMLElement;
+      if (copyIcon && checkIcon) {
+        copyIcon.classList.add("hidden");
+        checkIcon.classList.remove("hidden");
+        setTimeout(() => {
+          checkIcon.classList.add("hidden");
+          copyIcon.classList.remove("hidden");
+        }, 1500);
       }
     });
   });

@@ -1,23 +1,24 @@
 ---
-const leftTags = [
-  "Direction d'entreprise",
-  "Leadership (jusqu'à 60 p.)",
-  "Transformation digitale",
-  "Financement",
-  "Stratégie de croissance",
-  "Retail expérientiel",
-  "E-commerce",
-  "Branding",
+const leftCards = [
+  { front: "Direction d'entreprise", back: "1 → 10M€ from scratch" },
+  { front: "Leadership (→ 60 p.)", back: "Top 100 GPTW FR (BG)" },
+  { front: "Transformation digitale", back: "Orgas digital-first" },
+  { front: "Financement", back: "7,7M€ levés" },
+  { front: "Stratégie de croissance", back: "+50% CAGR · 6,8% EBE (BG)" },
+  { front: "Retail expérientiel", back: "10 boutiques (BG)" },
+  { front: "E-commerce", back: "63% repeat (BG)" },
+  { front: "Branding", back: "Refontes complètes" },
+  { front: "International", back: "9 marchés (VP)" },
 ];
 
-const rightTags = [
-  "Augmentation des fonctions clé",
-  "Orchestration d'agents IA",
-  "Génération d'assets",
-  "Prototypage full-stack",
-  "Audit stacks IA",
-  "Automatisations (workers)",
-  "SEO pour LLMs (GEO)",
+const rightCards = [
+  { front: "Augmentation des fonctions clé", back: "−50% coûts SEO (Voyage Privé)" },
+  { front: "Orchestration d'agents IA", back: "Pipeline complet (Core Summit)" },
+  { front: "Génération d'assets", back: "Copy · images · web apps" },
+  { front: "Prototypage full-stack", back: "Claude Code · Git · Cloudflare" },
+  { front: "Audit stacks IA", back: "−25% SaaS (VP)" },
+  { front: "Automatisations (workers)", back: "Claude Cowork, N8N" },
+  { front: "SEO pour LLMs (GEO)", back: "Workflows complets" },
 ];
 ---
 
@@ -28,15 +29,12 @@ const rightTags = [
   </div>
 
   <div class="mx-auto max-w-[768px] px-8 max-md:px-6 py-10">
-    <!-- Screen reader heading -->
     <h2 class="sr-only">Compétences</h2>
 
-    <!-- Section label -->
     <div aria-hidden="true" class="mb-6 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
       02 · Compétences
     </div>
 
-    <!-- Two columns -->
     <div class="grid grid-cols-2 gap-8 max-md:grid-cols-1" id="competences-cols">
       <!-- Left column -->
       <div class="comp-col">
@@ -44,10 +42,19 @@ const rightTags = [
           Savoir-faire dirigeant
         </h3>
         <div class="flex flex-wrap gap-1.5">
-          {leftTags.map((tag) => (
-            <span class="rounded-sm px-2.5 py-1 text-[13px] font-light text-text-body" style="border: 0.5px solid var(--color-border);">
-              {tag}
-            </span>
+          {leftCards.map((card) => (
+            <div class="skill-flip">
+              <div class="skill-flip-inner">
+                <div class="skill-flip-front">
+                  <span class="rounded-sm px-2.5 py-1 text-[13px] font-light text-text-body" style="border: 0.5px solid var(--color-border);">
+                    {card.front}
+                  </span>
+                </div>
+                <div class="skill-flip-back rounded-sm px-2.5 py-1">
+                  {card.back}
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -58,10 +65,19 @@ const rightTags = [
           IA — Stratégie & exécution
         </h3>
         <div class="flex flex-wrap gap-1.5">
-          {rightTags.map((tag) => (
-            <span class="rounded-sm px-2.5 py-1 text-[13px] font-light text-text-body" style="border: 0.5px solid var(--color-border);">
-              {tag}
-            </span>
+          {rightCards.map((card) => (
+            <div class="skill-flip">
+              <div class="skill-flip-inner">
+                <div class="skill-flip-front">
+                  <span class="rounded-sm px-2.5 py-1 text-[13px] font-light text-text-body" style="border: 0.5px solid var(--color-border);">
+                    {card.front}
+                  </span>
+                </div>
+                <div class="skill-flip-back rounded-sm px-2.5 py-1">
+                  {card.back}
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -69,16 +85,69 @@ const rightTags = [
   </div>
 </section>
 
+<style>
+  .skill-flip {
+    perspective: 600px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .skill-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Hover flip on pointer devices */
+  @media (hover: hover) {
+    .skill-flip:hover .skill-flip-inner {
+      transform: rotateY(180deg);
+    }
+  }
+
+  /* Tap flip on touch */
+  .skill-flip-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .skill-flip-front,
+  .skill-flip-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .skill-flip-front {
+    position: relative;
+  }
+
+  .skill-flip-back {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+    background: var(--color-text-secondary);
+    color: var(--color-bg-primary);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 6px;
+  }
+</style>
+
 <script>
   import { inView } from "motion";
 
   const cols = document.querySelectorAll<HTMLElement>(".comp-col");
-
-  // Check reduced motion
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (!prefersReduced && cols.length) {
-    // Set initial state
     cols.forEach((col) => {
       col.style.opacity = "0";
       col.style.transform = "translateY(20px)";
@@ -93,5 +162,14 @@ const rightTags = [
         }, i * 100);
       });
     }, { amount: 0.2 });
+  }
+
+  // Touch: toggle flip on tap
+  if (window.matchMedia("(pointer: coarse)").matches) {
+    document.querySelectorAll<HTMLElement>(".skill-flip-inner").forEach((inner) => {
+      inner.parentElement?.addEventListener("click", () => {
+        inner.classList.toggle("flipped");
+      });
+    });
   }
 </script>

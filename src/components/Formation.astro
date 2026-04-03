@@ -1,9 +1,9 @@
 ---
 const formations = [
-  { year: "2017", school: "ESCP / Institut Français de la Mode", detail: "Accélérateur Mode & Luxe · IFM Labels · Paris" },
-  { year: "2010", school: "Bosphore University", detail: "MBA Program · Istanbul" },
-  { year: "2006", school: "Mines-Télécom Business School", detail: "MSc in Management · Paris" },
-  { year: "2004", school: "CPGE Lycée Albert Schweitzer", detail: "Maths Sup / Maths Spé · Mulhouse" },
+  { year: "2017", school: "ESCP / Institut Français de la Mode", diploma: "Accélérateur Mode & Luxe · IFM Labels", city: "Paris" },
+  { year: "2010", school: "Bosphore University", diploma: "MBA Program", city: "Istanbul" },
+  { year: "2006", school: "Mines-Télécom Business School", diploma: "MSc in Management", city: "Paris" },
+  { year: "2004", school: "CPGE Lycée Albert Schweitzer", diploma: "Maths Sup / Maths Spé", city: "Mulhouse" },
 ];
 ---
 
@@ -23,21 +23,36 @@ const formations = [
     </div>
 
     <!-- Formation list -->
-    <div id="formation-list">
+    <div id="formation-list" class="f-list">
       {formations.map((f, i) => (
-        <div class={`formation-row flex items-baseline gap-4 py-3 ${i < formations.length - 1 ? "border-b" : ""}`} style={i < formations.length - 1 ? "border-bottom-width:0.5px;border-color:var(--color-border);" : ""}>
-          <span class="shrink-0 text-right text-[11px] font-light text-text-secondary" style="min-width:36px;">
-            {f.year}
+        <div
+          class="formation-row f-item flex items-baseline justify-between gap-4 py-3 max-md:flex-col max-md:gap-1"
+          style={i < formations.length - 1 ? "border-bottom: 0.5px solid var(--color-border);" : ""}
+        >
+          <span class="flex items-baseline gap-4">
+            <span class="font-serif text-[1.05rem] font-normal text-text-primary">{f.school}</span>
+            <span class="font-light text-text-body" style="font-size: 13px;">{f.diploma}</span>
           </span>
-          <span class="text-[0.95rem]">
-            <span class="font-serif font-normal text-text-primary">{f.school}</span>
-            <span class="font-light text-text-body"> — {f.detail}</span>
+          <span class="shrink-0 font-light text-text-secondary text-right" style="font-size: 13px;">
+            {f.city} · {f.year}
           </span>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style is:global>
+  .f-item {
+    transition: opacity 0.22s ease;
+  }
+  .f-list:hover .f-item {
+    opacity: 0.49;
+  }
+  .f-list:hover .f-item:hover {
+    opacity: 1;
+  }
+</style>
 
 <script>
   import { inView } from "motion";
@@ -57,6 +72,12 @@ const formations = [
         setTimeout(() => {
           row.style.opacity = "1";
           row.style.transform = "translateY(0)";
+          // Clear inline styles after animation so CSS :hover can work
+          setTimeout(() => {
+            row.style.removeProperty("opacity");
+            row.style.removeProperty("transform");
+            row.style.removeProperty("transition");
+          }, 600);
         }, i * 80);
       });
     }, { amount: 0.2 });

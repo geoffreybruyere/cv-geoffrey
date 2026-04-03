@@ -8,66 +8,191 @@
   </div>
 
   <div class="mx-auto max-w-[768px] px-8 max-md:px-6 py-10">
-    <!-- Screen reader heading -->
     <h2 class="sr-only">Rayonnement</h2>
 
-    <!-- Section label -->
     <div aria-hidden="true" class="mb-6 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
       04 · Rayonnement
     </div>
 
-    <!-- Three columns -->
-    <div class="grid grid-cols-3 gap-6 max-md:grid-cols-1" id="rayonnement-cols">
+    <!-- Accordion -->
+    <div class="ray-acc" id="ray-acc">
+
       <!-- Distinctions -->
-      <div class="ray-col">
-        <div class="mb-2.5 h-[3px] w-5 rounded-full bg-accent" />
-        <h3 class="mb-1.5 font-serif text-base font-normal text-text-primary">Distinctions</h3>
-        <p class="text-[13px] font-light leading-[1.65] text-text-body">
-          FT1000 — <span class="font-normal text-text-emphasis">Financial Times Europe's Fastest Growing Companies</span> (#580). Membre de la délégation française <span class="font-normal text-text-emphasis">G20 Young Entrepreneurs 2018</span>, Buenos Aires.
-        </p>
+      <div class="ray-card open">
+        <div class="ray-bar" />
+        <div class="ray-collapsed">
+          <span class="ray-cat-v">Distinctions</span>
+        </div>
+        <div class="ray-expanded">
+          <div class="ray-cat-lbl">Distinctions</div>
+          <div class="ray-body">
+            FT1000 — <span class="font-normal text-text-emphasis">Financial Times Europe's Fastest Growing Companies</span> (#580).<br /><br />
+            Membre de la délégation française <span class="font-normal text-text-emphasis">G20 Young Entrepreneurs 2018</span>, Buenos Aires.
+          </div>
+        </div>
       </div>
 
       <!-- Conférences & conseil -->
-      <div class="ray-col">
-        <div class="mb-2.5 h-[3px] w-5 rounded-full bg-accent" />
-        <h3 class="mb-1.5 font-serif text-base font-normal text-text-primary">Conférences & conseil</h3>
-        <p class="text-[13px] font-light leading-[1.65] text-text-body">
-          Interventions facturées : <span class="font-normal text-text-emphasis">Hermès</span>, <span class="font-normal text-text-emphasis">Moët</span>, <span class="font-normal text-text-emphasis">Weston</span>, <span class="font-normal text-text-emphasis">Galeries Lafayette</span>, <span class="font-normal text-text-emphasis">IADS</span>, <span class="font-normal text-text-emphasis">IFM</span>. Thèmes : marque, e-commerce, entrepreneuriat digital.
-        </p>
+      <div class="ray-card">
+        <div class="ray-bar" />
+        <div class="ray-collapsed">
+          <span class="ray-cat-v">Conférences</span>
+        </div>
+        <div class="ray-expanded">
+          <div class="ray-cat-lbl">Conférences & conseil</div>
+          <div class="ray-body">
+            Interventions facturées : <span class="font-normal text-text-emphasis">Hermès</span>, <span class="font-normal text-text-emphasis">Moët</span>, <span class="font-normal text-text-emphasis">Weston</span>, <span class="font-normal text-text-emphasis">Galeries Lafayette</span>, <span class="font-normal text-text-emphasis">IADS</span>, <span class="font-normal text-text-emphasis">IFM</span>.<br /><br />
+            Thèmes : marque, e-commerce, entrepreneuriat digital.
+          </div>
+        </div>
       </div>
 
       <!-- Business cases -->
-      <div class="ray-col">
-        <div class="mb-2.5 h-[3px] w-5 rounded-full bg-accent" />
-        <h3 class="mb-1.5 font-serif text-base font-normal text-text-primary">Business cases</h3>
-        <p class="text-[13px] font-light leading-[1.65] text-text-body">
-          BonneGueule a été étudié dans les <span class="font-normal text-text-emphasis">programmes MBA</span> de HEC Entrepreneurs, ESSEC et IFM.
-        </p>
+      <div class="ray-card">
+        <div class="ray-bar" />
+        <div class="ray-collapsed">
+          <span class="ray-cat-v">Business cases</span>
+        </div>
+        <div class="ray-expanded">
+          <div class="ray-cat-lbl">Business cases</div>
+          <div class="ray-body">
+            BonneGueule a été étudié dans les <span class="font-normal text-text-emphasis">programmes MBA</span> de HEC Entrepreneurs, ESSEC et IFM.
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<script>
-  import { inView } from "motion";
-
-  const cols = document.querySelectorAll<HTMLElement>(".ray-col");
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (!prefersReduced && cols.length) {
-    cols.forEach((col) => {
-      col.style.opacity = "0";
-      col.style.transform = "translateY(16px)";
-      col.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    });
-
-    inView("#rayonnement-cols", () => {
-      cols.forEach((col, i) => {
-        setTimeout(() => {
-          col.style.opacity = "1";
-          col.style.transform = "translateY(0)";
-        }, i * 80);
-      });
-    }, { amount: 0.2 });
+<style>
+  .ray-acc {
+    display: flex;
+    gap: 6px;
+    height: 160px;
   }
+
+  .ray-card {
+    border: 0.5px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.45s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease;
+    flex: 1;
+    position: relative;
+    background: color-mix(in srgb, var(--color-bg-secondary) 35%, var(--color-bg-primary));
+  }
+
+  .ray-card:hover {
+    background: color-mix(in srgb, var(--color-bg-secondary) 8%, var(--color-bg-primary));
+  }
+
+  .ray-card.open {
+    flex: 5;
+  }
+
+  .ray-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #FEFE7D;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .ray-card.open .ray-bar { opacity: 1; }
+
+  .ray-collapsed {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.15s;
+  }
+  .ray-card.open .ray-collapsed {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ray-cat-v {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .ray-expanded {
+    position: absolute;
+    inset: 0;
+    padding: 1.25rem 1.5rem;
+    opacity: 0;
+    transition: opacity 0.2s 0.18s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .ray-card.open .ray-expanded { opacity: 1; }
+
+  .ray-cat-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .ray-body {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--color-text-body);
+    line-height: 1.65;
+  }
+
+  /* Mobile: stack vertically */
+  @media (max-width: 639px) {
+    .ray-acc {
+      flex-direction: column;
+      height: auto;
+    }
+    .ray-card {
+      flex: none !important;
+    }
+    .ray-card:not(.open) {
+      height: 44px;
+    }
+    .ray-card.open {
+      height: auto;
+      min-height: 120px;
+    }
+    .ray-collapsed {
+      justify-content: flex-start;
+      padding-left: 1rem;
+    }
+    .ray-cat-v {
+      writing-mode: horizontal-tb;
+    }
+  }
+</style>
+
+<script>
+  const cards = document.querySelectorAll<HTMLElement>('#ray-acc .ray-card');
+
+  function openCard(index: number) {
+    cards.forEach(c => c.classList.remove('open'));
+    cards[index].classList.add('open');
+  }
+
+  // Click to open
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => openCard(i));
+  });
 </script>

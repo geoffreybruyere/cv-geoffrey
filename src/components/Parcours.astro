@@ -6,7 +6,7 @@
 const stations = [
   { year: "2026–présent", duration: "", name: "Core Summit", role: "Co-fondateur", badges: ["Side project"], nameWeight: "font-bold" },
   { year: "2024–2025", duration: "2 ans", name: "Voyage Privé", role: "CMO", badges: ["ComEx"], nameWeight: "font-bold" },
-  { year: "2010–2022", duration: "12 ans", name: "BonneGueule", role: "CEO", badges: ["Fondateur"], nameWeight: "font-bold" },
+  { year: "2010–2022", duration: "12 ans", name: "BonneGueule", role: "CEO", badges: ["Co-fondateur"], nameWeight: "font-bold" },
   { year: "2009–2011", duration: "2 ans", name: "Wavestone · HeadMind", role: "Consultant en stratégie", badges: ["CDI"], nameWeight: "font-bold" },
 ];
 const stationPositions = [12, 38, 65, 95];
@@ -49,7 +49,7 @@ const stationPositions = [12, 38, 65, 95];
         {stations.map((s, i) => (
           <button
             type="button"
-            class="station-btn absolute flex flex-col items-start cursor-pointer"
+            class="station-btn absolute flex flex-col items-start cursor-pointer transition-all duration-200 hover:brightness-75"
             style={`left: ${stationPositions[i]}%;`}
             data-station={i}
           >
@@ -90,9 +90,9 @@ const stationPositions = [12, 38, 65, 95];
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">Core Summit</span>
-            <a href="https://www.coresummit.fr/" target="_blank" rel="noopener noreferrer" aria-label="Voir Core Summit" class="inline-flex items-center ml-1.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
-            <span class="text-[13px] font-light text-text-secondary">Co-fondateur</span>
-            <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Side project</span>
+            <span class="panel-role text-[13px] font-medium text-text-secondary">Co-fondateur</span>
+            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Side project</span>
+            <a href="https://www.coresummit.fr/" target="_blank" rel="noopener noreferrer" aria-label="Voir Core Summit" class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
           <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2026–présent</span>
         </div>
@@ -121,15 +121,15 @@ const stationPositions = [12, 38, 65, 95];
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">Voyage Privé</span>
-            <a href="https://www.voyage-prive.com/" target="_blank" rel="noopener noreferrer" aria-label="Voir Voyage Privé" class="inline-flex items-center ml-1.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
-            <span class="text-[13px] font-light text-text-secondary">CMO</span>
-            <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">ComEx</span>
+            <span class="panel-role text-[13px] font-medium text-text-secondary">CMO</span>
+            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">ComEx</span>
+            <a href="https://www.voyage-prive.com/" target="_blank" rel="noopener noreferrer" aria-label="Voir Voyage Privé" class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
           <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2024–2025 · 2 ans</span>
         </div>
         <!-- Intro -->
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
-          Stratégie marketing globale d'un acteur leader du voyage premium en ligne (C.A. >1Md€, CAGR >+10%) : acquisition online / offline dont TV / organique, CRM, branding, retail média.
+          Stratégie marketing globale d'un acteur leader du voyage premium en ligne (C.A. >1Md€, CAGR >+10%) : acquisition online / offline dont TV / organique, CRM, branding, retail média sur 9 marchés.
         </p>
         <!-- KPI sidebar + Grid -->
         <div class="mt-5 flex gap-6 max-md:flex-col">
@@ -139,7 +139,7 @@ const stationPositions = [12, 38, 65, 95];
               { v: ">1Md€", l: "CA" },
               { v: "+10%", l: "CAGR" },
               { v: ">10M€", l: "budget" },
-              { v: "35", l: "experts" },
+              { v: "9", l: "marchés" },
             ].map((k, i) => (
               <>
                 {i > 0 && <div class="h-px w-full bg-border max-md:hidden" />}
@@ -182,9 +182,9 @@ const stationPositions = [12, 38, 65, 95];
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">BonneGueule</span>
-            <a href="https://bonnegueule.fr/" target="_blank" rel="noopener noreferrer" aria-label="Voir BonneGueule" class="inline-flex items-center ml-1.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
-            <span class="text-[13px] font-light text-text-secondary">CEO</span>
-            <span class="inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Fondateur</span>
+            <span class="panel-role text-[13px] font-medium text-text-secondary">CEO</span>
+            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Co-fondateur</span>
+            <a href="https://bonnegueule.fr/" target="_blank" rel="noopener noreferrer" aria-label="Voir BonneGueule" class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
           <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2010–2022 · 12 ans</span>
         </div>
@@ -261,6 +261,17 @@ const stationPositions = [12, 38, 65, 95];
   .panel-stack.visible.dimmed {
     opacity: 0.15;
   }
+  .panel-role, .panel-badge {
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .panel-stack:hover .panel-role {
+    color: var(--color-text-primary);
+  }
+  .panel-stack:hover .panel-badge {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .panel-stack {
       opacity: 1 !important;
@@ -295,14 +306,14 @@ const stationPositions = [12, 38, 65, 95];
         // Active or past (before active)
         dot.style.backgroundColor = "var(--color-accent)";
         dot.style.boxShadow = i === activeIdx ? "0 0 0 3px rgba(254,254,125,0.25)" : "none";
-        name.style.color = i === activeIdx ? "var(--color-text-primary)" : "#ACACAA";
-        date.style.color = i === activeIdx ? "#484800" : "#ACACAA";
+        name.style.color = i === activeIdx ? "var(--color-text-primary)" : "var(--color-text-secondary)";
+        date.style.color = i === activeIdx ? "var(--color-accent-dark)" : "var(--color-text-secondary)";
       } else {
         // After active — grey regardless of revealed state
         dot.style.backgroundColor = "var(--color-border)";
         dot.style.boxShadow = "none";
-        name.style.color = "#ACACAA";
-        date.style.color = "#ACACAA";
+        name.style.color = "var(--color-text-secondary)";
+        date.style.color = "var(--color-text-secondary)";
       }
     }
     // Progress bar follows the active panel

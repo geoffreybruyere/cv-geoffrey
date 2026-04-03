@@ -1,5 +1,5 @@
 ---
-import { Sun, Moon, Download } from "@lucide/astro";
+import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
 ---
 
 <!-- ════════════════ NAV (outside hero container to avoid overflow clip) ════════════════ -->
@@ -9,6 +9,22 @@ import { Sun, Moon, Download } from "@lucide/astro";
   style="border-bottom: 0.5px solid transparent;"
 >
       <div class="mx-auto flex max-w-[768px] items-center justify-between px-8 max-md:px-6 py-4">
+        <div class="flex items-center">
+          <!-- Back to top pill (hidden by default, shown on scroll) -->
+          <button
+            id="btn-top"
+            type="button"
+            aria-label="Remonter en haut de page"
+            class="inline-flex items-center gap-0.5 rounded-sm border border-text-secondary/40 px-1 py-px text-text-secondary/60 opacity-0 pointer-events-none transition-all duration-200 hover:text-text-primary hover:border-text-primary cursor-pointer"
+            style="background: color-mix(in srgb, var(--color-bg-primary) 80%, transparent);"
+          >
+            <ChevronUp size={12} strokeWidth={1.5} />
+            <span class="text-[9px] font-normal uppercase tracking-[0.04em] max-sm:hidden">Haut</span>
+          </button>
+
+          <!-- Divider (hidden by default, shown on scroll) -->
+          <div class="h-4 mx-3 opacity-0 transition-opacity duration-200" style="width: 0.5px; background: var(--color-border);" />
+
         <!-- Links — hidden on mobile -->
         <ul class="hidden md:flex items-center gap-6">
           {["Parcours", "Compétences", "Contact"].map((label) => (
@@ -22,6 +38,7 @@ import { Sun, Moon, Download } from "@lucide/astro";
             </li>
           ))}
         </ul>
+        </div>
 
         <!-- Spacer on mobile -->
         <div class="md:hidden" />
@@ -77,17 +94,6 @@ import { Sun, Moon, Download } from "@lucide/astro";
           >
             <Download size={16} strokeWidth={1.5} />
           </a>
-
-          <!-- LinkedIn -->
-          <a
-            href="https://www.linkedin.com/in/geoffreybruyere/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Profil LinkedIn"
-            class="flex items-center justify-center min-w-[44px] min-h-[44px] text-text-secondary transition-colors hover:text-text-primary max-sm:hidden"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
         </div>
       </div>
     </nav>
@@ -132,10 +138,15 @@ import { Sun, Moon, Download } from "@lucide/astro";
 
             <!-- Eyebrow -->
             <div class="mt-3 flex items-center gap-2 max-md:justify-center">
-              <span class="inline-block rounded-sm bg-accent px-1.5 py-px text-[10px] font-medium uppercase tracking-[0.08em]" style="color: #484800;">
-                En recherche active
+              <span class="inline-flex items-center gap-1.5 rounded-sm border border-border px-1.5 py-px text-[10px] font-medium uppercase tracking-[0.08em] text-text-secondary">
+                <span class="relative flex h-2 w-2">
+                  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
+                  <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+                </span>
+                Disponible
               </span>
-              <span class="text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary">
+              <span class="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-60"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
                 Aix-en-Provence · Paris · Monde
               </span>
             </div>
@@ -194,6 +205,11 @@ import { Sun, Moon, Download } from "@lucide/astro";
   const toggle = document.getElementById("theme-toggle");
   const thumb = document.getElementById("theme-thumb");
 
+  // ── Back to top ──
+  document.getElementById("btn-top")?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
   // ── Dark mode toggle ──
   function applyDarkUI(isDark: boolean) {
     if (!toggle || !thumb) return;
@@ -219,9 +235,13 @@ import { Sun, Moon, Download } from "@lucide/astro";
   });
 
   // ── Nav backdrop on scroll ──
+  const btnTop = document.getElementById("btn-top");
+  const btnTopDivider = btnTop?.nextElementSibling as HTMLElement | null;
+
   function updateNav() {
     if (!nav) return;
-    if (window.scrollY > 10) {
+    const scrolled = window.scrollY > 10;
+    if (scrolled) {
       nav.classList.add("backdrop-blur-md");
       nav.style.backgroundColor = "color-mix(in srgb, var(--color-bg-primary) 80%, transparent)";
       nav.style.borderBottomColor = "var(--color-border)";
@@ -229,6 +249,14 @@ import { Sun, Moon, Download } from "@lucide/astro";
       nav.classList.remove("backdrop-blur-md");
       nav.style.backgroundColor = "transparent";
       nav.style.borderBottomColor = "transparent";
+    }
+    // Show/hide back-to-top button
+    if (btnTop) {
+      btnTop.style.opacity = scrolled ? "1" : "0";
+      btnTop.style.pointerEvents = scrolled ? "auto" : "none";
+    }
+    if (btnTopDivider) {
+      btnTopDivider.style.opacity = scrolled ? "1" : "0";
     }
   }
 

@@ -1,25 +1,13 @@
 ---
-const leftCards = [
-  { front: "Direction d'entreprise", back: "1 → 10M€ from scratch" },
-  { front: "Leadership (→ 60 p.)", back: "Top 100 GPTW FR (BG)" },
-  { front: "Transformation digitale", back: "Orgas digital-first" },
-  { front: "Financement", back: "7,7M€ levés" },
-  { front: "Stratégie de croissance", back: "+50% CAGR · 6,8% EBE (BG)" },
-  { front: "Retail expérientiel", back: "10 boutiques (BG)" },
-  { front: "E-commerce", back: "63% repeat (BG)" },
-  { front: "Branding", back: "Refontes complètes" },
-  { front: "International", back: "9 marchés (VP)" },
-];
+import type { Translations } from "../i18n/fr";
 
-const rightCards = [
-  { front: "Augmentation des fonctions clé", back: "−50% coûts SEO (Voyage Privé)" },
-  { front: "Orchestration d'agents IA", back: "Pipeline complet (Core Summit)" },
-  { front: "Génération d'assets", back: "Copy · images · web apps" },
-  { front: "Prototypage full-stack", back: "Claude Code · Git · Cloudflare" },
-  { front: "Audit stacks IA", back: "−25% SaaS (VP)" },
-  { front: "Automatisations (workers)", back: "Claude Cowork, N8N" },
-  { front: "SEO pour LLMs (GEO)", back: "Workflows complets" },
-];
+interface Props {
+  t: Translations["competences"];
+}
+
+const { t } = Astro.props;
+const leftCards = t.col1;
+const rightCards = t.col2;
 ---
 
 <section id="competences" style="scroll-margin-top: 70px;">
@@ -29,17 +17,17 @@ const rightCards = [
   </div>
 
   <div class="mx-auto max-w-[768px] px-8 max-md:px-6 py-10">
-    <h2 class="sr-only">Compétences</h2>
+    <h2 class="sr-only">{t.srTitre}</h2>
 
     <div aria-hidden="true" class="mb-6 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
-      02 · Compétences
+      {t.titre}
     </div>
 
     <div class="grid grid-cols-2 gap-8 max-md:grid-cols-1" id="competences-cols">
       <!-- Left column -->
       <div class="comp-col">
         <h3 class="mb-2.5 font-serif text-[1.05rem] font-normal text-text-primary">
-          Savoir-faire dirigeant
+          {t.col1Titre}
         </h3>
         <div class="flex flex-wrap gap-1.5">
           {leftCards.map((card) => (
@@ -62,7 +50,7 @@ const rightCards = [
       <!-- Right column -->
       <div class="comp-col">
         <h3 class="mb-2.5 font-serif text-[1.05rem] font-normal text-text-primary">
-          IA — Stratégie & exécution
+          {t.col2Titre}
         </h3>
         <div class="flex flex-wrap gap-1.5">
           {rightCards.map((card) => (

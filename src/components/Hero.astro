@@ -1,8 +1,24 @@
 ---
 import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
+import type { Translations } from "../i18n/fr";
+import type { Lang } from "../i18n/utils";
+
+interface Props {
+  t: Translations;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const navItems = [
+  { label: t.nav.parcours, href: "#parcours" },
+  { label: t.nav.competences, href: "#competences" },
+  { label: t.nav.contact, href: "#contact" },
+];
+const langPrefix = lang === "en" ? "/en" : "";
+const otherLangPrefix = lang === "en" ? "" : "/en";
 ---
 
-<!-- ════════════════ NAV (outside hero container to avoid overflow clip) ════════════════ -->
+<!-- ════════════════ NAV ════════════════ -->
 <nav
   id="site-nav"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
@@ -10,30 +26,30 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
 >
       <div class="mx-auto flex max-w-[768px] items-center justify-between px-8 max-md:px-6 py-4">
         <div class="flex items-center">
-          <!-- Back to top pill (hidden by default, shown on scroll) -->
+          <!-- Back to top pill -->
           <button
             id="btn-top"
             type="button"
-            aria-label="Remonter en haut de page"
+            aria-label={t.nav.ariaHaut}
             class="inline-flex items-center gap-0.5 rounded-sm border border-text-secondary/40 px-1 py-px text-text-secondary/60 opacity-0 pointer-events-none transition-all duration-200 hover:text-text-primary hover:border-text-primary cursor-pointer"
             style="background: color-mix(in srgb, var(--color-bg-primary) 80%, transparent);"
           >
             <ChevronUp size={12} strokeWidth={1.5} />
-            <span class="text-[9px] font-normal uppercase tracking-[0.04em] max-sm:hidden">Haut</span>
+            <span class="text-[9px] font-normal uppercase tracking-[0.04em] max-sm:hidden">{t.nav.haut}</span>
           </button>
 
-          <!-- Divider (hidden by default, shown on scroll) -->
+          <!-- Divider -->
           <div class="h-4 mx-3 opacity-0 transition-opacity duration-200" style="width: 0.5px; background: var(--color-border);" />
 
         <!-- Links — hidden on mobile -->
         <ul class="hidden md:flex items-center gap-6">
-          {["Parcours", "Compétences", "Contact"].map((label) => (
+          {navItems.map((item) => (
             <li>
               <a
-                href={`#${label.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+                href={item.href}
                 class="text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary transition-all hover:text-text-primary border-b border-transparent hover:border-text-primary pb-0.5"
               >
-                {label}
+                {item.label}
               </a>
             </li>
           ))}
@@ -47,20 +63,28 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
         <div class="flex items-center gap-2 max-md:gap-1.5 shrink-0">
           <!-- FR | EN toggle -->
           <div class="flex items-center gap-1.5">
-            <button
-              id="lang-fr"
-              type="button"
-              class="cursor-pointer text-[11px] uppercase tracking-[0.06em] text-text-primary font-semibold border-b-[1.5px] border-text-primary pb-0.5 transition-all min-h-[44px] flex items-center"
+            <a
+              href={lang === "fr" ? "#" : "/"}
+              class:list={[
+                "text-[11px] uppercase tracking-[0.06em] border-b-[1.5px] pb-0.5 transition-all min-h-[44px] flex items-center",
+                lang === "fr"
+                  ? "text-text-primary font-semibold border-text-primary"
+                  : "text-text-secondary font-normal border-transparent hover:text-text-primary cursor-pointer",
+              ]}
             >
               FR
-            </button>
-            <button
-              id="lang-en"
-              type="button"
-              class="cursor-pointer text-[11px] uppercase tracking-[0.06em] text-text-secondary font-normal border-b-[1.5px] border-transparent pb-0.5 transition-all min-h-[44px] flex items-center hover:text-text-primary"
+            </a>
+            <a
+              href={lang === "en" ? "#" : "/en/"}
+              class:list={[
+                "text-[11px] uppercase tracking-[0.06em] border-b-[1.5px] pb-0.5 transition-all min-h-[44px] flex items-center",
+                lang === "en"
+                  ? "text-text-primary font-semibold border-text-primary"
+                  : "text-text-secondary font-normal border-transparent hover:text-text-primary cursor-pointer",
+              ]}
             >
               EN
-            </button>
+            </a>
           </div>
 
           <!-- Separator -->
@@ -70,7 +94,7 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
           <button
             id="theme-toggle"
             type="button"
-            aria-label="Basculer le mode sombre"
+            aria-label={t.nav.ariaDarkMode}
             class="relative h-5 w-9 cursor-pointer rounded-[10px] bg-bg-secondary transition-all duration-300 hover:opacity-75"
           >
             <span
@@ -89,7 +113,7 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
           <a
             href="/geoffrey-bruyere-cv.pdf"
             download
-            aria-label="Télécharger le CV en PDF"
+            aria-label={t.nav.ariaDownload}
             class="flex items-center justify-center min-w-[44px] min-h-[44px] text-text-secondary transition-colors hover:text-text-primary max-sm:hidden"
           >
             <Download size={16} strokeWidth={1.5} />
@@ -98,7 +122,7 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
       </div>
     </nav>
 
-<!-- ════════════════ HERO CONTAINER (particles + content) ════════════════ -->
+<!-- ════════════════ HERO CONTAINER ════════════════ -->
 <header id="hero-container" class="relative overflow-hidden">
 
   <!-- Canvas particles -->
@@ -112,18 +136,15 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
   <!-- Content layer -->
   <div class="relative z-[2]">
 
-    <!-- ════════════════ HERO CONTENT ════════════════ -->
     <section class="pt-20 pb-18">
       <div class="mx-auto max-w-[768px] px-8 max-md:px-6">
 
         <!-- Identity row -->
         <div class="flex flex-row items-start gap-7 max-md:flex-col max-md:items-center max-md:text-center">
-          <!-- Photo placeholder -->
           <div class="photo-container h-[110px] w-[110px] shrink-0 overflow-hidden rounded-full transition-transform duration-300 hover:scale-[1.03]" style="background: var(--color-bg-primary);">
-            <img src="/photo.jpg" alt="Geoffrey Bruyère" class="photo-img h-full w-full object-cover" />
+            <img src="/photo.jpg" alt={t.hero.nom} class="photo-img h-full w-full object-cover" />
           </div>
 
-          <!-- Text -->
           <div class="flex-1 pt-1">
             <h1
               class="font-serif font-bold leading-[1.05] tracking-[-0.02em] text-text-primary transition-transform duration-300 hover:scale-[1.01]"
@@ -133,17 +154,17 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
             </h1>
 
             <p class="mt-2.5 text-[0.95rem] font-normal tracking-[0.02em] text-text-primary">
-              CEO · CMO · Marque, Croissance &amp; Transformation IA
+              {t.hero.role}
             </p>
 
             <!-- Eyebrow -->
             <div class="eyebrow-row mt-3 flex items-center gap-2 max-md:justify-center cursor-default">
               <span class="eyebrow-badge inline-flex items-center gap-1.5 rounded-sm border border-border px-1.5 py-px text-[10px] font-medium uppercase tracking-[0.08em] text-text-secondary transition-all duration-200">
                 <span class="inline-flex h-2 w-2 rounded-full bg-accent"></span>
-                Disponible
+                {t.hero.disponible}
               </span>
               <span class="eyebrow-loc text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary transition-colors duration-200">
-                Aix-en-Provence · Paris · Monde
+                {t.hero.localisation}
               </span>
             </div>
           </div>
@@ -152,29 +173,28 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
         <!-- Statement -->
         <blockquote class="statement-block mt-10 border-l-[3px] border-accent pl-5" style="border-radius: 0;">
           <p class="statement-text text-[0.88rem] font-light leading-[1.75] text-text-body">
-            Diriger une marque B2C, c'est tenir deux exigences contradictoires en même temps : <span class="font-normal text-text-emphasis">créer du désir</span> et <span class="font-normal text-text-emphasis">produire de la performance</span>. J'ai passé 16&nbsp;ans à faire les
-            deux — de zéro à 10&nbsp;M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme.
+            {t.hero.statement1} <span class="font-normal text-text-emphasis">{t.hero.emphasis1}</span> {t.hero.mid1} <span class="font-normal text-text-emphasis">{t.hero.emphasis2}</span>{t.hero.statement1end}
           </p>
           <p class="statement-text mt-3 text-[0.88rem] font-light leading-[1.75] text-text-body">
-            C'est ce que je veux construire à nouveau, <span class="font-normal text-text-emphasis">avec l'IA comme levier</span>.
+            {t.hero.statement2start} <span class="font-normal text-text-emphasis">{t.hero.emphasis3}</span>.
           </p>
         </blockquote>
 
         <!-- KPI row -->
         <div class="kpi-list mt-8 flex flex-wrap items-center gap-y-2">
           <div class="kpi-item flex items-baseline gap-[5px] pr-4">
-            <span class="stat-number font-serif text-[1.8rem] font-bold leading-none text-text-primary">15 ans</span>
-            <span class="text-[11px] font-light text-text-secondary">de direction B2C</span>
+            <span class="stat-number font-serif text-[1.8rem] font-bold leading-none text-text-primary">{t.hero.stat1_nombre}</span>
+            <span class="text-[11px] font-light text-text-secondary">{t.hero.stat1_label}</span>
           </div>
           <div class="h-[20px] w-px bg-border max-md:hidden" />
           <div class="kpi-item flex items-baseline gap-[5px] px-4 max-md:pl-0">
-            <span class="stat-number font-serif text-[1.8rem] font-bold leading-none text-text-primary">0→10M€</span>
-            <span class="text-[11px] font-light text-text-secondary">from scratch</span>
+            <span class="stat-number font-serif text-[1.8rem] font-bold leading-none text-text-primary">{t.hero.stat2_nombre}</span>
+            <span class="text-[11px] font-light text-text-secondary">{t.hero.stat2_label}</span>
           </div>
           <div class="h-[20px] w-px bg-border max-md:hidden" />
           <div class="kpi-item flex items-baseline gap-[5px] pl-4 max-md:pl-0">
-            <span class="stat-number font-serif text-[1.8rem] font-bold leading-none text-text-primary">95</span>
-            <span class="text-[11px] font-light text-text-secondary">NPS pour BonneGueule</span>
+            <span class="stat-number font-serif text-[1.8rem] font-bold leading-none text-text-primary">{t.hero.stat3_nombre}</span>
+            <span class="text-[11px] font-light text-text-secondary">{t.hero.stat3_label}</span>
           </div>
         </div>
       </div>
@@ -273,7 +293,6 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
       nav.style.backgroundColor = "transparent";
       nav.style.borderBottomColor = "transparent";
     }
-    // Show/hide back-to-top button
     if (btnTop) {
       btnTop.style.opacity = scrolled ? "1" : "0";
       btnTop.style.pointerEvents = scrolled ? "auto" : "none";
@@ -296,7 +315,6 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
 
   function updateActiveLink() {
     const scrollY = window.scrollY + 100;
-    // If near bottom of page, activate "contact"
     const atBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
     let activeId = "";
     if (atBottom) {
@@ -325,23 +343,6 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
   window.addEventListener("scroll", updateActiveLink, { passive: true });
   updateActiveLink();
 
-  // ── Lang toggle ──
-  const frBtn = document.getElementById("lang-fr");
-  const enBtn = document.getElementById("lang-en");
-
-  function setLang(lang: "fr" | "en") {
-    if (!frBtn || !enBtn) return;
-    const active = lang === "fr" ? frBtn : enBtn;
-    const inactive = lang === "fr" ? enBtn : frBtn;
-    active.classList.add("font-semibold", "text-text-primary", "border-text-primary");
-    active.classList.remove("font-normal", "text-text-secondary", "border-transparent");
-    inactive.classList.add("font-normal", "text-text-secondary", "border-transparent");
-    inactive.classList.remove("font-semibold", "text-text-primary", "border-text-primary");
-  }
-
-  frBtn?.addEventListener("click", () => setLang("fr"));
-  enBtn?.addEventListener("click", () => setLang("en"));
-
   // ── Particle canvas ──
   const canvas = document.getElementById("hero-particles") as HTMLCanvasElement;
   const container = document.getElementById("hero-container") as HTMLElement;
@@ -367,7 +368,6 @@ import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
     for (let x = spacing / 2; x < w; x += spacing) {
       for (let y = spacing / 2; y < h; y += spacing) {
         const yRatio = y / h;
-        // Linear gradient: 100% at top → 30% at bottom
         const yFactor = 1 - yRatio * 0.7;
         if (Math.random() < 0.92 * yFactor) {
           const size = 1.17 * (0.4 + Math.random() * 0.6) * (0.4 + yFactor * 0.6);

@@ -1,4 +1,12 @@
 ---
+import type { Translations } from "../i18n/fr";
+
+interface Props {
+  t: Translations["culture"];
+}
+
+const { t } = Astro.props;
+const pillars = t.items;
 ---
 
 <section id="culture" style="scroll-margin-top: 70px;">
@@ -8,10 +16,10 @@
   </div>
 
   <div class="mx-auto max-w-[768px] px-8 max-md:px-6 py-10">
-    <h2 class="sr-only">Culture personnelle</h2>
+    <h2 class="sr-only">{t.srTitre}</h2>
 
     <div aria-hidden="true" class="mb-5 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
-      05 · Culture personnelle
+      {t.titre}
     </div>
 
     <div id="culture-list" class="cult-list">
@@ -24,10 +32,10 @@
               <path d="M5 1v8M1 5h8M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
             </svg>
           </span>
-          <span class="font-serif text-[1.05rem] font-normal text-text-primary">Esthétique et matières</span>
+          <span class="font-serif text-[1.05rem] font-normal text-text-primary">{pillars[0].title}</span>
         </span>
         <span class="font-light text-text-body" style="font-size: 13px;">
-          Mode masculine, architecture, arts graphiques, objets bien faits.
+          {pillars[0].text}
         </span>
       </div>
 
@@ -40,10 +48,10 @@
               <polyline points="1,5 5,1 9,5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" fill="none"/>
             </svg>
           </span>
-          <span class="font-serif text-[1.05rem] font-normal text-text-primary">Montagne</span>
+          <span class="font-serif text-[1.05rem] font-normal text-text-primary">{pillars[1].title}</span>
         </span>
         <span class="font-light text-text-body" style="font-size: 13px;">
-          Randonnées engagées (bivouac, multi-jours, hiver), alpinisme, escalade.
+          {pillars[1].text}
         </span>
       </div>
 
@@ -56,10 +64,10 @@
               <line x1="0" y1="4" x2="12" y2="4" stroke="currentColor" stroke-width="1"/>
             </svg>
           </span>
-          <span class="font-serif text-[1.05rem] font-normal text-text-primary">Spiritualité</span>
+          <span class="font-serif text-[1.05rem] font-normal text-text-primary">{pillars[2].title}</span>
         </span>
         <span class="font-light text-text-body" style="font-size: 13px;">
-          Méditation Zen Sōtō, psychologie, médecines ancestrales.
+          {pillars[2].text}
         </span>
       </div>
 

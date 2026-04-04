@@ -7,18 +7,21 @@ import Formation from "../components/Formation.astro";
 import Rayonnement from "../components/Rayonnement.astro";
 import Culture from "../components/Culture.astro";
 import Footer from "../components/Footer.astro";
+import { getTranslations } from "../i18n/utils";
+
+const t = getTranslations("fr");
 ---
 
-<Layout>
-  <Hero />
+<Layout title={t.meta.title} description={t.meta.description}>
+  <Hero t={t} lang="fr" />
 
   <main>
-    <Parcours />
-    <Competences />
-    <Formation />
-    <Rayonnement />
-    <Culture />
+    <Parcours t={t.parcours} />
+    <Competences t={t.competences} />
+    <Formation t={t.formation} />
+    <Rayonnement t={t.rayonnement} />
+    <Culture t={t.culture} />
   </main>
 
-  <Footer />
+  <Footer t={t.footer} />
 </Layout>

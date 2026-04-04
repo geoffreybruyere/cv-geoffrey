@@ -1,10 +1,12 @@
 ---
-const formations = [
-  { year: "2017", school: "ESCP / Institut Français de la Mode", diploma: "Accélérateur Mode & Luxe · IFM Labels", city: "Paris" },
-  { year: "2010", school: "Bosphore University", diploma: "MBA Program", city: "Istanbul" },
-  { year: "2006", school: "Mines-Télécom Business School", diploma: "MSc in Management", city: "Paris" },
-  { year: "2004", school: "CPGE Lycée Albert Schweitzer", diploma: "Maths Sup / Maths Spé", city: "Mulhouse" },
-];
+import type { Translations } from "../i18n/fr";
+
+interface Props {
+  t: Translations["formation"];
+}
+
+const { t } = Astro.props;
+const formations = t.items;
 ---
 
 <section id="formation" style="scroll-margin-top: 70px;">
@@ -15,11 +17,11 @@ const formations = [
 
   <div class="mx-auto max-w-[768px] px-8 max-md:px-6 py-10">
     <!-- Screen reader heading -->
-    <h2 class="sr-only">Formation</h2>
+    <h2 class="sr-only">{t.srTitre}</h2>
 
     <!-- Section label -->
     <div aria-hidden="true" class="mb-5 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
-      03 · Formation
+      {t.titre}
     </div>
 
     <!-- Formation list -->

@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import Parcours from "../../components/Parcours.astro";
+import Competences from "../../components/Competences.astro";
+import Formation from "../../components/Formation.astro";
+import Rayonnement from "../../components/Rayonnement.astro";
+import Culture from "../../components/Culture.astro";
+import Footer from "../../components/Footer.astro";
+import { getTranslations } from "../../i18n/utils";
+
+const t = getTranslations("en");
+---
+
+<Layout title={t.meta.title} description={t.meta.description}>
+  <Hero t={t} lang="en" />
+
+  <main>
+    <Parcours t={t.parcours} />
+    <Competences t={t.competences} />
+    <Formation t={t.formation} />
+    <Rayonnement t={t.rayonnement} />
+    <Culture t={t.culture} />
+  </main>
+
+  <Footer t={t.footer} />
+</Layout>

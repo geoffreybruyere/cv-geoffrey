@@ -1,4 +1,11 @@
 ---
+import type { Translations } from "../i18n/fr";
+
+interface Props {
+  t: Translations["rayonnement"];
+}
+
+const { t } = Astro.props;
 ---
 
 <section id="rayonnement" style="scroll-margin-top: 70px;">
@@ -8,10 +15,10 @@
   </div>
 
   <div class="mx-auto max-w-[768px] px-8 max-md:px-6 py-10">
-    <h2 class="sr-only">Rayonnement</h2>
+    <h2 class="sr-only">{t.srTitre}</h2>
 
     <div aria-hidden="true" class="mb-6 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
-      04 · Rayonnement
+      {t.titre}
     </div>
 
     <!-- Accordion -->
@@ -21,13 +28,13 @@
       <div class="ray-card open">
         <div class="ray-bar" />
         <div class="ray-collapsed">
-          <span class="ray-cat-v">Distinctions</span>
+          <span class="ray-cat-v">{t.distinctions.label}</span>
         </div>
         <div class="ray-expanded">
-          <div class="ray-cat-lbl">Distinctions</div>
+          <div class="ray-cat-lbl">{t.distinctions.label}</div>
           <div class="ray-body">
-            FT1000 — <span class="font-normal text-text-emphasis">Financial Times Europe's Fastest Growing Companies</span> (#580).<br /><br />
-            Membre de la délégation française <span class="font-normal text-text-emphasis">G20 Young Entrepreneurs 2018</span>, Buenos Aires.
+            {t.distinctions.text1} <span class="font-normal text-text-emphasis">{t.distinctions.emphasis1}</span> {t.distinctions.text1end}<br /><br />
+            {t.distinctions.text2} <span class="font-normal text-text-emphasis">{t.distinctions.emphasis2}</span>{t.distinctions.text2end}
           </div>
         </div>
       </div>
@@ -36,13 +43,15 @@
       <div class="ray-card">
         <div class="ray-bar" />
         <div class="ray-collapsed">
-          <span class="ray-cat-v">Conférences</span>
+          <span class="ray-cat-v">{t.conferences.labelShort}</span>
         </div>
         <div class="ray-expanded">
-          <div class="ray-cat-lbl">Conférences & conseil</div>
+          <div class="ray-cat-lbl">{t.conferences.label}</div>
           <div class="ray-body">
-            Interventions facturées : <span class="font-normal text-text-emphasis">Hermès</span>, <span class="font-normal text-text-emphasis">Moët</span>, <span class="font-normal text-text-emphasis">Weston</span>, <span class="font-normal text-text-emphasis">Galeries Lafayette</span>, <span class="font-normal text-text-emphasis">IADS</span>, <span class="font-normal text-text-emphasis">IFM</span>.<br /><br />
-            Thèmes : marque, e-commerce, entrepreneuriat digital.
+            {t.conferences.intro} {t.conferences.noms.map((n, i) => (
+              <><span class="font-normal text-text-emphasis">{n}</span>{i < t.conferences.noms.length - 1 ? ", " : "."}</>
+            ))}<br /><br />
+            {t.conferences.themes}
           </div>
         </div>
       </div>
@@ -51,12 +60,12 @@
       <div class="ray-card">
         <div class="ray-bar" />
         <div class="ray-collapsed">
-          <span class="ray-cat-v">Business cases</span>
+          <span class="ray-cat-v">{t.cases.label}</span>
         </div>
         <div class="ray-expanded">
-          <div class="ray-cat-lbl">Business cases</div>
+          <div class="ray-cat-lbl">{t.cases.label}</div>
           <div class="ray-body">
-            BonneGueule a été étudié dans les <span class="font-normal text-text-emphasis">programmes MBA</span> de HEC Entrepreneurs, ESSEC et IFM.
+            {t.cases.text} <span class="font-normal text-text-emphasis">{t.cases.emphasis}</span> {t.cases.textEnd}
           </div>
         </div>
       </div>

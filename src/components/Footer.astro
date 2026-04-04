@@ -1,5 +1,12 @@
 ---
 import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
+import type { Translations } from "../i18n/fr";
+
+interface Props {
+  t: Translations["footer"];
+}
+
+const { t } = Astro.props;
 ---
 
 <footer id="contact" style="scroll-margin-top: 70px; background: color-mix(in srgb, var(--color-accent) 6%, var(--color-bg-primary));">
@@ -8,7 +15,7 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
     <!-- ══════ HOOK ══════ -->
     <div class="pt-7 max-md:pt-6">
       <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
-        Contact
+        {t.contact}
       </h2>
     </div>
 
@@ -18,14 +25,14 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
       <div class="flex flex-col gap-4 py-8 pr-10 max-md:pr-0 max-md:py-6">
         <div class="footer-name-block cursor-default">
           <!-- Name -->
-          <p class="footer-name font-serif text-[1.25rem] font-bold text-text-primary transition-transform duration-300">Geoffrey Bruyère</p>
+          <p class="footer-name font-serif text-[1.25rem] font-bold text-text-primary transition-transform duration-300">{t.nom}</p>
 
           <!-- Role -->
-          <p class="footer-role mt-1 text-[13px] font-light leading-[1.65] text-text-body transition-colors duration-200">CEO · CMO · Entrepreneur</p>
+          <p class="footer-role mt-1 text-[13px] font-light leading-[1.65] text-text-body transition-colors duration-200">{t.role}</p>
 
           <!-- Tags -->
           <div class="mt-2.5 flex flex-wrap gap-1">
-            {["Marque", "Digital-first", "Transfo IA", "B2C", "Créativité"].map((tag) => (
+            {t.tags.map((tag) => (
               <span class="inline-block rounded-full px-2 py-px text-[10px] font-medium text-text-secondary transition-all duration-200 hover:text-text-primary hover:border-text-primary cursor-default" style="border: 0.5px solid #E4E4DC;">
                 {tag}
               </span>
@@ -37,7 +44,7 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
           <!-- Location -->
           <div class="footer-loc mb-3 flex items-center gap-1.5 text-[11px] font-normal text-text-secondary cursor-default">
             <MapPin size={12} strokeWidth={1.5} class="footer-loc-icon" />
-            Aix-en-Provence
+            {t.localisation}
           </div>
 
           <!-- 1-pager + LinkedIn -->
@@ -49,9 +56,9 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
               style="border: 0.5px solid #C8C8C4;"
             >
               <Download size={11} strokeWidth={1.5} />
-              1-pager
+              {t.btnPager}
             </a>
-            <a href="https://www.linkedin.com/in/geoffreybruyere/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" class="text-text-secondary/50 hover:text-text-primary transition-colors">
+            <a href="https://www.linkedin.com/in/geoffreybruyere/" target="_blank" rel="noopener noreferrer" aria-label={t.ariaLinkedin} class="text-text-secondary/50 hover:text-text-primary transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
           </div>
@@ -67,17 +74,17 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
       <div class="flex flex-col gap-4 py-8 pl-10 max-md:pl-0 max-md:py-6">
         <div class="footer-search-block cursor-default">
           <!-- Label -->
-          <span class="footer-search-label text-[9px] font-semibold uppercase tracking-[0.14em] text-accent-dark transition-transform duration-300 inline-block">Ce que je recherche</span>
+          <span class="footer-search-label text-[9px] font-semibold uppercase tracking-[0.14em] text-accent-dark transition-transform duration-300 inline-block">{t.rechercheTitre}</span>
 
           <!-- Intention -->
           <p class="footer-search-text mt-3 text-[13px] font-light leading-[1.65] text-text-body transition-colors duration-200">
-            Construire une marque désirable et rentable, avec le digital comme levier.
+            {t.intention}
           </p>
 
           <!-- Sub-text -->
           <p class="footer-search-text mt-2 text-[13px] font-light text-text-body transition-colors duration-200" style="line-height: 1.65;">
-            CEO (20–50p) ou CMO (20–100p).<br />
-            Phase de scale · Ambitions réelles.
+            {t.cible}<br />
+            {t.scale}
           </p>
         </div>
 
@@ -85,7 +92,7 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
           <!-- Location -->
           <div class="footer-loc mb-3 flex items-center gap-1.5 text-[11px] font-normal text-text-secondary cursor-default">
             <Globe size={12} strokeWidth={1.5} class="footer-loc-icon" />
-            France · Monde · FR / EN
+            {t.monde}
           </div>
 
           <!-- Me contacter -->
@@ -95,21 +102,21 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
             style="background: var(--color-accent); color: #141210;"
           >
             <Mail size={16} strokeWidth={1.5} class="btn-icon" />
-            Me contacter
+            {t.btnContact}
           </a>
 
           <!-- Email + Tel -->
           <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
             <div class="footer-contact-line flex items-center gap-2">
               <span class="text-[11px] font-light text-text-secondary footer-contact-text">geoffreybruyere@gmail.com</span>
-              <button type="button" data-copy="geoffreybruyere@gmail.com" aria-label="Copier l'email" class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
+              <button type="button" data-copy="geoffreybruyere@gmail.com" aria-label={t.ariaEmail} class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
                 <Copy size={10} strokeWidth={1.5} class="text-text-secondary copy-icon" />
                 <Check size={10} strokeWidth={1.5} class="text-accent-dark check-icon hidden" />
               </button>
             </div>
             <div class="footer-contact-line flex items-center gap-2">
               <span class="text-[11px] font-light text-text-secondary footer-contact-text">(+33)6 27 40 18 91</span>
-              <button type="button" data-copy="+33627401891" aria-label="Copier le numéro" class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
+              <button type="button" data-copy="+33627401891" aria-label={t.ariaTel} class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
                 <Copy size={10} strokeWidth={1.5} class="text-text-secondary copy-icon" />
                 <Check size={10} strokeWidth={1.5} class="text-accent-dark check-icon hidden" />
               </button>
@@ -125,7 +132,7 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
 
 <!-- Vertical credit — fixed bottom left -->
 <div class="fixed bottom-4 left-4 z-40 flex flex-col items-center gap-1 max-md:hidden" style="writing-mode: vertical-rl; text-orientation: mixed;">
-  <span class="text-[9px] font-normal text-text-secondary/30">&copy; Geoffrey Bruyère · Vibe-coded with ♥</span>
+  <span class="text-[9px] font-normal text-text-secondary/30">{t.copyright} · {t.vibe}</span>
 </div>
 
 <style is:global>
@@ -190,7 +197,7 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
 
   /* Name block hover */
   .footer-name-block:hover .footer-name {
-    transform: scale(1.01);
+    transform: scale(1.025);
   }
   .footer-name-block:hover .footer-role {
     color: var(--color-text-primary);
@@ -198,7 +205,7 @@ import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
 
   /* Search block hover */
   .footer-search-block:hover .footer-search-label {
-    transform: scale(1.01);
+    transform: scale(1.025);
   }
   .footer-search-block:hover .footer-search-text {
     color: var(--color-text-primary);

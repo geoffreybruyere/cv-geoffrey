@@ -1,15 +1,14 @@
 ---
-/*
-  Parcours — scroll-driven stacking panels + sticky timeline
-  Panels stack vertically as user scrolls. Timeline updates progressively.
-*/
-const stations = [
-  { year: "2026–présent", duration: "", name: "Core Summit", role: "Co-fondateur", badges: ["Side project"], nameWeight: "font-bold" },
-  { year: "2024–2025", duration: "2 ans", name: "Voyage Privé", role: "CMO", badges: ["ComEx"], nameWeight: "font-bold" },
-  { year: "2010–2022", duration: "12 ans", name: "BonneGueule", role: "CEO", badges: ["Co-fondateur"], nameWeight: "font-bold" },
-  { year: "2009–2011", duration: "2 ans", name: "Wavestone · HeadMind", role: "Consultant en stratégie", badges: ["CDI"], nameWeight: "font-bold" },
-];
+import type { Translations } from "../i18n/fr";
+
+interface Props {
+  t: Translations["parcours"];
+}
+
+const { t } = Astro.props;
+const stations = t.stations;
 const stationPositions = [12, 38, 65, 95];
+const p = t.panels;
 ---
 
 <section id="parcours" style="scroll-margin-top: 70px;">
@@ -24,13 +23,13 @@ const stationPositions = [12, 38, 65, 95];
       <!-- Label + hint -->
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-dark">
-          01 · Parcours
+          {t.titre}
         </h2>
         <span
           id="scroll-hint"
           class="text-[11px] font-light text-text-secondary transition-opacity duration-500"
         >
-          Scrollez pour naviguer ↓
+          {t.scrollHint}
         </span>
       </div>
 
@@ -89,24 +88,24 @@ const stationPositions = [12, 38, 65, 95];
         <!-- Header -->
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
-            <span class="font-serif text-[1.2rem] font-bold text-text-primary">Core Summit</span>
-            <span class="panel-role text-[13px] font-medium text-text-secondary">Co-fondateur</span>
-            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Side project</span>
-            <a href="https://www.coresummit.fr/" target="_blank" rel="noopener noreferrer" aria-label="Voir Core Summit" class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
+            <span class="font-serif text-[1.2rem] font-bold text-text-primary">{p.coresummit.titre}</span>
+            <span class="panel-role text-[13px] font-medium text-text-secondary">{p.coresummit.role}</span>
+            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">{p.coresummit.badge}</span>
+            <a href="https://www.coresummit.fr/" target="_blank" rel="noopener noreferrer" aria-label={p.coresummit.ariaLink} class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
-          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2026–présent</span>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">{p.coresummit.date}</span>
         </div>
         <!-- Intro -->
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
-          Séminaire d'executive coaching en immersion montagne pour fondateurs et CEOs.
+          {p.coresummit.intro}
         </p>
         <!-- Detail -->
         <div class="mt-4 border-l-[1.5px] border-border pl-3">
           <p class="text-[13px] font-light leading-[1.6] text-text-body">
-            Construction complète IA-first : site, tunnel de vente, pipeline de gestion des candidatures - développé avec Claude Code et agents IA.
+            {p.coresummit.detail1}
           </p>
           <p class="mt-2 text-[13px] font-light leading-[1.6] text-text-body">
-            Sélection en cours pour lancement en juillet 2026.
+            {p.coresummit.detail2}
           </p>
         </div>
       </div>
@@ -120,27 +119,22 @@ const stationPositions = [12, 38, 65, 95];
         <!-- Header -->
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
-            <span class="font-serif text-[1.2rem] font-bold text-text-primary">Voyage Privé</span>
-            <span class="panel-role text-[13px] font-medium text-text-secondary">CMO</span>
-            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">ComEx</span>
-            <a href="https://www.voyage-prive.com/" target="_blank" rel="noopener noreferrer" aria-label="Voir Voyage Privé" class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
+            <span class="font-serif text-[1.2rem] font-bold text-text-primary">{p.voyageprive.titre}</span>
+            <span class="panel-role text-[13px] font-medium text-text-secondary">{p.voyageprive.role}</span>
+            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">{p.voyageprive.badge}</span>
+            <a href="https://www.voyage-prive.com/" target="_blank" rel="noopener noreferrer" aria-label={p.voyageprive.ariaLink} class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
-          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2024–2025 · 2 ans</span>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">{p.voyageprive.date}</span>
         </div>
         <!-- Intro -->
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
-          Stratégie marketing globale d'un acteur leader du voyage premium en ligne (C.A. >1Md€, CAGR >+10%) : acquisition online / offline dont TV / organique, CRM, branding, retail média sur 9 marchés.
+          {p.voyageprive.intro}
         </p>
         <!-- KPI sidebar + Grid -->
         <div class="mt-5 flex gap-6 max-md:flex-col">
           <!-- KPIs vertical -->
           <div class="flex flex-col gap-3 shrink-0 max-md:flex-row max-md:flex-wrap max-md:gap-4">
-            {[
-              { v: ">1Md€", l: "CA" },
-              { v: "+10%", l: "CAGR" },
-              { v: ">10M€", l: "budget" },
-              { v: "9", l: "marchés" },
-            ].map((k, i) => (
+            {p.voyageprive.kpis.map((k, i) => (
               <>
                 {i > 0 && <div class="h-px w-full bg-border max-md:hidden" />}
                 <div class="flex flex-col items-center min-w-[60px]">
@@ -152,22 +146,12 @@ const stationPositions = [12, 38, 65, 95];
           </div>
           <!-- Grid -->
           <div class="grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
-            <div class="border-l-[1.5px] border-border pl-3">
-              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Performance</span>
-              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Pilotage de la performance marketing (budget >10M€, reporting au CEO).</p>
-            </div>
-            <div class="border-l-[1.5px] border-border pl-3">
-              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Direction & Gouvernance (ComEx)</span>
-              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Alignement stratégie marketing / objectifs groupe, décisions cross-fonctions (tech, produit, commercial).</p>
-            </div>
-            <div class="border-l-[1.5px] border-border pl-3">
-              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Organisation & Chantiers</span>
-              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Réorganisation de l'équipe de 35 experts, création de la fonction branding et refonte complète de la plateforme de marque. Pilotage de chantiers transverses avec les équipes digitales : outils d'attribution, AB-testing, CRM…</p>
-            </div>
-            <div class="border-l-[1.5px] border-border pl-3">
-              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Transformation IA</span>
-              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Déploiement d'automatisations IA sur CRM, SEO et acquisition payante. Réduction de >50% des coûts de production SEO, renégociation >25% de tous les SaaS.</p>
-            </div>
+            {p.voyageprive.blocs.map((b) => (
+              <div class="border-l-[1.5px] border-border pl-3">
+                <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">{b.label}</span>
+                <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">{b.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -181,28 +165,22 @@ const stationPositions = [12, 38, 65, 95];
         <!-- Header -->
         <div class="flex items-baseline justify-between mb-3">
           <div class="flex items-baseline gap-2">
-            <span class="font-serif text-[1.2rem] font-bold text-text-primary">BonneGueule</span>
-            <span class="panel-role text-[13px] font-medium text-text-secondary">CEO</span>
-            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">Co-fondateur</span>
-            <a href="https://bonnegueule.fr/" target="_blank" rel="noopener noreferrer" aria-label="Voir BonneGueule" class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
+            <span class="font-serif text-[1.2rem] font-bold text-text-primary">{p.bonnegueule.titre}</span>
+            <span class="panel-role text-[13px] font-medium text-text-secondary">{p.bonnegueule.role}</span>
+            <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">{p.bonnegueule.badge}</span>
+            <a href="https://bonnegueule.fr/" target="_blank" rel="noopener noreferrer" aria-label={p.bonnegueule.ariaLink} class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
-          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">2010–2022 · 12 ans</span>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">{p.bonnegueule.date}</span>
         </div>
         <!-- Intro -->
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
-          Création d'un modèle pionnier, à la fois marque de mode masculine digitale et média communautaire. Croissance organique et rentable de 0 à 10M€ (+50% CAGR, 6,8% EBE).
+          {p.bonnegueule.intro}
         </p>
         <!-- KPI sidebar + Grid -->
         <div class="mt-5 flex gap-6 max-md:flex-col">
           <!-- KPIs vertical -->
           <div class="flex flex-col gap-3 shrink-0 max-md:flex-row max-md:flex-wrap max-md:gap-4">
-            {[
-              { v: "10M€", l: "CA" },
-              { v: "6,8%", l: "EBE" },
-              { v: "10", l: "boutiques" },
-              { v: "60", l: "pers." },
-              { v: "95", l: "NPS" },
-            ].map((k, i) => (
+            {p.bonnegueule.kpis.map((k, i) => (
               <>
                 {i > 0 && <div class="h-px w-full bg-border max-md:hidden" />}
                 <div class="flex flex-col items-center min-w-[60px]">
@@ -214,22 +192,12 @@ const stationPositions = [12, 38, 65, 95];
           </div>
           <!-- Grid -->
           <div class="grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
-            <div class="border-l-[1.5px] border-border pl-3">
-              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Modèle économique</span>
-              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Précurseur du "nouveau luxe" et des marques digitales omnicanales (DNVB) — média comme moteur d'acquisition organique, boutiques comme extension de marque. Communauté de 4,5M V.U./an et 150k abonnés YouTube.</p>
-            </div>
-            <div class="border-l-[1.5px] border-border pl-3">
-              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Croissance et Marque</span>
-              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Désirabilité fondée sur le récit authentique, la transparence radicale et des lancements de produits en drop. Chaque pièce racontée, décryptée, rendue non-comparable. Aucun discount en 12 ans. NPS 95. 63% de repeat business.</p>
-            </div>
-            <div class="border-l-[1.5px] border-border pl-3">
-              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Distribution omnicanale digital-first</span>
-              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">Ouverture de 10 magasins en propre — choix des emplacements, pilotage des financements et des travaux. Boutiques expérientielles comme extension de la marque.</p>
-            </div>
-            <div class="border-l-[1.5px] border-border pl-3">
-              <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">Leadership</span>
-              <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">De 1 à 60 collaborateurs (Top 100 GPtW France) — de fondateur-exécutant à dirigeant d'organisation. Recrutements clé (COO, DAF, DA), 7,7M€ de fonds propres (seed / série A), constitution d'un board et d'un ComEx.</p>
-            </div>
+            {p.bonnegueule.blocs.map((b) => (
+              <div class="border-l-[1.5px] border-border pl-3">
+                <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">{b.label}</span>
+                <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">{b.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -397,7 +365,14 @@ const stationPositions = [12, 38, 65, 95];
     }
     setTimeout(() => {
       const target = document.getElementById("panel-" + maxPanel);
-      target?.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (target) {
+        const stickyEl = document.querySelector("#parcours .sticky") as HTMLElement;
+        const stickyHeight = stickyEl ? stickyEl.offsetHeight : 0;
+        const navHeight = 52;
+        const offset = navHeight + stickyHeight + 16;
+        const targetY = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      }
     }, 100);
   }
 

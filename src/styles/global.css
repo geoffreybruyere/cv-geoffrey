@@ -46,3 +46,32 @@ body {
   transition: background-color 300ms ease, color 300ms ease;
   overflow-x: clip;
 }
+
+/* Disable hover-dependent effects on touch devices */
+@media (hover: none) {
+  .f-list:hover .f-item,
+  .cult-list:hover .cult-item,
+  .kpi-list:hover .kpi-item {
+    opacity: 1 !important;
+  }
+}
+
+/* On touch: buttons use :active instead of :hover */
+@media (pointer: coarse) {
+  .btn-cta-primary:hover {
+    background: var(--color-accent) !important;
+    color: #141210 !important;
+  }
+  .btn-cta-primary:active {
+    background: #E8E850 !important;
+  }
+  .btn-cta-secondary:hover {
+    background: transparent !important;
+    color: var(--color-text-primary) !important;
+    border-color: #C8C8C4 !important;
+  }
+  .btn-cta-secondary:active {
+    background: #7A7A76 !important;
+    color: #FCFCFA !important;
+  }
+}

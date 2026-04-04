@@ -29,11 +29,11 @@ const formations = [
           class="formation-row f-item flex items-baseline justify-between gap-4 py-3 max-md:flex-col max-md:gap-1"
           style={i < formations.length - 1 ? "border-bottom: 0.5px solid var(--color-border);" : ""}
         >
-          <span class="flex items-baseline gap-4">
+          <span class="flex items-baseline gap-4 max-md:flex-col max-md:gap-0.5">
             <span class="font-serif text-[1.05rem] font-normal text-text-primary">{f.school}</span>
             <span class="font-light text-text-body" style="font-size: 13px;">{f.diploma}</span>
           </span>
-          <span class="shrink-0 font-light text-text-secondary text-right" style="font-size: 13px;">
+          <span class="shrink-0 font-light text-text-secondary max-md:text-left" style="font-size: 13px;">
             {f.city} · {f.year}
           </span>
         </div>

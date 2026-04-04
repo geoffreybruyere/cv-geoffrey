@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "cv-site",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["astro", "dev"],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
       "port": 4321
     }
   ]

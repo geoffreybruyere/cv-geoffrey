@@ -173,9 +173,9 @@ export const fr = {
     titre: "05 · Culture personnelle",
     srTitre: "Culture personnelle",
     items: [
-      { title: "Esthétique et matières", text: "Mode masculine, architecture, arts graphiques, objets bien faits." },
+      { title: "Esthétique et matières", text: "Architecture, arts graphiques, mode masculine, objets bien faits." },
       { title: "Montagne", text: "Randonnées engagées (bivouac, multi-jours, hiver), alpinisme, escalade." },
-      { title: "Spiritualité", text: "Méditation Zen Sōtō, psychologie, médecines ancestrales." },
+      { title: "Sciences humaines", text: "Méditation Zen Sōtō, psychologie, spiritualité." },
     ],
   },
   footer: {

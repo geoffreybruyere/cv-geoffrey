@@ -175,9 +175,9 @@ export const en: Translations = {
     titre: "05 · Personal interests",
     srTitre: "Personal interests",
     items: [
-      { title: "Aesthetics & materials", text: "Menswear, architecture, graphic arts, well-crafted objects." },
+      { title: "Aesthetics & materials", text: "Architecture, graphic arts, menswear, well-crafted objects." },
       { title: "Mountains", text: "Committed hiking (bivouac, multi-day, winter), mountaineering, climbing." },
-      { title: "Spirituality", text: "Zen Sōtō meditation, psychology, ancestral medicine." },
+      { title: "Human sciences", text: "Zen Sōtō meditation, psychology, spirituality." },
     ],
   },
   footer: {

@@ -97,7 +97,8 @@ const { t } = Astro.props;
 
           <!-- Me contacter -->
           <a
-            href="mailto:geoffreybruyere@gmail.com"
+            id="mailto-link"
+            href="#"
             class="btn-cta-primary inline-flex items-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em]"
             style="background: var(--color-accent); color: #141210;"
           >
@@ -105,18 +106,18 @@ const { t } = Astro.props;
             {t.btnContact}
           </a>
 
-          <!-- Email + Tel -->
+          <!-- Email + Tel (obfuscated — rendered by JS) -->
           <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
             <div class="footer-contact-line flex items-center gap-2">
-              <span class="text-[11px] font-light text-text-secondary footer-contact-text">geoffreybruyere@gmail.com</span>
-              <button type="button" data-copy="geoffreybruyere@gmail.com" aria-label={t.ariaEmail} class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
+              <span id="ob-email" class="text-[11px] font-light text-text-secondary footer-contact-text"></span>
+              <button type="button" id="copy-email" aria-label={t.ariaEmail} class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
                 <Copy size={10} strokeWidth={1.5} class="text-text-secondary copy-icon" />
                 <Check size={10} strokeWidth={1.5} class="text-accent-dark check-icon hidden" />
               </button>
             </div>
             <div class="footer-contact-line flex items-center gap-2">
-              <span class="text-[11px] font-light text-text-secondary footer-contact-text">(+33)6 27 40 18 91</span>
-              <button type="button" data-copy="+33627401891" aria-label={t.ariaTel} class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
+              <span id="ob-tel" class="text-[11px] font-light text-text-secondary footer-contact-text"></span>
+              <button type="button" id="copy-tel" aria-label={t.ariaTel} class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
                 <Copy size={10} strokeWidth={1.5} class="text-text-secondary copy-icon" />
                 <Check size={10} strokeWidth={1.5} class="text-accent-dark check-icon hidden" />
               </button>
@@ -213,23 +214,42 @@ const { t } = Astro.props;
 </style>
 
 <script>
-  // Copy buttons with check feedback
-  document.querySelectorAll<HTMLButtonElement>(".copy-btn").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const text = btn.dataset.copy;
-      if (!text) return;
-      await navigator.clipboard.writeText(text);
+  // ── Obfuscated contact info (anti-bot) ──
+  const _e = ["geoffrey", "bruyere", "@", "gmail", ".", "com"];
+  const _t = ["(+33)", "6 27", " 40 ", "18 91"];
+  const email = _e[0] + _e[1] + _e[2] + _e[3] + _e[4] + _e[5];
+  const tel = _t.join("");
+  const telRaw = "+33627401891";
 
-      const copyIcon = btn.querySelector(".copy-icon") as HTMLElement;
-      const checkIcon = btn.querySelector(".check-icon") as HTMLElement;
-      if (copyIcon && checkIcon) {
-        copyIcon.classList.add("hidden");
-        checkIcon.classList.remove("hidden");
-        setTimeout(() => {
-          checkIcon.classList.add("hidden");
-          copyIcon.classList.remove("hidden");
-        }, 1500);
-      }
-    });
+  // Populate obfuscated elements
+  const obEmail = document.getElementById("ob-email");
+  const obTel = document.getElementById("ob-tel");
+  const mailtoLink = document.getElementById("mailto-link");
+  if (obEmail) obEmail.textContent = email;
+  if (obTel) obTel.textContent = tel;
+  if (mailtoLink) mailtoLink.setAttribute("href", "mailto:" + email);
+
+  // ── Copy buttons ──
+  function copyFeedback(btn: HTMLElement) {
+    const copyIcon = btn.querySelector(".copy-icon") as HTMLElement;
+    const checkIcon = btn.querySelector(".check-icon") as HTMLElement;
+    if (copyIcon && checkIcon) {
+      copyIcon.classList.add("hidden");
+      checkIcon.classList.remove("hidden");
+      setTimeout(() => {
+        checkIcon.classList.add("hidden");
+        copyIcon.classList.remove("hidden");
+      }, 1500);
+    }
+  }
+
+  document.getElementById("copy-email")?.addEventListener("click", async () => {
+    await navigator.clipboard.writeText(email);
+    copyFeedback(document.getElementById("copy-email")!);
+  });
+
+  document.getElementById("copy-tel")?.addEventListener("click", async () => {
+    await navigator.clipboard.writeText(telRaw);
+    copyFeedback(document.getElementById("copy-tel")!);
   });
 </script>

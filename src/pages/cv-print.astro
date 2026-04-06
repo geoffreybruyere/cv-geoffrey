@@ -343,12 +343,17 @@
 
 <!-- FOOTER -->
 <div class="cv-footer">
-  <span>geoffreybruyere@gmail.com · (+33)6 27 40 18 91</span>
+  <span id="print-contact"></span>
   <span>linkedin.com/in/geoffreybruyere · bruyere.cc</span>
 </div>
 
 </body>
 <script>
+  // Anti-bot: assemble contact info client-side
+  const _e = ["geoffrey", "bruyere", "@", "gmail", ".", "com"];
+  const _t = ["(+33)", "6 27", " 40 ", "18 91"];
+  const pc = document.getElementById("print-contact");
+  if (pc) pc.textContent = _e.join("") + " · " + _t.join("");
   document.fonts.ready.then(() => window.print());
 </script>
 </html>

@@ -10,10 +10,12 @@
 | Fond secondaire (dark) | Noir doux | `#2C2C2A` |
 | Texte principal (light) | Quasi-noir chaud | `#141210` |
 | Texte principal (dark) | Gris ultra-clair | `#FCFCFA` |
-| Texte secondaire | Warm silver | `#ACACAA` |
-| Texte body | Gris moyen | `#888780` |
-| Texte emphase légère (light) | Gris foncé | `#5F5E5A` |
-| Texte emphase légère (dark) | Gris clair chaud | `#D3D1C7` |
+| Texte secondaire (light) | Warm silver | `#A0A09E` |
+| Texte secondaire (dark) | Warm silver clair | `#B4B4B2` |
+| Texte body (light) | Gris moyen | `#686864` |
+| Texte body (dark) | Gris moyen clair | `#A4A4A0` |
+| Texte emphase légère (light) | Gris foncé | `#535250` |
+| Texte emphase légère (dark) | Gris clair chaud | `#DAD8CE` |
 | Accent | Jaune fluo pastel | `#FEFE7D` |
 | Foncé de l'accent (labels) | Jaune sombre | `#484800` |
 

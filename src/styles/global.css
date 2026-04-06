@@ -47,6 +47,7 @@ body {
   overflow-x: clip;
 }
 
+
 /* Disable hover-dependent effects on touch devices */
 @media (hover: none) {
   .f-list:hover .f-item,

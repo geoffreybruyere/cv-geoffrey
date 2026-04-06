@@ -185,7 +185,7 @@ export const en: Translations = {
     nom: "Geoffrey Bruyère",
     role: "CEO · CMO · Entrepreneur",
     tags: ["Brand", "Digital-first", "AI Transformation", "B2C", "Creativity"],
-    localisation: "Aix-en-Provence",
+    localisation: "Aix-en-Provence · 43°28′48″N 5°37′12″E",
     btnPager: "1-pager",
     ariaLinkedin: "LinkedIn profile",
     rechercheTitre: "What I'm looking for",

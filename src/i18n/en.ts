@@ -2,8 +2,8 @@ import type { Translations } from './fr';
 
 export const en: Translations = {
   meta: {
-    title: "Geoffrey Bruyère — Resume",
-    description: "Resume of Geoffrey Bruyère — CEO, CMO, Brand, Growth & AI Transformation",
+    title: "Geoffrey Bruyère - Resume",
+    description: "Resume of Geoffrey Bruyère - CEO, CMO, Brand, Growth & AI Transformation",
     lang: "en",
   },
   nav: {
@@ -24,7 +24,7 @@ export const en: Translations = {
     emphasis1: "creating desire",
     mid1: "and",
     emphasis2: "delivering performance",
-    statement1end: ". I spent 16\u00a0years doing both — from zero to €10M at BonneGueule, then on the ExCo of a European e-tourism leader.",
+    statement1end: ". I spent 16\u00a0years doing both - from zero to €10M at BonneGueule, then on the ExCo of a European e-tourism leader.",
     statement2start: "That's what I want to build again,",
     emphasis3: "with AI as a lever",
     stat1_nombre: "15 yrs",
@@ -51,7 +51,7 @@ export const en: Translations = {
         date: "2026–present",
         ariaLink: "Visit Core Summit",
         intro: "Executive coaching seminar in mountain immersion for founders and CEOs.",
-        detail1: "Full IA-first build: website, sales funnel, application pipeline — developed with Claude Code and AI agents.",
+        detail1: "Full IA-first build: website, sales funnel, application pipeline - developed with Claude Code and AI agents.",
         detail2: "Selection in progress for July 2026 launch.",
         kpis: [{ v: "07/2026", l: "1st ed." }],
       },
@@ -81,7 +81,7 @@ export const en: Translations = {
         badge: "Co-founder",
         date: "2010–2022 · 12 yrs",
         ariaLink: "Visit BonneGueule",
-        intro: "Built a pioneering model — both a digital menswear brand and a community media platform. Organic, profitable growth from 0 to €10M (+50% CAGR, 6.8% EBITDA).",
+        intro: "Built a pioneering model - both a digital menswear brand and a community media platform. Organic, profitable growth from 0 to €10M (+50% CAGR, 6.8% EBITDA).",
         kpis: [
           { v: "€10M", l: "rev." },
           { v: "6.8%", l: "EBITDA" },
@@ -90,10 +90,10 @@ export const en: Translations = {
           { v: "95", l: "NPS" },
         ],
         blocs: [
-          { label: "Business model", text: "Pioneer of \"new luxury\" and omnichannel digital brands (DNVB) — media as organic acquisition engine, stores as brand extension. Community of 4.5M unique visitors/yr and 150k YouTube subscribers." },
+          { label: "Business model", text: "Pioneer of \"new luxury\" and omnichannel digital brands (DNVB) - media as organic acquisition engine, stores as brand extension. Community of 4.5M unique visitors/yr and 150k YouTube subscribers." },
           { label: "Growth & Brand", text: "Desirability built on authentic storytelling, radical transparency and product drops. Every piece narrated, deconstructed, made non-comparable. Zero discounts in 12 years. NPS 95. 63% repeat business." },
-          { label: "Digital-first omnichannel retail", text: "Opened 10 own stores — location sourcing, financing and construction management. Experiential stores as brand extensions." },
-          { label: "Leadership", text: "From 1 to 60 employees (Top 100 GPtW France) — from founder-operator to organizational leader. Key hires (COO, CFO, CD), €7.7M in equity (seed / Series A), board and ExCo setup." },
+          { label: "Digital-first omnichannel retail", text: "Opened 10 own stores - location sourcing, financing and construction management. Experiential stores as brand extensions." },
+          { label: "Leadership", text: "From 1 to 60 employees (Top 100 GPtW France) - from founder-operator to organizational leader. Key hires (COO, CFO, CD), €7.7M in equity (seed / Series A), board and ExCo setup." },
         ],
       },
       conseil: {
@@ -101,7 +101,7 @@ export const en: Translations = {
         role: "Strategy consultant",
         badge: "Permanent",
         date: "2009–2011 · 2 yrs",
-        intro: "Early career in consulting — commercial roles, then strategy consulting.",
+        intro: "Early career in consulting - commercial roles, then strategy consulting.",
         blocs: [
           { label: "Wavestone", text: "Marketing strategy consultant." },
           { label: "HeadMind Partners", text: "Business developer for retail banking." },
@@ -124,7 +124,7 @@ export const en: Translations = {
       { front: "Branding", back: "Full overhauls" },
       { front: "International", back: "9 markets (VP)" },
     ],
-    col2Titre: "AI — Strategy & execution",
+    col2Titre: "AI - Strategy & execution",
     col2: [
       { front: "Key function augmentation", back: "−50% SEO costs (Voyage Privé)" },
       { front: "AI agent orchestration", back: "Full pipeline (Core Summit)" },
@@ -150,7 +150,7 @@ export const en: Translations = {
     srTitre: "Recognition",
     distinctions: {
       label: "Awards",
-      text1: "FT1000 —",
+      text1: "FT1000 -",
       emphasis1: "Financial Times Europe's Fastest Growing Companies",
       text1end: "(#580).",
       text2: "Member of the French delegation,",

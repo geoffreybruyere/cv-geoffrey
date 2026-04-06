@@ -1,7 +1,7 @@
 export const fr = {
   meta: {
-    title: "Geoffrey Bruyère — CV",
-    description: "CV personnel de Geoffrey Bruyère — CEO, CMO, Marque, Croissance & Transformation IA",
+    title: "Geoffrey Bruyère - CV",
+    description: "CV personnel de Geoffrey Bruyère - CEO, CMO, Marque, Croissance & Transformation IA",
     lang: "fr",
   },
   nav: {
@@ -22,7 +22,7 @@ export const fr = {
     emphasis1: "créer du désir",
     mid1: "et",
     emphasis2: "produire de la performance",
-    statement1end: ". J'ai passé 16\u00a0ans à faire les deux — de zéro à 10\u00a0M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme.",
+    statement1end: ". J'ai passé 16\u00a0ans à faire les deux - de zéro à 10\u00a0M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme.",
     statement2start: "C'est ce que je veux construire à nouveau,",
     emphasis3: "avec l'IA comme levier",
     stat1_nombre: "15 ans",
@@ -88,10 +88,10 @@ export const fr = {
           { v: "95", l: "NPS" },
         ],
         blocs: [
-          { label: "Modèle économique", text: "Précurseur du \"nouveau luxe\" et des marques digitales omnicanales (DNVB) — média comme moteur d'acquisition organique, boutiques comme extension de marque. Communauté de 4,5M V.U./an et 150k abonnés YouTube." },
+          { label: "Modèle économique", text: "Précurseur du \"nouveau luxe\" et des marques digitales omnicanales (DNVB) - média comme moteur d'acquisition organique, boutiques comme extension de marque. Communauté de 4,5M V.U./an et 150k abonnés YouTube." },
           { label: "Croissance et Marque", text: "Désirabilité fondée sur le récit authentique, la transparence radicale et des lancements de produits en drop. Chaque pièce racontée, décryptée, rendue non-comparable. Aucun discount en 12 ans. NPS 95. 63% de repeat business." },
-          { label: "Distribution omnicanale digital-first", text: "Ouverture de 10 magasins en propre — choix des emplacements, pilotage des financements et des travaux. Boutiques expérientielles comme extension de la marque." },
-          { label: "Leadership", text: "De 1 à 60 collaborateurs (Top 100 GPtW France) — de fondateur-exécutant à dirigeant d'organisation. Recrutements clé (COO, DAF, DA), 7,7M€ de fonds propres (seed / série A), constitution d'un board et d'un ComEx." },
+          { label: "Distribution omnicanale digital-first", text: "Ouverture de 10 magasins en propre - choix des emplacements, pilotage des financements et des travaux. Boutiques expérientielles comme extension de la marque." },
+          { label: "Leadership", text: "De 1 à 60 collaborateurs (Top 100 GPtW France) - de fondateur-exécutant à dirigeant d'organisation. Recrutements clé (COO, DAF, DA), 7,7M€ de fonds propres (seed / série A), constitution d'un board et d'un ComEx." },
         ],
       },
       conseil: {
@@ -122,7 +122,7 @@ export const fr = {
       { front: "Branding", back: "Refontes complètes" },
       { front: "International", back: "9 marchés (VP)" },
     ],
-    col2Titre: "IA — Stratégie & exécution",
+    col2Titre: "IA - Stratégie & exécution",
     col2: [
       { front: "Augmentation des fonctions clé", back: "−50% coûts SEO (Voyage Privé)" },
       { front: "Orchestration d'agents IA", back: "Pipeline complet (Core Summit)" },
@@ -148,7 +148,7 @@ export const fr = {
     srTitre: "Rayonnement",
     distinctions: {
       label: "Distinctions",
-      text1: "FT1000 —",
+      text1: "FT1000 -",
       emphasis1: "Financial Times Europe's Fastest Growing Companies",
       text1end: "(#580).",
       text2: "Membre de la délégation française",

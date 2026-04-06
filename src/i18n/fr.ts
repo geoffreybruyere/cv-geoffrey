@@ -183,7 +183,7 @@ export const fr = {
     nom: "Geoffrey Bruyère",
     role: "CEO · CMO · Entrepreneur",
     tags: ["Marque", "Digital-first", "Transfo IA", "B2C", "Créativité"],
-    localisation: "Aix-en-Provence · 43°28′48″N 5°37′12″E",
+    localisation: "Aix-en-Provence · 43°28′56″N 5°37′20″E",
     btnPager: "1-pager",
     ariaLinkedin: "Profil LinkedIn",
     rechercheTitre: "Ce que je recherche",

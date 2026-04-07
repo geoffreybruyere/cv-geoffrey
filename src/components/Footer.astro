@@ -1,7 +1,6 @@
 ---
 import { Mail, Download, Copy, Check, MapPin, Globe } from "@lucide/astro";
 import type { Translations } from "../i18n/fr";
-import { DownloadCV } from "./DownloadCV";
 
 interface Props {
   t: Translations["footer"];
@@ -50,11 +49,15 @@ const { t } = Astro.props;
 
           <!-- 1-pager + LinkedIn -->
           <div class="flex items-center gap-3">
-            <DownloadCV
-              client:load
-              className="btn-cta-secondary inline-flex items-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.09em] text-text-primary cursor-pointer"
-              label={t.btnPager}
-            />
+            <a
+              href="/geoffrey-bruyere-cv.pdf"
+              download="Geoffrey-Bruyere-CV.pdf"
+              class="btn-cta-secondary inline-flex items-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.09em] text-text-primary"
+              style="border: 0.5px solid #C8C8C4;"
+            >
+              <Download size={11} strokeWidth={1.5} />
+              {t.btnPager}
+            </a>
             <a href="https://www.linkedin.com/in/geoffreybruyere/" target="_blank" rel="noopener noreferrer" aria-label={t.ariaLinkedin} class="text-text-secondary/50 hover:text-text-primary transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
             </a>

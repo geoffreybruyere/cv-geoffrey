@@ -71,8 +71,8 @@ export const en: Translations = {
         blocs: [
           { label: "Performance", text: "Marketing performance management (budget >€10M, CEO reporting)." },
           { label: "Direction & Governance (ExCo)", text: "Marketing strategy / group objectives alignment, cross-functional decisions (tech, product, commercial)." },
-          { label: "Organization & Projects", text: "Reorganization of 35-person team, creation of branding function and full brand platform overhaul. Cross-functional projects with digital teams: attribution tools, AB-testing, CRM…" },
-          { label: "AI Transformation", text: "AI automation deployment on CRM, SEO and paid acquisition. >50% SEO production cost reduction, >25% SaaS renegotiation." },
+          { label: "Organization & Projects", text: "Reorganization of 35-person team, creation of branding function and full brand platform overhaul.\nCross-functional projects with digital teams: attribution tools, AB-testing, CRM…" },
+          { label: "AI Transformation", text: "AI automation deployment on CRM, SEO and paid acquisition.\n>50% SEO production cost reduction, >25% SaaS renegotiation." },
         ],
       },
       bonnegueule: {
@@ -90,10 +90,10 @@ export const en: Translations = {
           { v: "95", l: "NPS" },
         ],
         blocs: [
-          { label: "Business model", text: "Pioneer of \"new luxury\" and omnichannel digital brands (DNVB) - media as organic acquisition engine, stores as brand extension. Community of 4.5M unique visitors/yr and 150k YouTube subscribers." },
-          { label: "Growth & Brand", text: "Desirability built on authentic storytelling, radical transparency and product drops. Every piece narrated, deconstructed, made non-comparable. Zero discounts in 12 years. NPS 95. 63% repeat business." },
-          { label: "Digital-first omnichannel retail", text: "Opened 10 own stores - location sourcing, financing and construction management. Experiential stores as brand extensions." },
-          { label: "Leadership", text: "From 1 to 60 employees (Top 100 GPtW France) - from founder-operator to organizational leader. Key hires (COO, CFO, CD), €7.7M in equity (seed / Series A), board and ExCo setup." },
+          { label: "Business model", text: "Pioneer of \"new luxury\" and omnichannel digital brands (DNVB) - media as organic acquisition engine, stores as brand extensions.\nCommunity of 4.5M unique visitors/yr and 150k YouTube subscribers." },
+          { label: "Growth & Brand", text: "Desirability built on authentic storytelling, radical transparency and product drops.\nEvery piece narrated, deconstructed, made non-comparable. Zero discounts in 12 years. NPS 95. 63% repeat business." },
+          { label: "Digital-first omnichannel retail", text: "Opened 10 own stores - location sourcing, financing and construction management." },
+          { label: "Leadership", text: "From 1 to 60 employees (Top 100 GPtW France) - from founder-operator to organizational leader.\nKey hires (COO, CFO, CD), €7.7M in equity (seed / Series A), board and ExCo setup." },
         ],
       },
       conseil: {

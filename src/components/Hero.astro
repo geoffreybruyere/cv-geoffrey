@@ -1,5 +1,5 @@
 ---
-import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
+import { Sun, Moon, ChevronUp } from "@lucide/astro";
 import type { Translations } from "../i18n/fr";
 import type { Lang } from "../i18n/utils";
 
@@ -106,18 +106,6 @@ const otherLangPrefix = lang === "en" ? "" : "/en";
             </span>
           </button>
 
-          <!-- Separator — hidden on small mobile -->
-          <div class="h-3.5 w-px bg-border max-sm:hidden" />
-
-          <!-- Download PDF -->
-          <a
-            href="/geoffrey-bruyere-cv.pdf"
-            download
-            aria-label={t.nav.ariaDownload}
-            class="flex items-center justify-center min-w-[44px] min-h-[44px] text-text-secondary transition-colors hover:text-text-primary max-sm:hidden"
-          >
-            <Download size={16} strokeWidth={1.5} />
-          </a>
         </div>
       </div>
     </nav>

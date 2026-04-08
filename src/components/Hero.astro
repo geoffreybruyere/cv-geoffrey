@@ -1,5 +1,6 @@
 ---
 import { Sun, Moon, Download, ChevronUp } from "@lucide/astro";
+import ShareButton from "./ShareButton.astro";
 import type { Translations } from "../i18n/fr";
 import type { Lang } from "../i18n/utils";
 
@@ -115,6 +116,8 @@ const otherLangPrefix = lang === "en" ? "" : "/en";
           >
             <Download size={16} strokeWidth={1.5} />
           </a>
+
+          <ShareButton lang={lang} />
 
         </div>
       </div>

@@ -106,19 +106,15 @@ const otherLangPrefix = lang === "en" ? "" : "/en";
             </span>
           </button>
 
-          {lang === "fr" && (
-            <>
-              <div class="h-3.5 w-px bg-border max-sm:hidden" />
-              <a
-                href="/Geoffrey-Bruyere-CV.pdf"
-                download
-                aria-label={t.nav.ariaDownload}
-                class="flex items-center justify-center min-w-[44px] min-h-[44px] text-text-secondary transition-colors hover:text-text-primary max-sm:hidden"
-              >
-                <Download size={16} strokeWidth={1.5} />
-              </a>
-            </>
-          )}
+          <div class="h-3.5 w-px bg-border max-sm:hidden" />
+          <a
+            href={lang === "fr" ? "/Geoffrey-Bruyere-CV.pdf" : "/Geoffrey-Bruyere-CV-EN.pdf"}
+            download
+            aria-label={t.nav.ariaDownload}
+            class="flex items-center justify-center min-w-[44px] min-h-[44px] text-text-secondary transition-colors hover:text-text-primary max-sm:hidden"
+          >
+            <Download size={16} strokeWidth={1.5} />
+          </a>
 
         </div>
       </div>

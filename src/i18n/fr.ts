@@ -22,7 +22,7 @@ export const fr = {
     emphasis1: "créer du désir",
     mid1: "et",
     emphasis2: "produire de la performance",
-    statement1end: ". J'ai passé 16\u00a0ans à faire les deux - de zéro à 10\u00a0M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme.",
+    statement1end: ". J'ai passé 16\u00a0ans à faire les deux : de zéro à 10\u00a0M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme.",
     statement2start: "C'est ce que je veux construire à nouveau,",
     emphasis3: "avec l'IA comme levier",
     stat1_nombre: "15 ans",
@@ -49,7 +49,7 @@ export const fr = {
         date: "2026–présent",
         ariaLink: "Voir Core Summit",
         intro: "Séminaire d'executive coaching en immersion montagne pour fondateurs et CEOs.",
-        detail1: "Construction complète IA-first : site, tunnel de vente, pipeline de gestion des candidatures - développé avec Claude Code et agents IA.",
+        detail1: "Construction complète IA-first : site, tunnel de vente, pipeline de gestion des candidatures - développés avec Claude Code et agents IA.",
         detail2: "Sélection en cours pour lancement en juillet 2026.",
         kpis: [{ v: "07/2026", l: "1ère éd." }],
       },
@@ -69,8 +69,8 @@ export const fr = {
         blocs: [
           { label: "Performance", text: "Pilotage de la performance marketing (budget >10M€, reporting au CEO)." },
           { label: "Direction & Gouvernance (ComEx)", text: "Alignement stratégie marketing / objectifs groupe, décisions cross-fonctions (tech, produit, commercial)." },
-          { label: "Organisation & Chantiers", text: "Réorganisation de l'équipe de 35 experts, création de la fonction branding et refonte complète de la plateforme de marque. Pilotage de chantiers transverses avec les équipes digitales : outils d'attribution, AB-testing, CRM…" },
-          { label: "Transformation IA", text: "Déploiement d'automatisations IA sur CRM, SEO et acquisition payante. Réduction de >50% des coûts de production SEO, renégociation >25% de tous les SaaS." },
+          { label: "Organisation & Chantiers", text: "Réorganisation de l'équipe de 35 experts, création de la fonction branding et refonte complète de la plateforme de marque.\nPilotage de chantiers transverses avec les équipes digitales : outils d'attribution, AB-testing, CRM…" },
+          { label: "Transformation IA", text: "Déploiement d'automatisations IA sur CRM, SEO et acquisition payante.\nRéduction de >50% des coûts de production SEO, renégociation >25% de tous les SaaS." },
         ],
       },
       bonnegueule: {
@@ -88,10 +88,10 @@ export const fr = {
           { v: "95", l: "NPS" },
         ],
         blocs: [
-          { label: "Modèle économique", text: "Précurseur du \"nouveau luxe\" et des marques digitales omnicanales (DNVB) - média comme moteur d'acquisition organique, boutiques comme extension de marque. Communauté de 4,5M V.U./an et 150k abonnés YouTube." },
-          { label: "Croissance et Marque", text: "Désirabilité fondée sur le récit authentique, la transparence radicale et des lancements de produits en drop. Chaque pièce racontée, décryptée, rendue non-comparable. Aucun discount en 12 ans. NPS 95. 63% de repeat business." },
-          { label: "Distribution omnicanale digital-first", text: "Ouverture de 10 magasins en propre - choix des emplacements, pilotage des financements et des travaux. Boutiques expérientielles comme extension de la marque." },
-          { label: "Leadership", text: "De 1 à 60 collaborateurs (Top 100 GPtW France) - de fondateur-exécutant à dirigeant d'organisation. Recrutements clé (COO, DAF, DA), 7,7M€ de fonds propres (seed / série A), constitution d'un board et d'un ComEx." },
+          { label: "Modèle économique", text: "Précurseur du \"nouveau luxe\" et des marques digitales omnicanales (DNVB) - média comme moteur d'acquisition organique, boutiques comme extensions de marque.\nCommunauté de 4,5M V.U./an et 150k abonnés YouTube." },
+          { label: "Croissance et Marque", text: "Désirabilité fondée sur le récit authentique, la transparence radicale et des lancements de produits en drop.\nChaque pièce racontée, décryptée, rendue non-comparable. Aucun discount en 12 ans. NPS 95. 63% de repeat business." },
+          { label: "Distribution omnicanale digital-first", text: "Ouverture de 10 magasins en propre - choix des emplacements, pilotage des financements et des travaux." },
+          { label: "Leadership", text: "De 1 à 60 collaborateurs (Top 100 GPtW France) - de fondateur-exécutant à dirigeant d'organisation.\nRecrutements clé (COO, DAF, DA), 7,7M€ de fonds propres (seed / série A), constitution d'un board et d'un ComEx." },
         ],
       },
       conseil: {

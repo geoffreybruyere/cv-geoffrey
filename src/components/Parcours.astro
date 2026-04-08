@@ -149,7 +149,9 @@ const p = t.panels;
             {p.voyageprive.blocs.map((b) => (
               <div class="bloc-item border-l-[1.5px] border-border pl-3">
                 <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">{b.label}</span>
-                <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">{b.text}</p>
+                {b.text.split('\n').map((line) => (
+                  <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">{line}</p>
+                ))}
               </div>
             ))}
           </div>
@@ -195,7 +197,9 @@ const p = t.panels;
             {p.bonnegueule.blocs.map((b) => (
               <div class="bloc-item border-l-[1.5px] border-border pl-3">
                 <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">{b.label}</span>
-                <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">{b.text}</p>
+                {b.text.split('\n').map((line) => (
+                  <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">{line}</p>
+                ))}
               </div>
             ))}
           </div>

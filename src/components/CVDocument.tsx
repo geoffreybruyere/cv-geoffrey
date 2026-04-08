@@ -110,7 +110,7 @@ export function CVDocument() {
             <Text style={S.name}>Geoffrey Bruyère</Text>
             <Text style={S.role}>CEO · CMO · Marque, Croissance & Transformation IA</Text>
             <Text style={S.statement}>
-              Diriger une marque B2C, c'est tenir deux exigences contradictoires en même temps : créer du désir et produire de la performance. J'ai passé 16 ans à faire les deux - de zéro à 10 M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme. C'est ce que je veux construire à nouveau, avec l'IA comme levier.
+              Diriger une marque B2C, c'est tenir deux exigences contradictoires en même temps : créer du désir et produire de la performance. J'ai passé 16 ans à faire les deux : de zéro à 10 M€ chez BonneGueule, puis dans le ComEx d'un leader européen du e-tourisme. C'est ce que je veux construire à nouveau, avec l'IA comme levier.
             </Text>
           </View>
           <View style={S.headerRight}>
@@ -130,7 +130,7 @@ export function CVDocument() {
               </View>
               <Text style={S.expRoleBadge}>Co-fondateur · Side project</Text>
               <Text style={S.expDesc}>Séminaire d'executive coaching en immersion montagne pour fondateurs et CEOs (lancement juillet 2026).</Text>
-              <Text style={S.expDesc}>Construction complète IA-first : site, tunnel de vente, pipeline de candidatures - développé avec Claude Code et agents IA.</Text>
+              <Text style={S.expDesc}>Construction complète IA-first : site, tunnel de vente, pipeline de candidatures - développés avec Claude Code et agents IA.</Text>
             </View>
 
             <View style={S.expItem}>

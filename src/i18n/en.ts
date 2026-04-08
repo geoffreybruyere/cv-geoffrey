@@ -25,7 +25,7 @@ export const en: Translations = {
     mid1: "and",
     emphasis2: "delivering performance",
     statement1end: ". I spent 16\u00a0years doing both: from zero to €10M at BonneGueule, then on the ExCo of a European e-tourism leader.",
-    statement2start: "That's what I want to build again,",
+    statement2start: "This is what I want to build again,",
     emphasis3: "with AI as a lever",
     stat1_nombre: "15 yrs",
     stat1_label: "of B2C leadership",

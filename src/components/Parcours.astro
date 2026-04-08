@@ -133,11 +133,11 @@ const p = t.panels;
         <!-- KPI sidebar + Grid -->
         <div class="mt-5 flex gap-6 max-md:flex-col">
           <!-- KPIs vertical -->
-          <div class="flex flex-col gap-3 shrink-0 max-md:flex-row max-md:flex-wrap max-md:gap-4">
+          <div class="kpi-group flex flex-col gap-3 shrink-0 max-md:flex-row max-md:flex-wrap max-md:gap-4">
             {p.voyageprive.kpis.map((k, i) => (
               <>
                 {i > 0 && <div class="h-px w-full bg-border max-md:hidden" />}
-                <div class="flex flex-col items-center min-w-[60px]">
+                <div class="kpi-item flex flex-col items-center min-w-[60px]">
                   <span class="font-serif text-[1.3rem] font-bold leading-none text-text-primary">{k.v}</span>
                   <span class="mt-0.5 text-[11px] font-light uppercase tracking-[0.12em] text-text-secondary">{k.l}</span>
                 </div>
@@ -145,9 +145,9 @@ const p = t.panels;
             ))}
           </div>
           <!-- Grid -->
-          <div class="grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
+          <div class="bloc-group grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
             {p.voyageprive.blocs.map((b) => (
-              <div class="border-l-[1.5px] border-border pl-3">
+              <div class="bloc-item border-l-[1.5px] border-border pl-3">
                 <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">{b.label}</span>
                 <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">{b.text}</p>
               </div>
@@ -179,11 +179,11 @@ const p = t.panels;
         <!-- KPI sidebar + Grid -->
         <div class="mt-5 flex gap-6 max-md:flex-col">
           <!-- KPIs vertical -->
-          <div class="flex flex-col gap-3 shrink-0 max-md:flex-row max-md:flex-wrap max-md:gap-4">
+          <div class="kpi-group flex flex-col gap-3 shrink-0 max-md:flex-row max-md:flex-wrap max-md:gap-4">
             {p.bonnegueule.kpis.map((k, i) => (
               <>
                 {i > 0 && <div class="h-px w-full bg-border max-md:hidden" />}
-                <div class="flex flex-col items-center min-w-[60px]">
+                <div class="kpi-item flex flex-col items-center min-w-[60px]">
                   <span class="font-serif text-[1.3rem] font-bold leading-none text-text-primary">{k.v}</span>
                   <span class="mt-0.5 text-[11px] font-light uppercase tracking-[0.12em] text-text-secondary">{k.l}</span>
                 </div>
@@ -191,9 +191,9 @@ const p = t.panels;
             ))}
           </div>
           <!-- Grid -->
-          <div class="grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
+          <div class="bloc-group grid grid-cols-2 gap-x-6 gap-y-5 max-md:grid-cols-1">
             {p.bonnegueule.blocs.map((b) => (
-              <div class="border-l-[1.5px] border-border pl-3">
+              <div class="bloc-item border-l-[1.5px] border-border pl-3">
                 <span class="text-[11px] font-medium uppercase tracking-[0.1em] text-accent-dark">{b.label}</span>
                 <p class="mt-1 text-[13px] font-light leading-[1.6] text-text-body">{b.text}</p>
               </div>
@@ -238,6 +238,24 @@ const p = t.panels;
   .panel-stack:hover .panel-badge {
     color: var(--color-text-primary);
     border-color: var(--color-text-primary);
+  }
+
+  /* Effet frères — KPIs */
+  .kpi-item, .bloc-item {
+    transition: opacity 0.22s ease;
+  }
+  .kpi-group:hover .kpi-item {
+    opacity: 0.35;
+  }
+  .kpi-group:hover .kpi-item:hover {
+    opacity: 1;
+  }
+  /* Effet frères — Blocs descriptifs */
+  .bloc-group:hover .bloc-item {
+    opacity: 0.35;
+  }
+  .bloc-group:hover .bloc-item:hover {
+    opacity: 1;
   }
 
   @media (prefers-reduced-motion: reduce) {

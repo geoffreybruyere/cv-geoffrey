@@ -57,8 +57,13 @@ const otherLangPrefix = lang === "en" ? "" : "/en";
         </ul>
         </div>
 
-        <!-- Spacer on mobile -->
-        <div class="md:hidden" />
+        <!-- Contact link on mobile only -->
+        <a
+          href="#contact"
+          class="md:hidden text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary transition-colors hover:text-text-primary min-h-[44px] flex items-center"
+        >
+          {t.nav.contact}
+        </a>
 
         <!-- Right controls -->
         <div class="flex items-center gap-2 max-md:gap-1.5 shrink-0">
@@ -159,7 +164,7 @@ const otherLangPrefix = lang === "en" ? "" : "/en";
             </p>
 
             <!-- Eyebrow -->
-            <div class="eyebrow-row mt-3 flex items-center gap-2 max-md:justify-center cursor-default">
+            <div class="eyebrow-row mt-3 flex items-center gap-2 max-md:flex-col max-md:gap-1.5 max-md:items-center cursor-default">
               <span class="eyebrow-badge inline-flex items-center gap-1.5 rounded-sm border border-border px-1.5 py-px text-[10px] font-medium uppercase tracking-[0.08em] text-text-secondary transition-all duration-200">
                 <span class="inline-flex h-2 w-2 rounded-full bg-accent"></span>
                 {t.hero.disponible}
@@ -182,7 +187,7 @@ const otherLangPrefix = lang === "en" ? "" : "/en";
         </blockquote>
 
         <!-- KPI row -->
-        <div class="kpi-list mt-8 flex flex-wrap items-center gap-y-2">
+        <div class="kpi-list mt-8 hidden md:flex flex-wrap items-center gap-y-2">
           <div class="kpi-item flex items-baseline gap-[5px] pr-4">
             <span class="stat-number font-serif text-[1.8rem] font-bold leading-none text-text-primary">{t.hero.stat1_nombre}</span>
             <span class="text-[11px] font-light text-text-secondary">{t.hero.stat1_label}</span>

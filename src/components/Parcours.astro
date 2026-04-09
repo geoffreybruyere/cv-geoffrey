@@ -62,7 +62,7 @@ const p = t.panels;
                 <span class="text-[10px] max-sm:hidden font-light normal-case tracking-[0.04em] text-text-secondary/50">· {s.duration}</span>
               )}
             </span>
-            <span class={`whitespace-nowrap font-serif text-base max-sm:text-[10px] ${s.nameWeight} text-text-secondary transition-colors duration-300 max-sm:sr-only`} id={`name-${i}`}>
+            <span class={`whitespace-nowrap font-serif text-base max-sm:text-[9px] max-sm:font-sans max-sm:font-light ${s.nameWeight} text-text-secondary transition-colors duration-300`} id={`name-${i}`}>
               {s.name}
             </span>
             <span class="mt-0.5 flex items-center gap-1.5 whitespace-nowrap text-[11px] font-light text-text-secondary max-md:hidden">
@@ -86,14 +86,14 @@ const p = t.panels;
     <div id="panel-0" class="panel-stack" data-index="0">
       <div style="border-top: 0.5px solid var(--color-border);" class="pt-5">
         <!-- Header -->
-        <div class="flex items-baseline justify-between mb-3">
+        <div class="flex items-baseline justify-between mb-3 max-md:flex-wrap max-md:gap-1">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">{p.coresummit.titre}</span>
             <span class="panel-role text-[13px] font-medium text-text-secondary">{p.coresummit.role}</span>
             <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">{p.coresummit.badge}</span>
             <a href="https://www.coresummit.fr/" target="_blank" rel="noopener noreferrer" aria-label={p.coresummit.ariaLink} class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
-          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">{p.coresummit.date}</span>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:text-[9px]">{p.coresummit.date}</span>
         </div>
         <!-- Intro -->
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
@@ -117,14 +117,14 @@ const p = t.panels;
     <div id="panel-1" class="panel-stack" data-index="1">
       <div style="border-top: 0.5px solid var(--color-border);" class="pt-5">
         <!-- Header -->
-        <div class="flex items-baseline justify-between mb-3">
+        <div class="flex items-baseline justify-between mb-3 max-md:flex-wrap max-md:gap-1">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">{p.voyageprive.titre}</span>
             <span class="panel-role text-[13px] font-medium text-text-secondary">{p.voyageprive.role}</span>
             <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">{p.voyageprive.badge}</span>
             <a href="https://www.voyage-prive.com/" target="_blank" rel="noopener noreferrer" aria-label={p.voyageprive.ariaLink} class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
-          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">{p.voyageprive.date}</span>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:text-[9px]">{p.voyageprive.date}</span>
         </div>
         <!-- Intro -->
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">
@@ -165,14 +165,14 @@ const p = t.panels;
     <div id="panel-2" class="panel-stack" data-index="2">
       <div style="border-top: 0.5px solid var(--color-border);" class="pt-5">
         <!-- Header -->
-        <div class="flex items-baseline justify-between mb-3">
+        <div class="flex items-baseline justify-between mb-3 max-md:flex-wrap max-md:gap-1">
           <div class="flex items-baseline gap-2">
             <span class="font-serif text-[1.2rem] font-bold text-text-primary">{p.bonnegueule.titre}</span>
             <span class="panel-role text-[13px] font-medium text-text-secondary">{p.bonnegueule.role}</span>
             <span class="panel-badge inline-block rounded-sm border border-border px-1 py-px text-[9px] font-normal uppercase tracking-[0.04em] text-text-secondary/70">{p.bonnegueule.badge}</span>
             <a href="https://bonnegueule.fr/" target="_blank" rel="noopener noreferrer" aria-label={p.bonnegueule.ariaLink} class="inline-flex items-center ml-0.5 text-text-secondary opacity-50 hover:opacity-100 transition-opacity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
           </div>
-          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:hidden">{p.bonnegueule.date}</span>
+          <span class="text-[11px] uppercase tracking-[0.1em] text-text-secondary max-md:text-[9px]">{p.bonnegueule.date}</span>
         </div>
         <!-- Intro -->
         <p class="text-[13px] font-normal leading-[1.65] text-text-emphasis">

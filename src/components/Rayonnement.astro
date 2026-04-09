@@ -184,11 +184,18 @@ const { t } = Astro.props;
     }
     .ray-card.open {
       height: auto;
-      min-height: 120px;
+      min-height: auto;
     }
     .ray-collapsed {
       justify-content: flex-start;
       padding-left: 1rem;
+    }
+    .ray-card.open .ray-expanded {
+      position: relative;
+      inset: auto;
+    }
+    .ray-card.open .ray-collapsed {
+      display: none;
     }
     .ray-cat-v {
       writing-mode: horizontal-tb;

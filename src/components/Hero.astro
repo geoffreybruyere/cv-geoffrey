@@ -58,12 +58,13 @@ const otherLangPrefix = lang === "en" ? "" : "/en";
         </div>
 
         <!-- Contact link on mobile only -->
-        <a
-          href="#contact"
-          class="md:hidden text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary transition-colors hover:text-text-primary min-h-[44px] flex items-center"
+        <button
+          id="mobile-contact-btn"
+          type="button"
+          class="md:hidden text-[11px] font-medium uppercase tracking-[0.12em] text-text-secondary transition-colors hover:text-text-primary min-h-[44px] flex items-center cursor-pointer"
         >
           {t.nav.contact}
-        </a>
+        </button>
 
         <!-- Right controls -->
         <div class="flex items-center gap-2 max-md:gap-1.5 shrink-0">
@@ -257,6 +258,15 @@ const otherLangPrefix = lang === "en" ? "" : "/en";
   // ── Back to top ──
   document.getElementById("btn-top")?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // ── Mobile contact button — scroll with offset to compensate sticky ──
+  document.getElementById("mobile-contact-btn")?.addEventListener("click", () => {
+    const contact = document.getElementById("contact");
+    if (contact) {
+      const y = contact.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   });
 
   // ── Dark mode toggle ──

@@ -7,7 +7,7 @@ interface Props {
 
 const { t } = Astro.props;
 const stations = t.stations;
-const stationPositions = [12, 38, 65, 95];
+const stationPositions = [12, 38, 65, 90];
 const p = t.panels;
 ---
 
@@ -278,7 +278,7 @@ const p = t.panels;
 <script>
   const progressLine = document.getElementById("timeline-progress") as HTMLElement;
   const scrollHint = document.getElementById("scroll-hint") as HTMLElement;
-  const progressStops = [12, 38, 65, 95];
+  const progressStops = [12, 38, 65, 90];
 
   let lastRevealed = -1;
   const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

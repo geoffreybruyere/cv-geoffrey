@@ -101,7 +101,7 @@ const { t, lang } = Astro.props;
             <a
               id="mailto-link"
               href="#"
-              class="btn-cta-primary inline-flex items-center gap-2 rounded-sm px-4.5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em]"
+              class="btn-cta-primary inline-flex items-center gap-2 rounded-sm px-4.5 py-3 text-[11px] font-semibold uppercase tracking-[0.1em]"
               style="background: var(--color-accent); color: #141210;"
             >
               <Mail size={16} strokeWidth={1.5} class="btn-icon" />
@@ -122,7 +122,7 @@ const { t, lang } = Astro.props;
               </button>
             </div>
             <div class="footer-contact-line flex items-center gap-2">
-              <span id="ob-tel" class="text-[11px] font-light text-text-secondary footer-contact-text"></span>
+              <a id="ob-tel" href="#" class="text-[11px] font-light text-text-secondary footer-contact-text no-underline"></a>
               <button type="button" id="copy-tel" aria-label={t.ariaTel} class="copy-btn footer-copy-btn flex items-center justify-center cursor-pointer text-text-secondary/30 hover:text-text-primary transition-all duration-200">
                 <Copy size={10} strokeWidth={1.5} class="text-text-secondary copy-icon" />
                 <Check size={10} strokeWidth={1.5} class="text-accent-dark check-icon hidden" />
@@ -232,7 +232,7 @@ const { t, lang } = Astro.props;
   const obTel = document.getElementById("ob-tel");
   const mailtoLink = document.getElementById("mailto-link");
   if (obEmail) obEmail.textContent = email;
-  if (obTel) obTel.textContent = tel;
+  if (obTel) { obTel.textContent = tel; obTel.setAttribute("href", "tel:" + telRaw); }
   if (mailtoLink) mailtoLink.setAttribute("href", "mailto:" + email);
 
   // ── Copy buttons ──

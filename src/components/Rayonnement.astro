@@ -92,6 +92,10 @@ const { t } = Astro.props;
     background: color-mix(in srgb, var(--color-bg-secondary) 35%, var(--color-bg-primary));
   }
 
+  :global(.dark) .ray-card {
+    border-color: #3A3A38;
+  }
+
   .ray-card:hover {
     background: color-mix(in srgb, var(--color-bg-secondary) 8%, var(--color-bg-primary));
   }

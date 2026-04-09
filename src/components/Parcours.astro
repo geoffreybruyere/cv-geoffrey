@@ -7,7 +7,8 @@ interface Props {
 
 const { t } = Astro.props;
 const stations = t.stations;
-const stationPositions = [12, 38, 65, 90];
+const stationPositions = [12, 38, 65, 90]; // desktop
+const stationPositionsMobile = [5, 30, 58, 85]; // mobile — even spacing
 const p = t.panels;
 ---
 
@@ -48,9 +49,10 @@ const p = t.panels;
         {stations.map((s, i) => (
           <button
             type="button"
-            class={`station-btn absolute flex flex-col cursor-pointer transition-all duration-200 hover:brightness-75 ${i === stations.length - 1 ? "items-end max-sm:translate-x-[-90%]" : "items-start"}`}
+            class="station-btn absolute flex flex-col items-start cursor-pointer transition-all duration-200 hover:brightness-75"
             style={`left: ${stationPositions[i]}%;`}
             data-station={i}
+            data-mobile-left={stationPositionsMobile[i]}
           >
             <span
               id={`dot-${i}`}
@@ -62,7 +64,7 @@ const p = t.panels;
                 <span class="text-[10px] max-sm:hidden font-light normal-case tracking-[0.04em] text-text-secondary/50">· {s.duration}</span>
               )}
             </span>
-            <span class={`whitespace-nowrap font-serif text-base max-sm:text-[9px] max-sm:font-sans max-sm:font-light ${s.nameWeight} text-text-secondary transition-colors duration-300`} id={`name-${i}`}>
+            <span class={`whitespace-nowrap font-serif text-base max-sm:hidden ${s.nameWeight} text-text-secondary transition-colors duration-300`} id={`name-${i}`}>
               {s.name}
             </span>
             <span class="mt-0.5 flex items-center gap-1.5 whitespace-nowrap text-[11px] font-light text-text-secondary max-md:hidden">
@@ -278,7 +280,16 @@ const p = t.panels;
 <script>
   const progressLine = document.getElementById("timeline-progress") as HTMLElement;
   const scrollHint = document.getElementById("scroll-hint") as HTMLElement;
-  const progressStops = [12, 38, 65, 90];
+  const isMobile = window.innerWidth < 640;
+  const progressStops = isMobile ? [5, 30, 58, 85] : [12, 38, 65, 90];
+
+  // Reposition stations on mobile
+  if (isMobile) {
+    document.querySelectorAll<HTMLElement>(".station-btn").forEach((btn) => {
+      const mobileLeft = btn.dataset.mobileLeft;
+      if (mobileLeft) btn.style.left = mobileLeft + "%";
+    });
+  }
 
   let lastRevealed = -1;
   const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

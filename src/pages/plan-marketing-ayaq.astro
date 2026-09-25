@@ -1,0 +1,812 @@
+---
+const budget = [
+  { label: "Paid media, test puis scale", amount: 40, width: "w40", gate: "10 k€ engagés, 30 k€ conditionnels" },
+  { label: "Deux moments Mike et contenu héros", amount: 25, width: "w25", gate: "Engagé" },
+  { label: "E-commerce, CRM, CRO et mesure", amount: 15, width: "w15", gate: "Engagé" },
+  { label: "PR, seeding, affiliation et Field Council", amount: 15, width: "w15", gate: "10 k€ engagés, 5 k€ conditionnels" },
+  { label: "Wholesale et international", amount: 15, width: "w15", gate: "10 k€ engagés, 5 k€ conditionnels" },
+  { label: "Système de marque et contenus commerciaux", amount: 10, width: "w10", gate: "Engagé" },
+  { label: "Contenu Vincent et terrain", amount: 10, width: "w10", gate: "Engagé" },
+  { label: "Odyssée 46, contribution nette", amount: 10, width: "w10", gate: "Conditionnel" },
+  { label: "Réserve d'accélération", amount: 10, width: "w10", gate: "Conditionnel" },
+];
+
+const phases = [
+  {
+    period: "Jours 1 à 30",
+    verb: "Voir vrai",
+    title: "Construire l'équation économique",
+    actions: [
+      "P&L par canal, pays et SKU",
+      "Stock, couverture et capacité de réassort",
+      "Conversion, CAC, CRM et cohortes",
+      "Sell-through par retailer",
+      "Inventaire des assets et des droits",
+      "Choix des produits halo, recrutement et système",
+    ],
+    output: "Growth model partagé et dépenses non justifiées gelées.",
+  },
+  {
+    period: "Jours 31 à 90",
+    verb: "Rendre achetable",
+    title: "Réparer l'expérience et préparer la preuve",
+    actions: [
+      "Minimum viable rebrand",
+      "Home, PDP et landing pages prioritaires",
+      "CRM essentiel et mesure fiable",
+      "Kit wholesale et formation vendeurs",
+      "Field Council de 50 profils maximum",
+      "Audit du partenaire et des ventes Japon",
+    ],
+    output: "Un socle de conversion prêt avant l'accélération média.",
+  },
+  {
+    period: "Mois 4 à 6",
+    verb: "Prouver",
+    title: "Déclencher le premier moment Mike",
+    actions: [
+      "Problème produit et protocole de test",
+      "Lancement ou relancement du système héros",
+      "PR, creators et amplification paid",
+      "Ouverture des comptes France prioritaires",
+      "Activation des partenaires techniques",
+      "Premières décisions scale ou stop",
+    ],
+    output: "Une preuve produit transformée en demande et en ventes.",
+  },
+  {
+    period: "Mois 7 à 9",
+    verb: "Étendre",
+    title: "Valider le moteur international",
+    actions: [
+      "Activation Japon avec partenaire local",
+      "Test resserré de la Corée",
+      "Second moment Mike orienté international",
+      "Réassorts et analyse du sell-through",
+      "Odyssée uniquement si les gates sont franchis",
+      "Préparation de la data room",
+    ],
+    output: "Des signaux export mesurés par le sell-through et le reorder.",
+  },
+  {
+    period: "Mois 10 à 12",
+    verb: "Concentrer",
+    title: "Transformer la traction en dossier de levée",
+    actions: [
+      "Accélération des produits et canaux gagnants",
+      "Maximisation du plein tarif",
+      "Arrêt des expérimentations faibles",
+      "Réassorts wholesale",
+      "Bilan marque, marge, stock et cohortes",
+      "Plan de croissance à trois ans",
+    ],
+    output: "Une croissance lisible, reproductible et finançable.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Plan marketing AYAQ sur douze mois proposé par Geoffrey Bruyère." />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>AYAQ, plan marketing 12 mois</title>
+  </head>
+  <body data-locked>
+    <section class="access" id="access" aria-labelledby="access-title">
+      <div class="access-panel">
+        <img src="/ayaq-plan/logo.jpg" alt="AYAQ" width="1200" height="628" />
+        <p class="kicker">Document confidentiel</p>
+        <h1 id="access-title">Plan marketing<br />12 mois</h1>
+        <p class="access-copy">Document de travail destiné à la présidence et aux actionnaires d'AYAQ.</p>
+        <form id="access-form">
+          <label for="password">Mot de passe</label>
+          <div class="password-row">
+            <input id="password" name="password" type="password" autocomplete="current-password" required autofocus />
+            <button type="submit">Accéder</button>
+          </div>
+          <p class="access-error" id="access-error" role="alert" hidden>Mot de passe incorrect.</p>
+        </form>
+      </div>
+    </section>
+
+    <header class="site-header">
+      <a href="#top" class="brand"><strong>AYAQ</strong><span>Plan marketing 12 mois</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#thesis">Thèse</a>
+        <a href="#growth">Croissance</a>
+        <a href="#channels">Canaux</a>
+        <a href="#budget">Budget</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+      <button type="button" class="print-button" onclick="window.print()">Imprimer</button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="hero-topline">
+            <p>Plan recommandé par Geoffrey Bruyère</p>
+            <p>Septembre 2026</p>
+          </div>
+          <div>
+            <p class="kicker light">Proposition stratégique</p>
+            <h1>Transformer la crédibilité produit en <em>demande.</em></h1>
+            <p class="hero-intro">Douze mois pour accélérer le chiffre d'affaires, construire la marque en France et prouver un moteur international avant la prochaine levée.</p>
+          </div>
+          <div class="hero-objectives" aria-label="Objectifs du plan">
+            <div><strong>+50%</strong><span>de chiffre d'affaires minimum</span></div>
+            <div><strong>×2</strong><span>sur les recherches de marque</span></div>
+            <div><strong>20%</strong><span>du CA à l'international</span></div>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img src="/ayaq-plan/hero.jpg" alt="Explorateur équipé par AYAQ sur un plateau enneigé" width="1500" height="837" fetchpriority="high" />
+          <figcaption>Crédit image : AYAQ</figcaption>
+        </figure>
+      </section>
+
+      <section class="truth-strip" aria-label="Cadre du plan">
+        <div><small>Budget marketing</small><strong>150 k€</strong><span>hors salaires, freelances et coûts commerciaux</span></div>
+        <div><small>Runway communiqué</small><strong>18 mois</strong><span>la preuve doit exister avant le début de la levée</span></div>
+        <div><small>Mike Horn</small><strong>2 moments</strong><span>avec exploitation complète des assets à contractualiser</span></div>
+        <div><small>Périmètre</small><strong>3 marchés</strong><span>France, Japon, Corée</span></div>
+      </section>
+
+      <section class="manifesto" id="thesis">
+        <div class="section-index"><span>01</span><p>La conviction</p></div>
+        <div class="manifesto-copy">
+          <h2>AYAQ ne gagnera pas en jouant à Arc'teryx avec moins d'argent.</h2>
+          <p>Avec 150 k€, la marque doit devenir obsessionnelle sur un territoire étroit, puis exploiter chaque preuve, chaque image et chaque relation plusieurs fois.</p>
+          <blockquote>Un territoire. Un système produit. Deux moments Mike. Vincent dans la durée. Dix excellents revendeurs avant vingt-cinq comptes moyens.</blockquote>
+        </div>
+      </section>
+
+      <section class="starting-point section-dark">
+        <div class="section-index light-index"><span>02</span><p>Le point de départ</p></div>
+        <div class="starting-grid">
+          <div class="starting-title">
+            <p class="kicker red">Diagnostic</p>
+            <h2>Beaucoup de substance.<br />Pas encore assez de focus.</h2>
+          </div>
+          <div class="evidence-list">
+            <article><span>Crédibilité</span><h3>Deux figures impossibles à fabriquer</h3><p>Vincent Defrasne est un fondateur légitime. Mike Horn est impliqué dans le produit, la stratégie et le capital.</p></article>
+            <article><span>Produit</span><h3>Des preuves techniques réelles</h3><p>Fabrication européenne, partenaires experts, matières reconnues et produits conçus pour des conditions exigeantes.</p></article>
+            <article><span>Expression</span><h3>Une proposition encore dispersée</h3><p>Exploration, performance, Europe, écologie, Jura et lifestyle sont encore placés presque au même niveau.</p></article>
+            <article><span>Organisation</span><h3>Une petite équipe doit choisir</h3><p>Avec cinq CDI, deux fondateurs et un budget limité, chaque nouveau chantier réduit la capacité à exécuter les autres.</p></article>
+          </div>
+        </div>
+        <div class="fact-legend">
+          <span><i class="dot fact"></i>Faits documentés</span>
+          <span><i class="dot assumption"></i>Donnée à confirmer</span>
+          <span><i class="dot recommendation"></i>Recommandation</span>
+        </div>
+      </section>
+
+      <section class="growth section-light" id="growth">
+        <div class="section-index"><span>03</span><p>L'équation économique</p></div>
+        <div class="growth-head">
+          <div>
+            <p class="kicker">Base de travail</p>
+            <h2>Passer d'environ 1,5 M€ à 2,25 M€.</h2>
+          </div>
+          <p>Le chiffre d'affaires actuel provient d'une note de réunion et doit être confirmé pendant l'audit. L'objectif de +50 % implique environ 750 k€ de croissance supplémentaire.</p>
+        </div>
+        <div class="growth-viz">
+          <div class="growth-base">
+            <span>CA actuel estimé</span>
+            <strong>≈ 1,5 M€</strong>
+            <small>Hypothèse à confirmer</small>
+          </div>
+          <div class="growth-increment">
+            <span>Croissance à construire</span>
+            <strong>+ 750 k€</strong>
+            <small>Objectif recommandé</small>
+          </div>
+          <div class="growth-target">
+            <span>CA cible à 12 mois</span>
+            <strong>≈ 2,25 M€</strong>
+            <small>Dont 450 k€ à l'international</small>
+          </div>
+        </div>
+        <div class="equation">
+          <p><span>Si I<sub>0</sub> = CA international actuel</span><strong>France à créer : 300 k€ + I<sub>0</sub></strong></p>
+          <p><span>Objectif international final : 450 k€</span><strong>International à créer : 450 k€ − I<sub>0</sub></strong></p>
+        </div>
+        <p class="precision-note"><strong>La priorité de pilotage :</strong> marge brute, rotation du stock, plein tarif, sell-through et vitesse d'encaissement. Le chiffre d'affaires seul ne suffit pas.</p>
+      </section>
+
+      <section class="strategy section-paper">
+        <div class="section-index"><span>04</span><p>Le choix stratégique</p></div>
+        <div class="strategy-head">
+          <h2>Quatre paris.<br />Rien de plus.</h2>
+          <p>Tout investissement qui ne renforce pas directement l'un de ces moteurs passe au second plan.</p>
+        </div>
+        <div class="four-bets">
+          <article><b>01</b><h3>Un système produit prioritaire</h3><p>Une pièce halo pour créer l'autorité, une porte d'entrée pour recruter, des systèmes pour augmenter l'usage et le panier.</p></article>
+          <article><b>02</b><h3>Deux explosions avec Mike</h3><p>Mike doit produire de la preuve, de la distribution et du commerce, pas seulement apparaître dans une campagne.</p></article>
+          <article><b>03</b><h3>Une machine DTC française propre</h3><p>Corriger stock, offre, expérience, CRM et mesure avant d'acheter davantage de trafic.</p></article>
+          <article><b>04</b><h3>Le wholesale comme accélérateur export</h3><p>Approfondir le Japon, tester la Corée et mesurer les partenaires au sell-through et au reorder.</p></article>
+        </div>
+      </section>
+
+      <section class="positioning">
+        <div class="positioning-copy">
+          <p class="kicker light">Territoire recommandé</p>
+          <h2>Built for<br /><em>autonomy.</em></h2>
+          <p>La technicité éprouvée dans des conditions extrêmes rend des pratiquants exigeants plus autonomes dans leurs aventures réelles.</p>
+          <dl>
+            <div><dt>Promesse publique</dt><dd>Built for Autonomy</dd></div>
+            <div><dt>Descripteur</dt><dd>European Expedition Equipment</dd></div>
+            <div><dt>Territoire éditorial</dt><dd>Field Notes, le temps long, la maîtrise</dd></div>
+          </dl>
+          <small>Ces formulations sont des recommandations. Elles doivent être testées auprès de clients et de buyers avant déploiement définitif.</small>
+        </div>
+        <figure><img src="/ayaq-plan/lonak.jpg" alt="Veste hardshell Lonak AYAQ en noir" width="900" height="1200" loading="lazy" /><figcaption>Lonak, produit halo potentiel. Le choix final dépendra de la marge, du stock et du calendrier de collection.</figcaption></figure>
+      </section>
+
+      <section class="offer section-light">
+        <div class="section-index"><span>05</span><p>L'architecture commerciale</p></div>
+        <div class="offer-head"><h2>Une gamme, quatre fonctions.</h2><p>Le produit qui crée le désir n'est pas forcément celui qui recrute le plus efficacement.</p></div>
+        <div class="offer-ladder">
+          <article class="offer-halo"><span>Autorité</span><strong>Produit halo</strong><p>Une pièce à 500-800 € qui concentre design, innovation, Mike et preuves terrain.</p><small>Créer le désir et ouvrir les meilleurs revendeurs</small></article>
+          <article class="offer-entry"><span>Recrutement</span><strong>Première pièce</strong><p>Un mérinos, une polaire ou une protection à 90-180 €, avec une différence réellement démontrable.</p><small>Réduire le risque de la première commande</small></article>
+          <article class="offer-system"><span>Valeur</span><strong>Systèmes</strong><p>Des configurations par condition, durée, température, poids et niveau d'engagement.</p><small>Augmenter l'usage et le panier sans remise</small></article>
+          <article class="offer-repeat"><span>Continuité</span><strong>Réachat</strong><p>Accessoires, base layers, entretien, réparation et recommandations saisonnières.</p><small>Créer une relation au-delà de l'outerwear</small></article>
+        </div>
+      </section>
+
+      <section class="unfair section-dark">
+        <div class="section-index light-index"><span>06</span><p>Les unfair advantages</p></div>
+        <div class="unfair-intro"><h2>Emprunter les audiences avant d'acheter la nôtre.</h2><p>La portée la moins chère est déjà dans l'écosystème AYAQ. Elle doit être contractualisée, organisée et réutilisée.</p></div>
+        <div class="people">
+          <figure><img src="/ayaq-plan/mike.jpg" alt="Mike Horn équipé par AYAQ" width="1000" height="1175" loading="lazy" /><figcaption><strong>Mike Horn</strong><span>Preuve extrême · audience · presse · buyers</span></figcaption></figure>
+          <figure><img src="/ayaq-plan/vincent.jpg" alt="Vincent Defrasne dans le Jura" width="1024" height="1024" loading="lazy" /><figcaption><strong>Vincent Defrasne</strong><span>Fondateur · produit · transmission · commerce</span></figcaption></figure>
+        </div>
+        <div class="advantage-lines">
+          <article><span>01</span><h3>Mike : contractualiser la distribution</h3><p>Posts collaboratifs, publications sur ses canaux, journée presse, session buyers, droits Japon et Corée, retours produit documentés.</p></article>
+          <article><span>02</span><h3>Vincent : installer l'autorité</h3><p>Founder’s Notes, décisions produit courtes, sorties terrain et présence auprès des comptes wholesale les plus importants.</p></article>
+          <article><span>03</span><h3>Partenaires : cofinancer et amplifier</h3><p>Sympatex, Polartec, RECCO, ENSA, ESF, ESI, fabricants européens et partenaires voyage.</p></article>
+          <article><span>04</span><h3>Field Council : activer le premier cercle</h3><p>Cinquante clients, professionnels, retailers, créateurs et actionnaires Crowdcube pour tester, recommander et introduire.</p></article>
+          <article><span>05</span><h3>Réseau Geoffrey : accélérer les bonnes portes</h3><p>Introductions ciblées dans la mode et l'outdoor, presse, créateurs, collaborations et concept stores.</p></article>
+        </div>
+      </section>
+
+      <section class="mike-plan section-paper">
+        <div class="section-index"><span>07</span><p>Le plan Mike Horn</p></div>
+        <div class="mike-heading"><h2>Deux moments.<br />Une année d'exploitation.</h2><p>Chaque journée avec Mike doit alimenter le produit, le DTC, la presse, le wholesale et l'international.</p></div>
+        <div class="mike-timeline">
+          <article><span>Moment 01</span><h3>Autorité produit</h3><ol><li>Un problème réel à résoudre</li><li>Un protocole de test</li><li>Le test terrain</li><li>Les arbitrages avec Vincent</li><li>Une modification visible</li><li>Le lancement du système</li></ol></article>
+          <div class="asset-engine"><strong>1 captation</strong><i>→</i><span>Film manifeste</span><span>Formats courts</span><span>PDP et landing</span><span>PR</span><span>Formation vendeurs</span><span>Assets export</span><span>Paid</span></div>
+          <article><span>Moment 02</span><h3>Amplification internationale</h3><ol><li>Nouvelle condition ou expédition</li><li>Retour d'expérience produit</li><li>Buyers et partenaires locaux</li><li>Presse France, Japon et Corée</li><li>Précommandes ou lancement de saison</li><li>Publication des améliorations</li></ol></article>
+        </div>
+      </section>
+
+      <section class="channels section-light" id="channels">
+        <div class="section-index"><span>08</span><p>Le go-to-market</p></div>
+        <div class="channels-head"><h2>Trois moteurs.<br />Trois disciplines différentes.</h2><p>La France construit le socle. Le Japon porte l'ambition internationale. La Corée doit gagner le droit d'être accélérée.</p></div>
+        <div class="channel-grid">
+          <article>
+            <div><span>01</span><small>Socle</small></div>
+            <h3>DTC France</h3>
+            <p>Vendre mieux avant d'acheter plus de trafic.</p>
+            <ul><li>Stock et profondeur par taille</li><li>Home, PDP et landing pages</li><li>Comparatifs, fit et preuves d'usage</li><li>CRM essentiel et clienteling premium</li><li>Search, Shopping, Meta et whitelisting</li></ul>
+            <strong>Gate : contribution, stock et conversion fiables</strong>
+          </article>
+          <article>
+            <div><span>02</span><small>Crédibilité</small></div>
+            <h3>Wholesale France</h3>
+            <p>Dix excellents comptes avant vingt-cinq comptes moyens.</p>
+            <ul><li>30 comptes cibles</li><li>15 rendez-vous qualifiés</li><li>8 à 12 ouvertures prioritaires</li><li>Formation et assets vendeurs</li><li>Co-marketing conditionné au reporting</li></ul>
+            <strong>Gate : sell-through plein tarif et reorder</strong>
+          </article>
+          <article>
+            <div><span>03</span><small>Priorité export</small></div>
+            <h3>Japon</h3>
+            <p>Approfondir une présence existante plutôt que repartir de zéro.</p>
+            <ul><li>Audit du partenaire et des ventes</li><li>Opérateur technique et culturel</li><li>Assets réellement localisés</li><li>Activation buyers, presse et clients</li><li>Édition locale contre commande ferme</li></ul>
+            <strong>Gate : qualité du partenaire, sell-through, réassort</strong>
+          </article>
+          <article>
+            <div><span>04</span><small>Marché test</small></div>
+            <h3>Corée</h3>
+            <p>Un test resserré, sans fuite en avant médiatique.</p>
+            <ul><li>Un partenaire</li><li>Une sélection courte</li><li>Un showroom compact</li><li>Quelques profils locaux crédibles</li><li>Pas de paid DTC important au départ</li></ul>
+            <strong>Gate : scale ou stop après une saison</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="odyssee section-paper">
+        <div class="section-index"><span>09</span><p>Odyssée 46</p></div>
+        <div class="odyssee-head"><h2>Évaluer le net, pas seulement le coût brut.</h2><p>Un événement à 200 k€ peut être un bon actif s'il est majoritairement financé, distribué et transformé en données et contenus. Il peut aussi devenir un gouffre de cash et d'attention.</p></div>
+        <div class="odyssee-gate">
+          <div class="gate-question"><span>Décision</span><strong>Le format complet franchit-il les cinq conditions ?</strong></div>
+          <ul><li>Sponsors cash couvrant au moins 75 %</li><li>Contribution nette AYAQ inférieure à 25 k€</li><li>Droits complets sur les contenus</li><li>Distribution garantie par les participants</li><li>Objectifs CRM, presse et pipeline commercial chiffrés</li></ul>
+          <div class="gate-outcomes"><p><strong>Oui</strong>Maintenir, instrumenter, exploiter toute l'année.</p><p><strong>Non</strong>Passer à un Field Test 46 plus radical, 10 à 15 k€ net maximum.</p></div>
+        </div>
+      </section>
+
+      <section class="budget section-dark" id="budget">
+        <div class="section-index light-index"><span>10</span><p>Allocation du budget</p></div>
+        <div class="budget-head">
+          <div><p class="kicker red">150 k€</p><h2>Investir par preuves successives.</h2></div>
+          <div class="budget-split"><p><strong>90 k€</strong><span>engagés</span></p><p><strong>60 k€</strong><span>conditionnels</span></p></div>
+        </div>
+        <div class="budget-bars">
+          {budget.map((item) => (
+            <article>
+              <div class="budget-label"><span>{item.label}</span><small>{item.gate}</small></div>
+              <div class="bar-track"><i class={item.width}></i></div>
+              <strong>{item.amount} k€</strong>
+            </article>
+          ))}
+        </div>
+        <div class="unlock-rules">
+          <p>Le solde est débloqué uniquement si :</p>
+          <ol><li>le tracking est fiable,</li><li>le stock est disponible,</li><li>la contribution est lisible,</li><li>la conversion ou le sell-through est démontré.</li></ol>
+        </div>
+      </section>
+
+      <section class="roadmap section-light" id="roadmap">
+        <div class="section-index"><span>11</span><p>Roadmap 12 mois</p></div>
+        <div class="roadmap-head"><h2>Créer la preuve assez tôt pour lever.</h2><p>La préparation commence au mois 6. Les premiers échanges investisseurs commencent vers M8-M9, avant que le runway ne devienne une faiblesse.</p></div>
+        <div class="phase-list">
+          {phases.map((phase, index) => (
+            <article>
+              <div class="phase-marker"><b>{String(index + 1).padStart(2, "0")}</b><span>{phase.period}</span></div>
+              <div class="phase-title"><small>{phase.verb}</small><h3>{phase.title}</h3></div>
+              <ul>{phase.actions.map((action) => <li>{action}</li>)}</ul>
+              <p><span>Résultat</span>{phase.output}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="scoreboard section-paper">
+        <div class="section-index"><span>12</span><p>Tableau de bord</p></div>
+        <div class="scoreboard-head"><h2>Mesurer la qualité de la croissance.</h2><p>Les niveaux de départ seront établis pendant les trente premiers jours. Aucun CAC, taux de conversion ou taux de repeat n'est supposé ici.</p></div>
+        <div class="scoreboard-grid">
+          <article><span>Business</span><ul><li>CA et marge brute</li><li>Marge contributive</li><li>Part vendue plein tarif</li><li>Rotation et couverture du stock</li></ul></article>
+          <article><span>Marque</span><ul><li>Volume absolu de recherches AYAQ</li><li>Part de recherche</li><li>Trafic direct</li><li>Demandes retailers entrantes</li></ul></article>
+          <article><span>DTC</span><ul><li>Conversion par produit et source</li><li>CAC et payback</li><li>AOV par système</li><li>Retour et repeat par cohorte</li></ul></article>
+          <article><span>Wholesale</span><ul><li>CA et marge par porte</li><li>Sell-through plein tarif</li><li>Vitesse de réassort</li><li>Qualité du merchandising</li></ul></article>
+          <article><span>International</span><ul><li>Part du CA</li><li>Sell-through Japon</li><li>Reorder par partenaire</li><li>Validation scale ou stop Corée</li></ul></article>
+          <article><span>Actifs</span><ul><li>Portée organique de Mike</li><li>Leads qualifiés Odyssée</li><li>Co-investissement partenaires</li><li>Réutilisation des contenus</li></ul></article>
+        </div>
+      </section>
+
+      <section class="first-month">
+        <div class="first-month-image"><img src="/ayaq-plan/workshop.jpg" alt="Fabrication d'une veste hardshell AYAQ en atelier" width="1500" height="756" loading="lazy" /></div>
+        <div class="first-month-copy">
+          <p class="kicker light">Les 30 premiers jours</p>
+          <h2>Avant de dépenser, rendre le réel visible.</h2>
+          <ol><li>Construire le bridge vers +50 % par canal et pays.</li><li>Cartographier marge, stock, réassort et cash par SKU.</li><li>Choisir produit halo, porte d'entrée et systèmes.</li><li>Auditer tous les assets, droits et audiences.</li><li>Fixer les deliverables opérationnels de Mike.</li><li>Mesurer le niveau zéro de la marque.</li><li>Geler les dépenses sans lien avec la croissance ou la preuve.</li></ol>
+        </div>
+      </section>
+
+      <section class="board-decisions section-dark">
+        <div class="section-index light-index"><span>13</span><p>Décisions demandées</p></div>
+        <div class="decisions-head"><h2>Six décisions pour donner une chance réelle au plan.</h2></div>
+        <ol class="decision-list">
+          <li><b>01</b><span>Valider la concentration sur un système produit prioritaire.</span></li>
+          <li><b>02</b><span>Donner accès aux données économiques et commerciales dès la prise de fonction.</span></li>
+          <li><b>03</b><span>Contractualiser l'implication et la distribution de Mike Horn.</span></li>
+          <li><b>04</b><span>Conditionner Odyssée 46 à une économie et des objectifs explicites.</span></li>
+          <li><b>05</b><span>Faire du Japon la priorité export et de la Corée un marché test.</span></li>
+          <li><b>06</b><span>Accepter un budget progressif, avec 60 k€ débloqués uniquement sur preuve.</span></li>
+        </ol>
+      </section>
+
+      <section class="closing">
+        <p class="kicker">Le résultat recherché</p>
+        <h2>Une marque plus étroite.<br />Plus prouvée.<br /><em>Plus distribuée.</em></h2>
+        <p>Un produit halo qui crée le désir. Des produits accessibles qui recrutent. Mike qui apporte preuve et audience. Vincent qui apporte profondeur et commerce. Chaque euro débloqué après validation du précédent.</p>
+        <div class="signature"><strong>Geoffrey Bruyère</strong><span>Marque · Croissance · E-commerce · Transformation IA</span></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Document de travail confidentiel · Geoffrey Bruyère × AYAQ · Septembre 2026</p>
+      <p>Sources : échanges avec Rodolphe Aymer et Vincent Defrasne, informations communiquées par Geoffrey Bruyère, ayaq.com, documents publics de la marque. CA d'environ 1,5 M€ à confirmer lors de l'audit.</p>
+    </footer>
+
+    <script is:inline>
+      const accessForm = document.querySelector("#access-form");
+      const accessError = document.querySelector("#access-error");
+
+      function unlock() {
+        document.body.removeAttribute("data-locked");
+        document.querySelector("#access")?.remove();
+      }
+
+      if (localStorage.getItem("ayaq-plan-access") === "granted") unlock();
+
+      accessForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const password = new FormData(accessForm).get("password");
+        if (password === "aventure") {
+          localStorage.setItem("ayaq-plan-access", "granted");
+          unlock();
+          return;
+        }
+        accessError.hidden = false;
+        accessForm.querySelector("input")?.focus();
+      });
+    </script>
+
+    <style>
+      :root {
+        --white: #f8f8f6;
+        --paper: #eeeeeb;
+        --ink: #101110;
+        --muted: #777974;
+        --line: #c8c9c5;
+        --red: #ec321f;
+        --dark-red: #a31d12;
+        --pad: clamp(1.25rem, 5vw, 5.5rem);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; background: var(--ink); }
+      body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--white); font: 400 16px/1.6 Raleway, Arial, sans-serif; }
+      body[data-locked] > :not(.access) { display: none; }
+      h1, h2, h3, p, figure, blockquote, dl, dd { margin: 0; }
+      h1, h2, h3 { font-weight: 500; letter-spacing: -.045em; line-height: .98; }
+      h1 { font-size: clamp(3.7rem, 8vw, 9rem); }
+      h2 { max-width: 16ch; font-size: clamp(2.8rem, 5.8vw, 6.5rem); }
+      h3 { font-size: clamp(1.4rem, 2vw, 2.1rem); line-height: 1.08; }
+      em { color: var(--red); font-style: normal; }
+      a { color: inherit; }
+      button, input { font: inherit; }
+      img { display: block; max-width: 100%; }
+      .section-light, .section-paper, .section-dark, .manifesto, .roadmap, .scoreboard, .board-decisions { padding: clamp(5rem, 10vw, 10rem) var(--pad); }
+      .section-light { background: var(--white); }
+      .section-paper { background: var(--paper); }
+      .section-dark { color: var(--white); background: var(--ink); }
+      .kicker { margin-bottom: 1.5rem; color: var(--dark-red); font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+      .kicker::before { display: inline-block; width: 2.75rem; height: 2px; margin-right: .8rem; content: ""; vertical-align: middle; background: var(--red); }
+      .kicker.light, .kicker.red { color: var(--white); }
+      .section-index { margin-bottom: clamp(4rem, 8vw, 8rem); display: flex; align-items: baseline; gap: 1rem; color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+      .section-index span { color: var(--red); font-size: 1.2rem; }
+      .section-index::after { height: 1px; flex: 1; content: ""; background: var(--line); }
+      .light-index { color: #92948f; }
+      .light-index::after { background: #3b3c39; }
+      .light-index span { color: var(--red); }
+
+      .access { min-height: 100svh; padding: 2rem; display: grid; place-items: center; color: var(--white); background: var(--ink); }
+      .access-panel { width: min(100%, 44rem); }
+      .access img { width: 8rem; height: 4rem; margin-bottom: clamp(3rem, 8vw, 7rem); object-fit: contain; object-position: left center; filter: invert(1); mix-blend-mode: screen; }
+      .access h1 { max-width: 8ch; font-size: clamp(3.5rem, 10vw, 7.5rem); }
+      .access-copy { max-width: 32rem; margin-top: 1.5rem; color: #aaaca7; }
+      .access form { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #42433f; }
+      .access label { display: block; margin-bottom: .6rem; color: #aaaca7; font-size: .67rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+      .password-row { display: grid; grid-template-columns: 1fr auto; }
+      .access input { min-width: 0; padding: 1rem; border: 1px solid #666863; border-right: 0; border-radius: 0; outline: none; color: var(--white); background: transparent; }
+      .access input:focus { border-color: var(--red); }
+      .access button { padding: 0 1.5rem; border: 0; border-radius: 0; color: var(--white); background: var(--red); cursor: pointer; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+      .access-error { margin-top: 1rem; color: #ff6f5f; font-size: .8rem; }
+
+      .site-header { position: sticky; z-index: 20; top: 0; height: 66px; padding: 0 var(--pad); display: flex; align-items: center; gap: 2rem; border-bottom: 1px solid rgba(16, 17, 16, .18); background: rgba(248, 248, 246, .96); }
+      .brand { margin-right: auto; display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+      .brand strong { font-size: 1.1rem; font-weight: 800; letter-spacing: .25em; }
+      .brand span { padding-left: 1rem; border-left: 1px solid var(--line); color: var(--muted); font-size: .66rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+      nav { display: flex; gap: 1.6rem; }
+      nav a, .print-button { color: #5d5f5b; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+      .print-button { padding: .55rem .7rem; border: 1px solid var(--ink); border-radius: 0; color: var(--ink); background: transparent; cursor: pointer; }
+
+      .hero { min-height: calc(100svh - 66px); display: grid; grid-template-columns: 1.08fr .92fr; color: var(--white); background: var(--ink); }
+      .hero-copy { min-height: calc(100svh - 66px); padding: clamp(2rem, 5vw, 5rem) var(--pad); display: flex; flex-direction: column; justify-content: space-between; gap: 4rem; }
+      .hero-topline { display: flex; justify-content: space-between; gap: 2rem; color: #898b86; font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+      .hero h1 { max-width: 7.7ch; }
+      .hero-intro { max-width: 45rem; margin-top: 2rem; color: #b6b8b2; font-size: clamp(1rem, 1.5vw, 1.3rem); }
+      .hero-objectives { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #484a46; }
+      .hero-objectives div { padding: 1.2rem 1rem 0 0; }
+      .hero-objectives strong { display: block; color: var(--red); font-size: clamp(2rem, 3.2vw, 3.5rem); font-weight: 500; letter-spacing: -.06em; line-height: 1; }
+      .hero-objectives span { display: block; max-width: 10rem; margin-top: .5rem; color: #949691; font-size: .72rem; line-height: 1.35; }
+      .hero-image { position: relative; min-height: 44rem; overflow: hidden; }
+      .hero-image::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(16,17,16,.22), transparent 35%), linear-gradient(0deg, rgba(16,17,16,.48), transparent 28%); }
+      .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+      .hero-image figcaption { position: absolute; z-index: 2; right: 1.5rem; bottom: 1.2rem; color: rgba(248,248,246,.8); font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+
+      .truth-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); background: var(--white); }
+      .truth-strip div { min-height: 13rem; padding: 2rem var(--pad) 2rem 2rem; border-right: 1px solid var(--line); }
+      .truth-strip div:last-child { border-right: 0; }
+      .truth-strip small, .truth-strip span { display: block; color: var(--muted); font-size: .68rem; }
+      .truth-strip small { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .truth-strip strong { display: block; margin: 1.3rem 0 .7rem; font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 500; letter-spacing: -.06em; line-height: 1; }
+      .truth-strip span { max-width: 16rem; line-height: 1.4; }
+
+      .manifesto { display: grid; grid-template-columns: .35fr 1.65fr; gap: clamp(3rem, 8vw, 9rem); background: var(--white); }
+      .manifesto .section-index { display: block; margin: 0; }
+      .manifesto .section-index::after { display: none; }
+      .manifesto .section-index span { display: block; margin-bottom: .4rem; }
+      .manifesto-copy h2 { max-width: 17ch; }
+      .manifesto-copy > p { max-width: 54rem; margin-top: 2rem; color: var(--muted); font-size: clamp(1.05rem, 1.5vw, 1.35rem); }
+      .manifesto blockquote { max-width: 65rem; margin-top: clamp(3rem, 6vw, 6rem); padding: 2rem 0; border-block: 1px solid var(--ink); font-size: clamp(1.35rem, 2.3vw, 2.4rem); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+
+      .starting-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(4rem, 9vw, 10rem); }
+      .starting-title h2 { max-width: 12ch; }
+      .evidence-list { border-top: 1px solid #444541; }
+      .evidence-list article { padding: 1.7rem 0; display: grid; grid-template-columns: 7rem 1fr; gap: .6rem 1.5rem; border-bottom: 1px solid #444541; }
+      .evidence-list article > span { grid-row: span 2; color: var(--red); font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .evidence-list h3 { font-size: 1.4rem; }
+      .evidence-list p { color: #a5a7a1; font-size: .86rem; }
+      .fact-legend { margin-top: 5rem; padding-top: 1.5rem; display: flex; gap: 2rem; border-top: 1px solid #444541; color: #91938e; font-size: .67rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+      .fact-legend span { display: flex; align-items: center; gap: .5rem; }
+      .dot { width: .55rem; height: .55rem; display: block; border-radius: 50%; }
+      .dot.fact { background: var(--white); }
+      .dot.assumption { border: 1px solid var(--white); }
+      .dot.recommendation { background: var(--red); }
+
+      .growth-head, .strategy-head, .offer-head, .mike-heading, .channels-head, .odyssee-head, .roadmap-head, .scoreboard-head { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(3rem, 8vw, 8rem); align-items: end; }
+      .growth-head > p, .strategy-head > p, .offer-head > p, .mike-heading > p, .channels-head > p, .odyssee-head > p, .roadmap-head > p, .scoreboard-head > p { max-width: 36rem; color: var(--muted); font-size: clamp(1rem, 1.35vw, 1.2rem); }
+      .growth-viz { margin-top: clamp(4rem, 8vw, 8rem); display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; border: 1px solid var(--ink); }
+      .growth-viz > div { min-height: 14rem; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; }
+      .growth-viz span, .growth-viz small { font-size: .67rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+      .growth-viz small { color: var(--muted); }
+      .growth-viz strong { font-size: clamp(3.5rem, 7vw, 8rem); font-weight: 500; letter-spacing: -.07em; line-height: .9; }
+      .growth-base { grid-row: span 2; border-right: 1px solid var(--ink); }
+      .growth-increment { color: var(--white); background: var(--red); }
+      .growth-increment small { color: rgba(248,248,246,.75); }
+      .growth-target { border-top: 1px solid var(--ink); background: var(--paper); }
+      .equation { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--ink); }
+      .equation p { padding: 2rem; border-right: 1px solid var(--ink); }
+      .equation p:last-child { border-right: 0; }
+      .equation span, .equation strong { display: block; }
+      .equation span { margin-bottom: .7rem; color: var(--muted); font-size: .72rem; }
+      .equation strong { font-size: clamp(1rem, 1.5vw, 1.3rem); }
+      .precision-note { max-width: 70rem; margin: 3rem 0 0 auto; padding-left: 1.5rem; border-left: 3px solid var(--red); color: var(--muted); }
+      .precision-note strong { color: var(--ink); }
+
+      .four-bets { max-width: 95rem; margin: clamp(4rem, 8vw, 8rem) auto 0; display: grid; grid-template-columns: repeat(12, 1fr); gap: 4rem 2rem; }
+      .four-bets article { padding-top: 1.5rem; border-top: 1px solid var(--ink); }
+      .four-bets article:nth-child(1), .four-bets article:nth-child(4) { grid-column: span 5; }
+      .four-bets article:nth-child(2), .four-bets article:nth-child(3) { grid-column: span 7; }
+      .four-bets b { display: block; margin-bottom: 2.5rem; color: var(--red); font-size: 3.5rem; font-weight: 300; letter-spacing: -.06em; }
+      .four-bets h3 { max-width: 19ch; }
+      .four-bets p { max-width: 34rem; margin-top: 1rem; color: var(--muted); }
+
+      .positioning { display: grid; grid-template-columns: 1.1fr .9fr; color: var(--white); background: var(--ink); }
+      .positioning-copy { padding: clamp(5rem, 10vw, 10rem) var(--pad); }
+      .positioning h2 { max-width: 8ch; font-size: clamp(4rem, 8vw, 9rem); }
+      .positioning-copy > p:not(.kicker) { max-width: 42rem; margin-top: 2.5rem; color: #aaaca7; font-size: clamp(1rem, 1.4vw, 1.25rem); }
+      .positioning dl { max-width: 46rem; margin-top: 4rem; border-top: 1px solid #4a4b47; }
+      .positioning dl div { padding: 1rem 0; display: grid; grid-template-columns: 12rem 1fr; gap: 1rem; border-bottom: 1px solid #4a4b47; }
+      .positioning dt { color: #8d8f8a; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      .positioning dd { font-weight: 600; }
+      .positioning-copy > small { max-width: 42rem; margin-top: 2rem; display: block; color: #747671; font-size: .68rem; }
+      .positioning figure { position: relative; min-height: 55rem; overflow: hidden; background: #e2e2df; }
+      .positioning figure img { width: 100%; height: 100%; object-fit: cover; }
+      .positioning figure figcaption { position: absolute; right: 1rem; bottom: 1rem; left: 1rem; padding: 1rem; color: var(--white); background: rgba(16,17,16,.86); font-size: .68rem; }
+
+      .offer-ladder { margin-top: clamp(4rem, 8vw, 8rem); display: grid; grid-template-columns: 1.2fr 1fr 1.1fr .9fr; align-items: end; border-bottom: 1px solid var(--ink); }
+      .offer-ladder article { min-height: 28rem; padding: 2rem 1.5rem; display: flex; flex-direction: column; border: 1px solid var(--ink); border-bottom: 0; border-right: 0; }
+      .offer-ladder article:last-child { border-right: 1px solid var(--ink); }
+      .offer-ladder .offer-halo { min-height: 39rem; color: var(--white); background: var(--ink); }
+      .offer-ladder .offer-entry { min-height: 30rem; background: var(--white); }
+      .offer-ladder .offer-system { min-height: 35rem; color: var(--white); background: var(--red); }
+      .offer-ladder .offer-repeat { min-height: 25rem; background: #d9d9d5; }
+      .offer-ladder span { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .offer-ladder strong { margin-top: auto; font-size: clamp(1.5rem, 2.2vw, 2.5rem); font-weight: 500; letter-spacing: -.04em; }
+      .offer-ladder p { margin-top: 1rem; font-size: .84rem; }
+      .offer-ladder small { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid currentColor; font-size: .65rem; font-weight: 600; text-transform: uppercase; }
+
+      .unfair-intro { display: grid; grid-template-columns: 1.15fr .85fr; gap: 4rem; align-items: end; }
+      .unfair-intro p { max-width: 35rem; color: #9b9d98; font-size: 1.1rem; }
+      .people { margin: clamp(4rem, 8vw, 8rem) calc(var(--pad) * -1) 0; display: grid; grid-template-columns: 1fr 1fr; }
+      .people figure { position: relative; height: min(72vw, 52rem); overflow: hidden; }
+      .people img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.78) contrast(1.03); }
+      .people figcaption { position: absolute; right: 0; bottom: 0; left: 0; padding: 4rem 2rem 2rem; background: linear-gradient(transparent, rgba(16,17,16,.88)); }
+      .people figcaption strong, .people figcaption span { display: block; }
+      .people figcaption strong { font-size: clamp(1.8rem, 3vw, 3.2rem); font-weight: 500; letter-spacing: -.04em; }
+      .people figcaption span { color: #b1b3ad; font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+      .advantage-lines { border-top: 1px solid #42433f; }
+      .advantage-lines article { padding: 1.7rem 0; display: grid; grid-template-columns: 4rem .8fr 1.2fr; gap: 2rem; border-bottom: 1px solid #42433f; align-items: baseline; }
+      .advantage-lines span { color: var(--red); font-size: .7rem; font-weight: 700; }
+      .advantage-lines h3 { font-size: 1.3rem; }
+      .advantage-lines p { color: #9b9d98; font-size: .84rem; }
+
+      .mike-timeline { margin-top: clamp(4rem, 8vw, 8rem); display: grid; grid-template-columns: 1fr .7fr 1fr; border-block: 1px solid var(--ink); }
+      .mike-timeline > article { padding: 2.5rem; }
+      .mike-timeline > article:first-child { padding-left: 0; }
+      .mike-timeline > article:last-child { padding-right: 0; }
+      .mike-timeline article > span { color: var(--red); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .mike-timeline h3 { margin-top: 1rem; font-size: clamp(2rem, 3.5vw, 4rem); }
+      .mike-timeline ol { padding: 0; margin: 2rem 0 0; list-style: none; counter-reset: mike; }
+      .mike-timeline li { padding: .75rem 0; border-top: 1px solid var(--line); color: var(--muted); counter-increment: mike; }
+      .mike-timeline li::before { margin-right: 1rem; content: "0" counter(mike); color: var(--red); font-size: .65rem; font-weight: 700; }
+      .asset-engine { padding: 2.5rem 1.7rem; display: flex; flex-direction: column; justify-content: center; gap: .7rem; color: var(--white); background: var(--ink); text-align: center; }
+      .asset-engine strong { color: var(--red); font-size: 2.2rem; font-weight: 500; }
+      .asset-engine i { color: #777973; font-style: normal; font-size: 2rem; }
+      .asset-engine span { padding: .5rem; border: 1px solid #454642; font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+
+      .channel-grid { margin-top: clamp(4rem, 8vw, 8rem); display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--ink); }
+      .channel-grid article { min-height: 34rem; padding: 2.5rem; display: flex; flex-direction: column; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+      .channel-grid article:nth-child(even) { border-right: 0; }
+      .channel-grid article > div { display: flex; justify-content: space-between; color: var(--red); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .channel-grid h3 { margin-top: 4rem; font-size: clamp(2.5rem, 4.5vw, 5rem); }
+      .channel-grid p { max-width: 30rem; margin-top: 1rem; color: var(--muted); }
+      .channel-grid ul { padding: 0; margin: 2rem 0; list-style: none; }
+      .channel-grid li { padding: .55rem 0; border-top: 1px solid var(--line); font-size: .82rem; }
+      .channel-grid article > strong { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--ink); color: var(--dark-red); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; }
+
+      .odyssee-gate { margin-top: clamp(4rem, 8vw, 8rem); border: 1px solid var(--ink); }
+      .gate-question { padding: 2rem; display: grid; grid-template-columns: 10rem 1fr; color: var(--white); background: var(--ink); }
+      .gate-question span { color: var(--red); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .gate-question strong { font-size: clamp(1.4rem, 2.4vw, 2.5rem); font-weight: 500; letter-spacing: -.03em; }
+      .odyssee-gate ul { padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); list-style: none; }
+      .odyssee-gate li { min-height: 11rem; padding: 1.5rem; border-right: 1px solid var(--ink); display: flex; align-items: end; font-size: .8rem; }
+      .odyssee-gate li:last-child { border-right: 0; }
+      .gate-outcomes { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); }
+      .gate-outcomes p { padding: 2rem; display: grid; grid-template-columns: 5rem 1fr; border-right: 1px solid var(--ink); }
+      .gate-outcomes p:last-child { border-right: 0; }
+      .gate-outcomes strong { color: var(--red); text-transform: uppercase; }
+
+      .budget-head { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
+      .budget-split { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #454642; }
+      .budget-split p { min-width: 10rem; padding: 1.2rem; border-right: 1px solid #454642; }
+      .budget-split p:last-child { border-right: 0; }
+      .budget-split strong, .budget-split span { display: block; }
+      .budget-split strong { color: var(--red); font-size: 2.2rem; font-weight: 500; line-height: 1; }
+      .budget-split span { margin-top: .4rem; color: #979994; font-size: .65rem; text-transform: uppercase; }
+      .budget-bars { max-width: 85rem; margin: clamp(4rem, 8vw, 7rem) auto 0; }
+      .budget-bars article { min-height: 3.8rem; display: grid; grid-template-columns: minmax(16rem, .8fr) 1.2fr 5rem; gap: 2rem; align-items: center; border-top: 1px solid #3e3f3c; }
+      .budget-bars article:last-child { border-bottom: 1px solid #3e3f3c; }
+      .budget-label span, .budget-label small { display: block; }
+      .budget-label span { font-size: .82rem; }
+      .budget-label small { margin-top: .1rem; color: #7f817c; font-size: .62rem; }
+      .bar-track { height: 7px; background: #343532; }
+      .bar-track i { height: 100%; display: block; background: var(--red); }
+      .bar-track .w40 { width: 100%; }
+      .bar-track .w25 { width: 62.5%; }
+      .bar-track .w15 { width: 37.5%; }
+      .bar-track .w10 { width: 25%; }
+      .budget-bars article > strong { color: var(--white); font-size: 1rem; font-weight: 500; text-align: right; }
+      .unlock-rules { max-width: 85rem; margin: 3rem auto 0; padding: 2rem; display: grid; grid-template-columns: .5fr 1.5fr; border: 1px solid #454642; }
+      .unlock-rules p { color: var(--red); font-weight: 600; }
+      .unlock-rules ol { padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); list-style-position: inside; color: #a7a9a3; font-size: .78rem; }
+
+      .phase-list { margin-top: clamp(4rem, 8vw, 8rem); border-top: 1px solid var(--ink); }
+      .phase-list article { padding: 2.5rem 0; display: grid; grid-template-columns: .55fr 1fr 1.3fr .8fr; gap: 2.5rem; border-bottom: 1px solid var(--ink); }
+      .phase-marker b, .phase-marker span { display: block; }
+      .phase-marker b { color: var(--red); font-size: 2.5rem; font-weight: 400; letter-spacing: -.05em; }
+      .phase-marker span, .phase-title small, .phase-list article > p span { color: var(--muted); font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      .phase-title h3 { margin-top: .5rem; font-size: 1.45rem; }
+      .phase-list ul { padding: 0; margin: 0; list-style: none; }
+      .phase-list li { padding: .35rem 0; color: #545651; font-size: .78rem; }
+      .phase-list li::before { margin-right: .7rem; content: "·"; color: var(--red); }
+      .phase-list article > p { padding-left: 1.5rem; border-left: 1px solid var(--line); color: #545651; font-size: .78rem; }
+      .phase-list article > p span { margin-bottom: .7rem; display: block; color: var(--red); }
+
+      .scoreboard-grid { margin-top: clamp(4rem, 8vw, 8rem); display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+      .scoreboard-grid article { min-height: 17rem; padding: 2rem; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+      .scoreboard-grid span { color: var(--red); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .scoreboard-grid ul { padding: 0; margin: 3rem 0 0; list-style: none; }
+      .scoreboard-grid li { padding: .4rem 0; border-top: 1px solid var(--line); color: #5d5f5a; font-size: .78rem; }
+
+      .first-month { display: grid; grid-template-columns: 1fr 1fr; color: var(--white); background: var(--red); }
+      .first-month-image { min-height: 42rem; overflow: hidden; }
+      .first-month-image img { width: 100%; height: 100%; object-fit: cover; }
+      .first-month-copy { padding: clamp(4rem, 8vw, 8rem) var(--pad); }
+      .first-month-copy h2 { max-width: 11ch; }
+      .first-month-copy ol { padding: 0; margin: 4rem 0 0; list-style: none; counter-reset: firstmonth; }
+      .first-month-copy li { padding: .75rem 0; border-top: 1px solid rgba(248,248,246,.45); counter-increment: firstmonth; }
+      .first-month-copy li::before { margin-right: 1rem; content: "0" counter(firstmonth); font-size: .65rem; font-weight: 700; }
+
+      .decisions-head h2 { max-width: 14ch; }
+      .decision-list { padding: 0; margin: clamp(4rem, 8vw, 8rem) 0 0; border-top: 1px solid #454642; list-style: none; }
+      .decision-list li { padding: 1.5rem 0; display: grid; grid-template-columns: 5rem 1fr; border-bottom: 1px solid #454642; font-size: clamp(1.1rem, 1.7vw, 1.55rem); }
+      .decision-list b { color: var(--red); font-size: .7rem; }
+
+      .closing { padding: clamp(7rem, 14vw, 14rem) var(--pad); text-align: center; background: var(--white); }
+      .closing .kicker::before { display: none; }
+      .closing h2 { max-width: 14ch; margin: auto; font-size: clamp(3.5rem, 8vw, 9rem); }
+      .closing > p:not(.kicker) { max-width: 55rem; margin: 3rem auto 0; color: var(--muted); font-size: clamp(1rem, 1.4vw, 1.2rem); }
+      .signature { margin-top: 5rem; }
+      .signature strong, .signature span { display: block; }
+      .signature strong { font-size: 1.1rem; }
+      .signature span { margin-top: .4rem; color: var(--muted); font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+      footer { padding: 1.5rem var(--pad); display: grid; grid-template-columns: .8fr 1.2fr; gap: 3rem; border-top: 1px solid var(--line); color: var(--muted); background: var(--white); font-size: .62rem; }
+
+      @media (max-width: 980px) {
+        nav { display: none; }
+        .hero, .positioning, .first-month { grid-template-columns: 1fr; }
+        .hero-image { min-height: 65vw; }
+        .truth-strip { grid-template-columns: 1fr 1fr; }
+        .truth-strip div:nth-child(2) { border-right: 0; }
+        .truth-strip div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+        .starting-grid, .growth-head, .strategy-head, .offer-head, .mike-heading, .channels-head, .odyssee-head, .roadmap-head, .scoreboard-head, .unfair-intro { grid-template-columns: 1fr; }
+        .positioning figure { min-height: 75vw; }
+        .offer-ladder { grid-template-columns: 1fr 1fr; align-items: stretch; }
+        .offer-ladder article, .offer-ladder .offer-halo, .offer-ladder .offer-entry, .offer-ladder .offer-system, .offer-ladder .offer-repeat { min-height: 24rem; border: 1px solid var(--ink); }
+        .mike-timeline { grid-template-columns: 1fr 1fr; }
+        .asset-engine { grid-column: span 2; order: 3; display: grid; grid-template-columns: repeat(4, 1fr); }
+        .asset-engine strong, .asset-engine i { grid-column: span 2; }
+        .phase-list article { grid-template-columns: .4fr 1fr 1.3fr; }
+        .phase-list article > p { grid-column: 2 / -1; }
+        .budget-bars article { grid-template-columns: minmax(13rem, .9fr) 1.1fr 4rem; }
+      }
+
+      @media (max-width: 700px) {
+        .site-header { height: 58px; }
+        .brand span, .print-button { display: none; }
+        .hero { min-height: 0; }
+        .hero-copy { min-height: 42rem; }
+        .hero-topline p:last-child { display: none; }
+        .hero-objectives { grid-template-columns: 1fr; }
+        .hero-objectives div { padding: .85rem 0; display: grid; grid-template-columns: 6rem 1fr; border-top: 1px solid #42433f; align-items: center; }
+        .hero-objectives strong { font-size: 2.2rem; }
+        .hero-objectives span { margin: 0; }
+        .truth-strip { grid-template-columns: 1fr; }
+        .truth-strip div { min-height: 0; padding: 1.4rem var(--pad); border-right: 0; border-bottom: 1px solid var(--line); }
+        .truth-strip div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+        .truth-strip strong { margin: .8rem 0 .4rem; font-size: 2.3rem; }
+        .manifesto { grid-template-columns: 1fr; }
+        .evidence-list article { grid-template-columns: 1fr; }
+        .evidence-list article > span { grid-row: auto; }
+        .fact-legend { flex-direction: column; gap: .7rem; }
+        .growth-viz { grid-template-columns: 1fr; grid-template-rows: auto; }
+        .growth-base { grid-row: auto; border-right: 0; border-bottom: 1px solid var(--ink); }
+        .growth-viz > div { min-height: 11rem; }
+        .growth-viz strong { font-size: 3.5rem; }
+        .equation { grid-template-columns: 1fr; }
+        .equation p { border-right: 0; border-bottom: 1px solid var(--ink); }
+        .four-bets { display: block; }
+        .four-bets article { margin-top: 3rem; }
+        .positioning dl div { grid-template-columns: 1fr; }
+        .offer-ladder { grid-template-columns: 1fr; }
+        .offer-ladder article, .offer-ladder .offer-halo, .offer-ladder .offer-entry, .offer-ladder .offer-system, .offer-ladder .offer-repeat { min-height: 20rem; }
+        .people { grid-template-columns: 1fr; }
+        .people figure { height: 110vw; }
+        .advantage-lines article { grid-template-columns: 2rem 1fr; }
+        .advantage-lines p { grid-column: 2; }
+        .mike-timeline { grid-template-columns: 1fr; }
+        .mike-timeline > article, .mike-timeline > article:first-child, .mike-timeline > article:last-child { padding: 2rem 0; }
+        .asset-engine { grid-column: auto; order: 0; grid-template-columns: 1fr 1fr; }
+        .asset-engine strong, .asset-engine i { grid-column: span 2; }
+        .channel-grid { grid-template-columns: 1fr; }
+        .channel-grid article { min-height: 30rem; padding: 2rem 0; border-right: 0; }
+        .gate-question { grid-template-columns: 1fr; gap: 1rem; }
+        .odyssee-gate ul { grid-template-columns: 1fr; }
+        .odyssee-gate li { min-height: 0; border-right: 0; border-bottom: 1px solid var(--ink); }
+        .gate-outcomes { grid-template-columns: 1fr; }
+        .gate-outcomes p { grid-template-columns: 3rem 1fr; border-right: 0; border-bottom: 1px solid var(--ink); }
+        .budget-head { grid-template-columns: 1fr; }
+        .budget-bars article { padding: 1rem 0; grid-template-columns: 1fr 4rem; gap: 1rem; }
+        .bar-track { grid-column: span 2; grid-row: 2; }
+        .unlock-rules { grid-template-columns: 1fr; gap: 1.5rem; }
+        .unlock-rules ol { grid-template-columns: 1fr 1fr; gap: .8rem; }
+        .phase-list article { grid-template-columns: 4rem 1fr; }
+        .phase-list ul, .phase-list article > p { grid-column: 2; }
+        .scoreboard-grid { grid-template-columns: 1fr; }
+        .scoreboard-grid article { min-height: 14rem; }
+        .first-month-image { min-height: 62vw; }
+        .decision-list li { grid-template-columns: 3rem 1fr; }
+        footer { grid-template-columns: 1fr; gap: .7rem; }
+      }
+
+      @media print {
+        @page { size: A4; margin: 11mm; }
+        body { color: #101110; background: #fff; font-size: 9pt; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+        .site-header, .access, footer { display: none !important; }
+        .hero { min-height: 275mm; grid-template-columns: 1.08fr .92fr; break-after: page; }
+        .hero-copy { min-height: 275mm; padding: 18mm 12mm; }
+        .hero-image { min-height: 275mm; }
+        .truth-strip, .manifesto, .starting-point, .growth, .strategy, .positioning, .offer, .unfair, .mike-plan, .channels, .odyssee, .budget, .roadmap, .scoreboard, .first-month, .board-decisions, .closing { break-before: page; }
+        .section-light, .section-paper, .section-dark, .manifesto, .roadmap, .scoreboard, .board-decisions { padding: 16mm 0; }
+        .section-index { margin-bottom: 12mm; }
+        h1 { font-size: 48pt; }
+        h2 { font-size: 34pt; }
+        .truth-strip div { min-height: 45mm; }
+        .positioning figure, .people figure { min-height: 245mm; }
+        .phase-list article { break-inside: avoid; }
+      }
+    </style>
+  </body>
+</html>

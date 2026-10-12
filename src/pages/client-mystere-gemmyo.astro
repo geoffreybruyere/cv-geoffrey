@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Client mystère — Gemmyo · Geoffrey Bruyère</title>
+<style is:global>
+  @font-face{font-family:'RecklessNeue';src:url('/fonts-gemmyo/RecklessNeue-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'RecklessNeue';src:url('/fonts-gemmyo/RecklessNeue-Book.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'RecklessNeue';src:url('/fonts-gemmyo/RecklessNeue-SemiBold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:'PlantinMT';src:url('/fonts-gemmyo/PlantinMTProLight.woff2') format('woff2');font-weight:300 400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Sackers-Gothic-Medium';src:url('/fonts-gemmyo/SackersGothicStd-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  :root{
+    --bg:#fcf8f2; --bg2:#f8f4ef; --silver:#7a7070; --ink:#3b3b3b;
+    --accent:#b08a71; --accent-dark:#522d19;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'PlantinMT',Georgia,serif; font-weight:300; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#fffcf8}
+
+  /* ---------- GATE ---------- */
+  #gate{
+    position:fixed; inset:0; z-index:100; background:var(--bg);
+    display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  #gate[hidden]{display:none}
+  .gate-card{width:100%;max-width:420px;text-align:left}
+  .gate-eyebrow{
+    font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:.18em;
+    font-size:.72rem; color:var(--accent-dark); display:flex; align-items:center; gap:.75rem;
+  }
+  .gate-eyebrow::before{content:""; display:inline-block; width:2.2rem; height:1.5px; background:var(--accent)}
+  .gate-title{
+    font-family:'RecklessNeue',Georgia,serif; font-weight:700; font-size:clamp(1.8rem,5vw,2.6rem);
+    margin:.9rem 0 .5rem;
+  }
+  .gate-sub{color:var(--silver); font-size:.95rem; margin-bottom:1.8rem}
+  .gate-input{
+    width:100%; padding:.9rem 1rem; font-family:'PlantinMT',Georgia,serif; font-size:1rem;
+    font-weight:400; border:1px solid var(--bg2); background:#fff; color:var(--ink);
+    outline:none; border-radius:2px; transition:border-color .2s;
+  }
+  .gate-input:focus{border-color:var(--ink)}
+  .gate-input::placeholder{color:var(--silver)}
+  .gate-btn{
+    margin-top:.75rem; width:100%; padding:.85rem 1rem; cursor:pointer;
+    background:var(--accent-dark); color:#fffcf8; border:none; border-radius:2px;
+    font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; text-transform:uppercase;
+    letter-spacing:.12em; font-size:.8rem; transition:filter .15s;
+  }
+  .gate-btn:hover{filter:brightness(.88)}
+  .gate-err{color:#a84255; font-size:.85rem; margin-top:.75rem; min-height:1.2em}
+  .gate-shake{animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px}
+  main[hidden]{display:none}
+
+  .hero{padding:5rem 0 3.5rem}
+  .eyebrow{
+    font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:.18em;
+    font-size:.72rem; color:var(--accent-dark); display:flex; align-items:center; gap:.75rem;
+  }
+  .eyebrow::before{content:""; display:inline-block; width:2.2rem; height:1.5px; background:var(--accent)}
+  h1{
+    font-family:'RecklessNeue',Georgia,serif; font-weight:700; font-size:clamp(2.4rem,7vw,4.2rem);
+    line-height:1.12; margin:1rem 0 .75rem;
+  }
+  .hero-sub{font-weight:300; color:var(--silver); font-size:1.05rem; letter-spacing:.02em}
+  .hero-meta{
+    margin-top:2rem; padding-top:1.25rem; border-top:1px solid var(--bg2);
+    display:flex; flex-wrap:wrap; gap:.5rem .75rem;
+  }
+  .tag{
+    font-weight:500; text-transform:uppercase; letter-spacing:.1em; font-size:.68rem;
+    border:1px solid var(--bg2); color:var(--silver); padding:.3rem .7rem; border-radius:2px;
+  }
+  .statement{
+    margin:2.5rem 0; padding:1.25rem 0 1.25rem 1.5rem;
+    border-left:2px solid var(--accent); color:var(--silver); font-size:1.08rem;
+  }
+  .visual{
+    margin:1.75rem 0; background:var(--bg2); border-radius:2px; overflow:hidden;
+  }
+  .visual img{display:block; width:100%; height:auto; max-height:620px; object-fit:cover}
+  .visual figcaption{padding:.7rem .9rem; color:var(--silver); font-size:.76rem; letter-spacing:.03em}
+  .visual--detail{max-width:410px; margin-left:auto; margin-right:auto}
+  .visual--detail img{max-height:460px; object-fit:cover}
+  .pullquote{
+    margin:2.5rem 0; padding:1.5rem 0; border-top:1px solid var(--bg2); border-bottom:1px solid var(--bg2);
+    font-family:'RecklessNeue',Georgia,serif; font-size:clamp(1.35rem,3vw,1.75rem); line-height:1.4;
+  }
+  .pullquote span{color:var(--accent-dark)}
+  .statement strong{color:var(--ink); font-weight:400}
+
+  .seclabel{
+    font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:.18em;
+    font-size:.72rem; color:var(--accent-dark); margin:3.5rem 0 1.5rem;
+    display:flex; align-items:center; gap:.75rem;
+  }
+  .seclabel::before{content:""; display:inline-block; width:2.2rem; height:1.5px; background:var(--accent)}
+  h2{font-family:'RecklessNeue',Georgia,serif; font-weight:400; font-size:clamp(1.5rem,4vw,2rem); margin:.25rem 0 1rem; line-height:1.25}
+  h3{font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; font-size:1.05rem; margin:1.75rem 0 .5rem; letter-spacing:.04em; color:var(--accent-dark)}
+  p{margin:.75rem 0; color:#514a44}
+  p strong{font-weight:500; color:var(--accent-dark)}
+  ul.list{margin:.75rem 0 .75rem 1.1rem}
+  ul.list li{margin:.45rem 0; padding-left:.35rem}
+  ul.list li::marker{color:var(--silver)}
+  blockquote{
+    margin:1.25rem 0; padding:1rem 1.25rem; background:var(--bg2); border-radius:2px;
+    font-style:italic; color:#514a44;
+  }
+  blockquote em{color:var(--accent-dark); font-style:italic}
+  .kpis{display:flex; flex-wrap:wrap; gap:.6rem; margin:1.25rem 0}
+  .kpi{
+    font-family:'RecklessNeue',Georgia,serif; font-weight:700; font-size:1.15rem;
+    background:var(--accent); color:#fffcf8; border-radius:2px; padding:.35rem .75rem;
+  }
+  .kpi span{font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:#fffcf8; margin-left:.4rem}
+  .num{font-family:'RecklessNeue',Georgia,serif; font-weight:700; color:var(--accent-dark)}
+
+  /* recos */
+  .reco{
+    padding:1.25rem 0; border-top:1px solid var(--bg2);
+    display:flex; gap:1.25rem;
+  }
+  .reco:first-of-type{border-top:none; padding-top:.5rem}
+  .reco-n{
+    font-family:'RecklessNeue',Georgia,serif; font-weight:700; font-size:1.3rem; color:var(--accent-dark);
+    min-width:2rem; flex-shrink:0;
+  }
+  .reco-t{font-weight:600; color:var(--accent-dark); margin-bottom:.3rem}
+  .reco-p p{margin:.4rem 0; font-size:.95rem}
+  .more-recos{margin-top:1.5rem; border-top:1px solid var(--bg2)}
+  .more-recos summary{
+    cursor:pointer; list-style:none; padding:1.1rem 0; font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500;
+    text-transform:uppercase; letter-spacing:.12em; font-size:.74rem; color:var(--accent-dark);
+  }
+  .more-recos summary::-webkit-details-marker{display:none}
+  .more-recos summary::after{content:'+'; float:right; font-size:1.1rem; line-height:.8rem; color:var(--ink)}
+  .more-recos[open] summary::after{content:'−'}
+
+  /* priorisation */
+  .prio{margin:1.5rem 0}
+  .prio-row{display:flex; gap:1rem; align-items:baseline; margin:.8rem 0; padding-left:.5rem}
+  .pico{
+    width:.75rem; height:.75rem; border-radius:50%; flex-shrink:0;
+    align-self:center;
+  }
+  .p1{background:#a84255}.p2{background:#d57c34}.p3{background:#b08a71}.p4{background:#344735}
+  .prio-label{font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; min-width:8.5rem}
+  .prio-txt{color:#514a44; font-size:.95rem}
+
+  .conclusion{
+    margin:3.5rem 0 2rem; padding:1.75rem; background:var(--bg2); border-radius:2px;
+  }
+  .conclusion p{font-size:1.05rem}
+
+  footer{
+    padding:2.5rem 0 3.5rem; border-top:1px solid var(--bg2); margin-top:2rem;
+    color:var(--silver); font-size:.85rem;
+  }
+  footer .sig{font-family:'RecklessNeue',Georgia,serif; font-weight:400; letter-spacing:.2em; color:var(--accent-dark); text-transform:uppercase; font-size:.9rem; margin-bottom:.5rem}
+  a{color:var(--accent-dark); text-decoration:none; border-bottom:1px solid var(--accent)}
+  a:hover{background:var(--bg2)}
+
+  @media (max-width:600px){
+    .reco{gap:.85rem}
+    .hero{padding:3.5rem 0 2.5rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======= GATE ======= -->
+<div id="gate">
+  <div class="gate-card" id="gateCard">
+    <div class="gate-eyebrow">Accès réservé</div>
+    <div class="gate-title">Geoffrey Bruyère</div>
+    <p class="gate-sub">Cette page est protégée. Saisissez le mot de passe qui vous a été communiqué.</p>
+    <form id="gateForm" autocomplete="off">
+      <input class="gate-input" type="password" id="gateInput" placeholder="Mot de passe" aria-label="Mot de passe">
+      <button class="gate-btn" type="submit">Entrer</button>
+      <div class="gate-err" id="gateErr"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ======= CONTENU ======= -->
+<main id="content" hidden>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Visite client mystère · Flagship Paris Seine</div>
+    <h1>Gemmyo</h1>
+    <p class="hero-sub">Compte rendu d'une visite client mystère — 1bis rue de Seine, Paris</p>
+    <div class="hero-meta">
+      <span class="tag">Rendez-vous ~45 min</span>
+      <span class="tag">Conseillère : Lucie</span>
+      <span class="tag">Alliances · Cas réel</span>
+      <span class="tag">Octobre 2026</span>
+    </div>
+    <p class="statement">Je suis entré en client réel — futur marié venu seul explorer des alliances — et je suis ressorti <strong>avec l'envie de revenir, et quatre modèles retenus.</strong> Voici le détail de ce que j'ai observé, sans complaisance et sans jargon.</p>
+  </header>
+
+  <!-- 1 -->
+  <div class="seclabel">01 · Contexte</div>
+  <section>
+    <p><strong>Le persona était réel :</strong> futur marié, bague de fiançailles déjà offerte à Mégane, venu seul explorer des alliances assorties à sa bague. La double casquette — client authentique et observateur professionnel du retail — n'a rien changé à la nature de l'échange : j'ai été traité comme un client, pas comme un auditeur.</p>
+  </section>
+
+  <!-- 2 -->
+  <div class="seclabel">02 · Parcours amont</div>
+  <section>
+    <ul class="list">
+      <li>Rendez-vous pris par Pauline Laigneau ; <strong>email de confirmation reçu</strong> avant le jour J.</li>
+      <li>Arrivée avec ~5 minutes de retard sous la pluie : <strong>aucune gêne perceptible</strong>, accueil immédiat, chaleureux, souriant.</li>
+      <li>Prise en charge rapide : petit tour du flagship, installation dans le salon, très bon café.</li>
+    </ul>
+  </section>
+
+  <!-- 3 -->
+  <div class="seclabel">03 · La boutique</div>
+  <section>
+    <ul class="list">
+      <li><strong>Vitrine extérieure : presque rien d'exposé.</strong> Une mise en scène minimaliste, suffisante pour comprendre que c'est une joaillerie, sans saturer. Doctrine « compte-gouttes » appliquée jusqu'à la rue. Observation partielle à cause de la pluie.</li>
+      <li><strong>Entrée :</strong> un membre du staff souriant vient ouvrir la porte dès l'arrivée.</li>
+      <li><strong>Emplacement 1bis rue de Seine :</strong> pas trop bis, cohérent. Verdure, vieille pierre, voisinage retail moderne et premium (On, Apple) qui met Gemmyo en valeur. Un flagship qui n'arrive pas « toute petite sur le boulevard » : ça raconte quelque chose sur la marque.</li>
+      <li><strong>Décoration très premium :</strong> tapisserie des canapés sur mesure, tentures, moquettes, matériaux nobles. Une légère sophistication heureuse — une belle maison qui n'en fait pas trop.</li>
+      <li><strong>Salons séparés</strong>, bonne acoustique, pas dérangé par le rendez-vous d'à côté. Question ouverte si la boutique est pleine : une table reste à portée de vue, à environ 4-5 mètres de la banquette.</li>
+      <li>Belle luminosité, climatisation, musique parfaite (ni trop présente ni absente).</li>
+      <li><strong>Propreté très bonne</strong>, réserves mineures : légères poussières sur la moquette, velours du canapé à rebrosser.</li>
+      <li><strong>Point rouge unique : le montant droit du cadre supérieur est décollé et écarté du mur.</strong> Très visible dans un flagship autrement impeccable. Réparation ou retrait : cinq minutes, dommage quand tout le reste est parfait.</li>
+    </ul>
+  </section>
+
+  <!-- 4 -->
+  <div class="seclabel">04 · L'expérience de vente</div>
+  <section>
+    <div class="kpis">
+      <span class="kpi">4<span>modèles retenus</span></span>
+      <span class="kpi">3-4<span>plateaux successifs</span></span>
+      <span class="kpi">0<span>push ressenti</span></span>
+    </div>
+
+    <h3>Qualification</h3>
+    <p>Lucie a bien qualifié la demande : style recherché (organique, pas trop précieux — <em>« pas quelqu'un à qui je peux offrir quelque chose de trop simple »</em>), bague de fiançailles de Mégane observée, timing du mariage sans date fixe, stade du parcours (exploration solo, retour à deux ensuite).</p>
+
+    <h3>Progression en plateaux</h3>
+    <p>La vente s'est déroulée en 3-4 plateaux : torsades → martelés/biseautés → collection en tailles → sélection finale resserrée. Funnel clairement identifiable avec le recul professionnel, mais <strong>jamais subi</strong> : chaque plateau s'appuie sur les ressentis exprimés.</p>
+    <blockquote>« Je resserre petit à petit sur ce que vous préférez, j'ajuste ma sélection. » — Lucie. Trop de produits d'un coup serait polluant, comme quand on sent trop de parfum dans une parfumerie. Le compte-gouttes évite saturation et doute, maintient un regard neuf à chaque série et facilite la sélection.</blockquote>
+
+    <h3>L'essayage</h3>
+    <p>Produits très beaux, très attractifs, <strong>bien mis en valeur par le plateau en velours et laiton brossé</strong> — les modèles arrivent en petit nombre, faciles à trier et comparer. La manipulation donne la sensation d'objets extrêmement fragiles, donc extrêmement précieux.</p>
+
+    <h3>Neutralité bienveillante</h3>
+    <p>Jamais de push, jamais d'expression de goût personnel : Lucie n'a <strong>pas une seule fois exprimé ses préférences ni validé les miennes</strong>. Elle éclaire, compare, explique — le client choisit. La conseillère sert le choix du client, pas l'inverse.</p>
+
+    <h3>Pédagogie produit sans jargon</h3>
+    <ul class="list">
+      <li>Martelé : métal frappé après le moulage avec des outils spécifiques → deux textures.</li>
+      <li>Or rose vs or jaune : 75 % d'or pur dans les deux, seul l'alliage change (argent et cuivre) ; aucun ne patine et leur valeur est identique. Les nuances entre ors sont assumées : « il faut avoir de bons yeux ».</li>
+      <li>Gravure possible (date) sur quasiment tous les modèles ; épaisseurs 3 / 4 mm.</li>
+      <li>Conseils d'usage concrets : retirer les modèles à griffes pour le sport et les activités manuelles. Lucie porte elle-même le modèle L au quotidien : « elle me suit vraiment partout » — <strong>preuve vécue</strong>.</li>
+    </ul>
+
+    <h3>La question inversée</h3>
+    <p>À la fin, je demande : <strong>« Quelles questions je ne vous ai pas posées ? »</strong> Ce moment fonctionne triple : test de complétude (anti-regret), transfert d'expertise (le client délègue l'exhaustivité à la conseillère), sécurisation de la relation. La réponse de Lucie est exactement juste :</p>
+    <blockquote>« Je pense que je vous ai donné à peu près toutes les informations. Si vous avez des questions entre-temps, répondez à mon mail, n'hésitez surtout pas. »</blockquote>
+    <p>Un réflexe de conseillère senior — signal d'une formation interne réussie.</p>
+
+    <h3>Transparence sourcing</h3>
+    <p>Sur sollicitation uniquement : or recyclé, diamants d'Anvers, pas de Russie ni diamants de sang, label RJC, fabrication française répartie entre le Sud, le Jura et Paris. <strong>Concision exemplaire</strong> — pas d'étalage, pas de justification DNVB. La star reste l'émotion joaillière.</p>
+
+    <h3>Prix et budget : l'angle mort</h3>
+    <p>Aucune question sur le budget, très évasif sur les prix (renvoi au catalogue via le mail). Hypothèse probable : le pouvoir d'achat a été qualifié via la tenue, la bague de fiançailles de Mégane et la connaissance de Pauline. C'est une vente premium légitime, mais une sélection hors budget peut tuer la vente au moment où le prix est découvert seul devant l'écran. Autre risque silencieux : l'auto-censure masculine, par peur de payer trop cher.</p>
+
+    <h3>La discussion connivence</h3>
+    <p>Lucie s'est révélée <strong>une jeune femme intelligente, avec de l'à-propos, et la bonne distance client</strong> : curieuse à propos (jamais indiscrète), élogieuse sur sa marque sans jamais se mettre en valeur. Elle ouvre aussi naturellement sur les opportunités de carrière dans la joaillerie. Sa fierté maison est juste : <em>« je pense qu'on est fiers de le dire »</em>, <em>« on n'arrêtera jamais les créations »</em>. Résultat : on a envie de revenir, vers la même personne.</p>
+
+    <h3>Le staff incarne la marque</h3>
+    <p>Style élégant et naturel, belles matières, aligné avec la maison. Lucie maîtrise l'histoire de la marque (bacs chat, 4×3 dans le métro, l'ancienne boutique) et la raconte avec fierté sans focalisation. « J'étais toute intimidée au début d'avancer dans cette grande boutique alors qu'avant on était tous dans la même pièce, sur des canapés roses. » Signal RH fort : l'élévation du retail est vécue comme une élévation collective.</p>
+
+    <h3>Le raccompagnement</h3>
+    <p>Venue ouvrir la porte au départ, attitude souriante jusqu'au bout.</p>
+    <blockquote>« Quand on est un gars, on est un peu toujours intimidé par le choix d'une bague. Vous étiez très pédagogue. » — mon dernier mot en sortant.</blockquote>
+    <p class="pullquote"><span>La réussite :</span> une vente visible pour le professionnel, mais jamais ressentie comme une vente par le client.</p>
+  </section>
+
+  <!-- 5 -->
+  <div class="seclabel">05 · Le mail de suivi</div>
+  <section>
+    <p>Reçu rapidement à la même adresse que la confirmation. Salutation : « Cher Monsieur Bruyère ». Sélection cliquable : St-Honoré 3 mm martelée or jaune, St-Honoré 4 mm martelée or jaune, Paris 1901 M or jaune / diamant HSI et Foreverbloom or jaune / diamant HSI.</p>
+    <p>Coordonnées complètes : mail, téléphone, WhatsApp et chat. Signature : Lucie, Conseillère de Vente. Signature de marque : « Exigence, sincérité et indépendance d'esprit : Gemmyo invente une nouvelle vision du luxe, ancrée dans son époque. »</p>
+    <p><strong>Forces :</strong> le lien redirige vers la fiche produit au prix catalogue — exactement comme annoncé en boutique, promesse tenue.</p>
+    <p><strong>Limites :</strong> pas de prénom (« Cher Monsieur Bruyère »), pas de référence au style qualifié ni à Mégane, pas de CTA pour réserver l'essayage à deux, pas de mention des délais ni du guide des tailles, le WhatsApp existe mais n'a pas été proposé à l'oral.</p>
+  </section>
+
+  <!-- 6 -->
+  <div class="seclabel">06 · Recommandations</div>
+  <section>
+
+    <p class="statement">Les <strong>huit priorités ci-dessous</strong> ont un impact concret sur la cohérence retail, le clienteling et la conversion du second rendez-vous. Les autres pistes sont conservées à la fin, à titre de matériau complémentaire.</p>
+
+    <div class="reco"><div class="reco-n">1</div><div class="reco-p">
+      <div class="reco-t">Réparer ou retirer le cadre aujourd'hui</div>
+      <p>Un détail qui se règle en 5 minutes — dommage quand tout le reste est parfait. En tirer une habitude simple : un rapide passage de contrôle des espaces visibles, matin et soir.</p>
+    </div></div>
+
+    <div class="reco"><div class="reco-n">2</div><div class="reco-p">
+      <div class="reco-t">Cérémonie du vestiaire</div>
+      <p>Proposer de prendre la veste (surtout mouillée) et le parapluie dès l'arrivée. Constat du jour : veste mouillée sans endroit évident — elle a fini sur la banquette, en tapisserie sur mesure. Coût nul, premier geste d'hospitalité.</p>
+    </div></div>
+
+    <div class="reco"><div class="reco-n">3</div><div class="reco-p">
+      <div class="reco-t">Le point de reprise : le test sera la relance</div>
+      <p>Lucie a bien fait : elle a demandé les disponibilités, sans rien forcer quand elles n'étaient pas connues. Le test est désormais celui de la relance : recevrai-je un message malin si aucun nouveau rendez-vous n'est pris dans trois semaines ?</p>
+      <p><strong>J+7</strong> : « Madame a-t-elle eu le temps de découvrir la sélection ? J'ai gardé de côté les modèles qui vous tenaient à cœur — et 2-3 nouveautés dans le même esprit, que je vous montrerai avec plaisir. » · <strong>J+21</strong> : « Les ateliers réservent leurs calendriers de fabrication plusieurs semaines à l'avance. Pour être sûr que vos alliances soient prêtes pour la date que vous visez, il suffit de passer avant [date]. » (mini-FOMO légitime, le délai de 4-5 semaines est réel) · <strong>WhatsApp</strong> : un message court avec photo des modèles « toujours de côté pour vous ».</p>
+    </div></div>
+
+    <div class="reco"><div class="reco-n">4</div><div class="reco-p">
+      <div class="reco-t">Question budget — décoder le silence</div>
+      <p>Hypothèse probable : Lucie a qualifié le pouvoir d'achat via la tenue, la bague de fiançailles de Mégane et la connaissance de Pauline. Mais quand le doute existe, une question légère sur la fourchette protège le rêve : le mail qui tape à côté du budget tue la vente en silence, et l'auto-censure masculine (stress de payer trop cher) peut écarter les modèles les plus sophistiqués.</p>
+    </div></div>
+
+    <div class="reco"><div class="reco-n">5</div><div class="reco-p">
+      <div class="reco-t">La carte de visite précieuse de Lucie</div>
+      <p>Une carte super premium, tendue comme on dévoile un bijou — prénom, nom, logo discret, papier noble. Un sésame mémoriel physique : ni que du digital, ni que de la mémoire.</p>
+    </div></div>
+
+    <div class="reco"><div class="reco-n">6</div><div class="reco-p">
+      <div class="reco-t">Personnaliser le mail (clienteling)</div>
+      <p>Un ou deux détails perso qui montrent que ce n'est pas un mail automatique — le prénom, une phrase sur le style qualifié, la référence à un moment du RDV. Process possible : relecture rapide par la directrice de boutique avant envoi.</p>
+    </div></div>
+
+    <div class="reco"><div class="reco-n">7</div><div class="reco-p">
+      <div class="reco-t">CTA « reprendre RDV avec la même conseillère » en un clic</div>
+      <p>Dans le mail, et côté site : une case « choisir ma conseillère » à la prise de RDV — en la cochant, un volet affiche les conseillères disponibles sur le créneau. Le fiancé recommande Lucie à sa fiancée : ça devient convertible en un clic.</p>
+    </div></div>
+
+    <div class="reco"><div class="reco-n">8</div><div class="reco-p">
+      <div class="reco-t">Délais, guide des tailles, hiérarchie des canaux</div>
+      <p>Les 4-5 semaines de fabrication sont dites à l'oral mais pas écrites — le mail doit être auto-suffisant. Et remonter la prise de RDV au-dessus du WhatsApp dans le bloc de contact : c'est l'objectif de loin le plus critique.</p>
+    </div></div>
+
+    <details class="more-recos">
+      <summary>Pistes complémentaires</summary>
+      <div class="reco"><div class="reco-n">9</div><div class="reco-p">
+        <div class="reco-t">Signature olfactive</div>
+        <p>Discrète, juste là si on est observateur — sans saturer ni prendre le pas sur l'expérience. La mémoire sensorielle est le plus durable vecteur de fidélité.</p>
+      </div></div>
+      <div class="reco"><div class="reco-n">10</div><div class="reco-p">
+        <div class="reco-t">Quelques vraies fleurs</div>
+        <p>Composition simple et choisie dans un beau vase — écho direct aux motifs feuille des collections (Foreverbloom). La preuve du vivant, pas de la déco.</p>
+      </div></div>
+      <div class="reco"><div class="reco-n">11</div><div class="reco-p">
+        <div class="reco-t">Micro-confiserie signature avec le café</div>
+        <p>Un chocolat niché et bien choisi, une phrase dessus. Un marqueur culturel instantané sur les valeurs d'accueil. Pick : <strong>Jacques Genin</strong> — artisan-luxe absolu, la connivence de valeurs la plus forte avec la maison.</p>
+      </div></div>
+      <div class="reco"><div class="reco-n">12</div><div class="reco-p">
+        <div class="reco-t">Question de sortie</div>
+        <p>« Qu'avez-vous prévu pour la suite de votre journée ? » → selon la réponse, une reco de quartier. Connivence Saint-Germain, l'hospitalité prolongée au-delà de la porte.</p>
+      </div></div>
+      <div class="reco"><div class="reco-n">13</div><div class="reco-p">
+        <div class="reco-t">Le compte-gouttes fonctionne très bien</div>
+        <p>La présentation en plateaux successifs évite la saturation et le doute. Probablement déjà la méthode officielle : tant mieux, c'est très bien exécuté.</p>
+      </div></div>
+      <div class="reco"><div class="reco-n">14</div><div class="reco-p">
+        <div class="reco-t">WhatsApp à l'oral + QR code sur la carte de visite</div>
+        <p>Un simple « vous pouvez aussi m'écrire sur WhatsApp » en fin de RDV, et un QR code sur la carte qui pousse vers un formulaire de reprise de RDV — choix de la boutique, et si possible avec Lucie. La carte devient le sésame, le mail le relais, le QR le raccourci.</p>
+      </div></div>
+      <div class="reco"><div class="reco-n">15</div><div class="reco-p">
+        <div class="reco-t">Bibliothèque visuelle des 10 questions les plus posées</div>
+        <p>Quelques supports super premium (films de 60 s, planches macro) sur les 10 questions récurrentes — le martelé, la sertissure, or rose vs or jaune, la gravure, les griffes et l'usage quotidien. Montrés uniquement à la demande : la réponse visuelle remplace dix phrases.</p>
+      </div></div>
+    </details>
+
+    <h3 style="margin-top:2rem">Priorisation</h3>
+    <div class="prio">
+      <div class="prio-row"><span class="pico p1"></span><span class="prio-label">Aujourd'hui</span><span class="prio-txt">#1 — le cadre et la routine de contrôle</span></div>
+      <div class="prio-row"><span class="pico p2"></span><span class="prio-label">Cette semaine</span><span class="prio-txt">#3, 4, 6, 7, 8 — closing et mail : les plus gros gains de conversion</span></div>
+      <div class="prio-row"><span class="pico p3"></span><span class="prio-label">Court terme</span><span class="prio-txt">#2, 5 — gestes d'hospitalité et carte de visite</span></div>
+      <div class="prio-row"><span class="pico p4"></span><span class="prio-label">Programme</span><span class="prio-txt">Pistes complémentaires — sensoriel et supports visuels</span></div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <div class="seclabel">07 · Conclusion</div>
+  <section class="conclusion">
+    <p>Très très bonne expérience : super bien exécutée, super staff, super boutique. Une maison qui a réussi la transition où beaucoup échouent — la coupure nette avec l'ADN DNVB, l'entrée dans le vrai jeu du luxe avec du savoir-faire et de l'émotion. Je me suis senti choyé, écouté, jamais vendu — et pourtant, avec le recul du professionnel, l'entonnoir a fonctionné à la perfection.</p>
+    <p style="margin-top:.75rem"><strong>L'intention de revenir avec Mégane est réelle, et spécifiquement vers Lucie.</strong></p>
+    <p style="margin-top:.75rem">Bravo Pauline, bravo Charif. J'ai hâte de poursuivre le process d'achat — et hâte aussi de reparler des projets évoqués ensemble.</p>
+  </section>
+
+  <footer>
+    <div class="sig">Geoffrey Bruyère</div>
+    Compte rendu de visite client mystère · Flagship Gemmyo Paris Seine, 1bis rue de Seine · Octobre 2026<br>
+    Sélection retenue : St-Honoré 3 mm martelée OJ · St-Honoré 4 mm martelée OJ · Paris 1901 M OJ/diamant · Foreverbloom OJ/diamant · Délai de fabrication : 4-5 semaines.
+  </footer>
+
+</div>
+</main>
+
+<script>
+(function(){
+  var GATE='opaline', KEY='gb_gemmyo_ok';
+  var gate=document.getElementById('gate'),
+      form=document.getElementById('gateForm'),
+      input=document.getElementById('gateInput'),
+      err=document.getElementById('gateErr'),
+      card=document.getElementById('gateCard'),
+      content=document.getElementById('content');
+  function open(){
+    gate.hidden=true; content.hidden=false; window.scrollTo(0,0);
+  }
+  if(sessionStorage.getItem(KEY)) open();
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(input.value.trim().toLowerCase()===GATE){
+      sessionStorage.setItem(KEY,'1'); open();
+    } else {
+      err.textContent='Mot de passe incorrect.';
+      card.classList.remove('gate-shake');
+      void card.offsetWidth;
+      card.classList.add('gate-shake');
+      input.select();
+    }
+  });
+  input.focus();
+})();
+</script>
+</body>
+</html>

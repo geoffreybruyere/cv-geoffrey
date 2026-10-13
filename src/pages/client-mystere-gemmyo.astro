@@ -91,9 +91,15 @@
     margin:1.75rem 0; background:var(--bg2); border-radius:2px; overflow:hidden;
   }
   .visual img{display:block; width:100%; height:auto; max-height:620px; object-fit:cover}
-  .visual figcaption{padding:.7rem .9rem; color:var(--silver); font-size:.76rem; letter-spacing:.03em}
-  .visual--detail{max-width:410px; margin-left:auto; margin-right:auto}
-  .visual--detail img{max-height:460px; object-fit:cover}
+  .visual figcaption{padding:.7rem .9rem; color:var(--silver); font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase}
+  .visual--hero{margin:0 0 2.75rem}
+  .visual--hero img{aspect-ratio:1200/628; max-height:none}
+  .visual-stack{margin:1.75rem 0}
+  .visual-stack .visual{margin:0 0 1.5rem}
+  .visual-stack .visual:last-child{margin-bottom:0}
+  .visual--portrait{max-width:430px; margin-left:auto!important; margin-right:auto!important}
+  .visual--portrait img{aspect-ratio:3/4; max-height:none; object-fit:cover}
+  .visual--salon img{aspect-ratio:700/419; max-height:none; object-fit:cover}
   .pullquote{
     margin:2.5rem 0; padding:1.5rem 0; border-top:1px solid var(--bg2); border-bottom:1px solid var(--bg2);
     font-family:'RecklessNeue',Georgia,serif; font-size:clamp(1.35rem,3vw,1.75rem); line-height:1.4;
@@ -119,14 +125,6 @@
     font-style:italic; color:#514a44;
   }
   blockquote em{color:var(--accent-dark); font-style:italic}
-  .kpis{display:flex; flex-wrap:wrap; gap:.6rem; margin:1.25rem 0}
-  .kpi{
-    font-family:'RecklessNeue',Georgia,serif; font-weight:700; font-size:1.15rem;
-    background:var(--accent); color:#fffcf8; border-radius:2px; padding:.35rem .75rem;
-  }
-  .kpi span{font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:#fffcf8; margin-left:.4rem}
-  .num{font-family:'RecklessNeue',Georgia,serif; font-weight:700; color:var(--accent-dark)}
-
   /* recos */
   .reco{
     padding:1.25rem 0; border-top:1px solid var(--bg2);
@@ -139,26 +137,6 @@
   }
   .reco-t{font-weight:600; color:var(--accent-dark); margin-bottom:.3rem}
   .reco-p p{margin:.4rem 0; font-size:.95rem}
-  .more-recos{margin-top:1.5rem; border-top:1px solid var(--bg2)}
-  .more-recos summary{
-    cursor:pointer; list-style:none; padding:1.1rem 0; font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500;
-    text-transform:uppercase; letter-spacing:.12em; font-size:.74rem; color:var(--accent-dark);
-  }
-  .more-recos summary::-webkit-details-marker{display:none}
-  .more-recos summary::after{content:'+'; float:right; font-size:1.1rem; line-height:.8rem; color:var(--ink)}
-  .more-recos[open] summary::after{content:'−'}
-
-  /* priorisation */
-  .prio{margin:1.5rem 0}
-  .prio-row{display:flex; gap:1rem; align-items:baseline; margin:.8rem 0; padding-left:.5rem}
-  .pico{
-    width:.75rem; height:.75rem; border-radius:50%; flex-shrink:0;
-    align-self:center;
-  }
-  .p1{background:#a84255}.p2{background:#d57c34}.p3{background:#b08a71}.p4{background:#344735}
-  .prio-label{font-family:'Sackers-Gothic-Medium',Georgia,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; min-width:8.5rem}
-  .prio-txt{color:#514a44; font-size:.95rem}
-
   .conclusion{
     margin:3.5rem 0 2rem; padding:1.75rem; background:var(--bg2); border-radius:2px;
   }
@@ -175,6 +153,7 @@
   @media (max-width:600px){
     .reco{gap:.85rem}
     .hero{padding:3.5rem 0 2.5rem}
+    .visual--portrait img{aspect-ratio:4/5}
   }
 </style>
 </head>
@@ -184,8 +163,8 @@
 <div id="gate">
   <div class="gate-card" id="gateCard">
     <div class="gate-eyebrow">Accès réservé</div>
-    <div class="gate-title">Geoffrey Bruyère</div>
-    <p class="gate-sub">Cette page est protégée. Saisissez le mot de passe qui vous a été communiqué.</p>
+    <div class="gate-title">Visite client mystère Gemmyo x Geoffrey Bruyère</div>
+    <p class="gate-sub">Salut Pauline et Charif, voici mon retour sur ma visite :)</p>
     <form id="gateForm" autocomplete="off">
       <input class="gate-input" type="password" id="gateInput" placeholder="Mot de passe" aria-label="Mot de passe">
       <button class="gate-btn" type="submit">Entrer</button>
@@ -208,6 +187,11 @@
       <span class="tag">Mercredi 30 octobre 2026, 15h45</span>
     </div>
   </header>
+
+  <figure class="visual visual--hero">
+    <img src="/gemmyo-images/flagship-exterior.jpg" alt="Façade du flagship Gemmyo rue de Seine" width="1200" height="628" />
+    <figcaption>Flagship Gemmyo, rue de Seine · Photo : <a href="https://beaute-s.com/assets/images/fbShare/beaute/bijoux/gemmyo-renouvelle-son-image-et-inaugure-sa-boutique-paris-seine/1000013036.jpg">Beauté S</a></figcaption>
+  </figure>
 
   <!-- 1 -->
   <div class="seclabel">Contexte</div>
@@ -239,6 +223,16 @@
       <li><strong>Propreté bonne</strong>, mais réserves mineures : légères poussières sur la moquette, velours du canapé à rebrosser (quand tout est nickel, chaque petite chose saute aux yeux).</li>
       <li><strong>Point rouge unique : le montant droit du cadre supérieur est décollé et écarté du mur.</strong> Réparation ou retrait : cinq minutes, dommage quand tout le reste est parfait.</li>
     </ul>
+    <div class="visual-stack">
+      <figure class="visual visual--portrait">
+        <img src="/gemmyo-images/flagship-interior.jpg" alt="Façade du flagship Gemmyo rue de Seine" width="1600" height="2134" loading="lazy" />
+        <figcaption>Façade du flagship · Photo : <a href="https://media.admagazine.fr/photos/687616d0112d2e593436316b/master/w_1600,c_limit/_GEMMYO_BOUTIQUE%20SEINE%203.jpg">AD Magazine</a></figcaption>
+      </figure>
+      <figure class="visual visual--salon">
+        <img src="/gemmyo-images/flagship-detail.gif" alt="Salon intérieur du flagship Gemmyo" width="700" height="419" loading="lazy" />
+        <figcaption>Salon du flagship · Photo : <a href="https://media.fashionnetwork.com/cdn-cgi/image/format=auto/m/f599/1c23/f581/8af4/fa9a/b48a/6752/1382/097b/9ce0/9ce0.gif">FashionNetwork</a></figcaption>
+      </figure>
+    </div>
   </section>
 
   <!-- 3 -->

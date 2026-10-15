@@ -1,5 +1,19 @@
 # Astro Starter Kit: Minimal
 
+## Dashboard santé privé
+
+La route `/sante` est statique, mais ses données sont servies par Cloudflare Pages Functions. Ajouter ces variables secrètes dans Cloudflare Pages, pour les environnements Preview et Production :
+
+- `SANTE_PASSWORD` : mot de passe de la page, valeur décidée `billy`
+- `SANTE_SESSION_SECRET` : chaîne longue et aléatoire, utilisée pour signer la session
+- `SUPABASE_HEALTH_URL` : URL du projet Supabase `health`
+- `SUPABASE_HEALTH_SECRET_KEY` : service role du projet `health`, jamais exposé au navigateur
+- `OPENAI_API_KEY` : clé API OpenAI, utilisée uniquement à la fin d'un import
+- `OPENAI_MODEL` : facultatif, défaut `gpt-5-mini`
+- `HEALTH_SYNC_TOKEN` : chaîne longue et aléatoire, partagée avec l'import santé
+
+Appliquer `supabase/health/migrations/003_dashboard_analyses.sql` avant le premier déploiement. Puis ajouter `HEALTH_DASHBOARD_REFRESH_URL` et `HEALTH_DASHBOARD_REFRESH_TOKEN` aux secrets injectés par `import-health.sh` pour générer les commentaires après chaque import.
+
 ```sh
 npm create astro@latest -- --template minimal
 ```

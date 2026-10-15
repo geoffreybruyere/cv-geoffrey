@@ -1,0 +1,309 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Santé · Geoffrey Bruyère" description="Suivi privé des biomarqueurs.">
+  <main class="health-page">
+    <section class="access-gate" data-gate>
+      <form class="access-card" data-login-form>
+        <p class="eyebrow">Accès personnel</p>
+        <h1>Santé</h1>
+        <p>Suivi privé de mes analyses biologiques et de leurs évolutions.</p>
+        <label for="health-password">Mot de passe</label>
+        <input id="health-password" name="password" type="password" autocomplete="current-password" required />
+        <button type="submit">Entrer <span>●</span></button>
+        <p class="form-error" data-login-error aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="dashboard" data-dashboard hidden>
+      <header class="dashboard-header">
+        <div>
+          <p class="eyebrow">Données biologiques personnelles</p>
+          <h1>Santé</h1>
+          <p class="header-copy" data-last-exam>Chargement des résultats…</p>
+        </div>
+        <button class="logout" type="button" data-logout>Déconnexion</button>
+      </header>
+
+      <section class="intro-grid" aria-label="Résumé du dernier bilan">
+        <article class="intro-main">
+          <p class="eyebrow">Lecture du moment</p>
+          <p class="intro-title" data-summary-title>Préparation de la synthèse</p>
+          <p class="intro-copy" data-summary-copy>Les courbes affichent les résultats mesurés, les références du laboratoire et leur évolution dans le temps.</p>
+        </article>
+        <article class="intro-stat">
+          <span data-marker-count>–</span>
+          <p>marqueurs visibles</p>
+        </article>
+        <article class="intro-stat">
+          <span data-attention-count>–</span>
+          <p>à regarder sur le dernier bilan</p>
+        </article>
+      </section>
+
+      <section class="toolbar" aria-label="Filtrer les marqueurs">
+        <label class="search">
+          <span>Rechercher un marqueur</span>
+          <input type="search" placeholder="Ex. ferritine, LDL, vitamine D" data-search />
+        </label>
+        <div class="filter-list" data-filters></div>
+      </section>
+
+      <section class="marker-section">
+        <div class="section-heading">
+          <p class="eyebrow">Évolution</p>
+          <h2>Les marqueurs suivis</h2>
+        </div>
+        <div class="marker-grid" data-marker-grid></div>
+        <p class="empty-state" data-empty-state hidden>Aucun marqueur ne correspond à ce filtre.</p>
+      </section>
+
+      <footer class="health-footer">
+        <p>Les données affichées reproduisent les résultats transmis par les laboratoires. Elles ne remplacent pas un avis médical.</p>
+        <p data-updated-at></p>
+      </footer>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .health-page { max-width: 1320px; margin: 0 auto; min-height: 100vh; padding: 42px 28px 64px; }
+  .access-gate { min-height: calc(100vh - 106px); display: grid; place-items: center; }
+  .access-card { width: min(100%, 440px); }
+  .eyebrow { display: flex; align-items: center; gap: 10px; color: #484800; font-size: .7rem; font-weight: 600; letter-spacing: .16em; line-height: 1.2; text-transform: uppercase; }
+  .eyebrow::before { width: 34px; height: 1.5px; background: #fefe7d; content: ""; }
+  h1, h2, p { margin: 0; }
+  h1 { margin-top: 16px; font-family: "Rufina", serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 700; letter-spacing: -.065em; line-height: .9; }
+  h2 { font-family: "Rufina", serif; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 400; letter-spacing: -.045em; }
+  .access-card > p:not(.eyebrow) { max-width: 340px; margin: 22px 0 34px; color: #686864; font-size: 1.05rem; font-weight: 300; line-height: 1.6; }
+  .access-card label, .search span { display: block; margin-bottom: 8px; color: #484800; font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .access-card input, .search input { width: 100%; border: 1px solid #d8d8d1; border-radius: 2px; background: #fff; color: #141210; font: inherit; outline: none; }
+  .access-card input { padding: 14px 15px; }
+  .access-card input:focus, .search input:focus { border-color: #141210; box-shadow: 0 0 0 3px #fefe7d; }
+  button { border: 0; border-radius: 2px; cursor: pointer; font-family: "Figtree", sans-serif; }
+  .access-card button { width: 100%; margin-top: 10px; padding: 14px 16px; background: #fefe7d; color: #141210; font-size: .72rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+  .access-card button span { margin-left: 7px; font-size: .55rem; vertical-align: 1px; }
+  .form-error { min-height: 20px; margin-top: 10px; color: #8c4c00; font-size: .85rem; }
+  .dashboard-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; padding: 26px 0 48px; }
+  .header-copy { max-width: 550px; margin-top: 18px; color: #686864; font-size: 1rem; font-weight: 300; line-height: 1.6; }
+  .logout { margin-top: 5px; border: 1px solid #deded8; background: transparent; color: #686864; padding: 10px 12px; font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .logout:hover { border-color: #141210; color: #141210; }
+  .intro-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(160px, .5fr) minmax(160px, .5fr); gap: 1px; background: #deded8; border: 1px solid #deded8; }
+  .intro-main, .intro-stat { min-height: 196px; background: #eeeee8; padding: 28px; }
+  .intro-main { background: #141210; color: #fcfcfa; }
+  .intro-main .eyebrow { color: #fefe7d; }
+  .intro-main .eyebrow::before { background: #fcfcfa; }
+  .intro-title { max-width: 620px; margin-top: 21px; font-family: "Rufina", serif; font-size: clamp(1.65rem, 3vw, 2.65rem); letter-spacing: -.045em; line-height: 1.15; }
+  .intro-copy { max-width: 630px; margin-top: 10px; color: #c4c4bd; font-size: .93rem; font-weight: 300; line-height: 1.55; }
+  .intro-stat { display: flex; flex-direction: column; justify-content: space-between; }
+  .intro-stat span { align-self: flex-start; background: #fefe7d; padding: 6px 9px 2px; font-family: "Rufina", serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -.06em; line-height: 1; }
+  .intro-stat p { max-width: 110px; color: #686864; font-size: .72rem; font-weight: 500; letter-spacing: .06em; line-height: 1.35; text-transform: uppercase; }
+  .toolbar { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding: 50px 0 30px; border-bottom: 1px solid #eeeee8; }
+  .search { width: min(100%, 360px); }
+  .search input { padding: 11px 13px; font-size: .9rem; }
+  .filter-list { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+  .filter { border: 1px solid #deded8; background: transparent; color: #686864; padding: 7px 10px; font-size: .64rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .filter[aria-pressed="true"], .filter:hover { border-color: #141210; background: #141210; color: #fcfcfa; }
+  .marker-section { padding-top: 42px; }
+  .section-heading { margin-bottom: 26px; }
+  .section-heading h2 { margin-top: 12px; }
+  .marker-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .marker-card { position: relative; overflow: hidden; min-height: 430px; border: 1px solid #eeeee8; background: #fcfcfa; padding: 25px; }
+  .marker-card:hover { border-color: #c9c9c2; }
+  .marker-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .marker-name { font-family: "Rufina", serif; font-size: clamp(1.4rem, 2.2vw, 2rem); letter-spacing: -.045em; line-height: 1.1; }
+  .marker-unit { display: inline-block; margin-top: 6px; color: #8e8e89; font-size: .68rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+  .status { flex: 0 0 auto; border: 1px solid #deded8; color: #686864; padding: 5px 7px; font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .status-attention { border-color: #d7d739; background: #fefe7d; color: #484800; }
+  .latest { display: flex; align-items: baseline; gap: 8px; margin-top: 21px; }
+  .latest strong { font-family: "Rufina", serif; font-size: 2.35rem; letter-spacing: -.07em; line-height: 1; }
+  .latest span { color: #686864; font-size: .83rem; }
+  .chart-wrap { position: relative; height: 175px; margin: 20px 0 16px; }
+  .chart { display: block; width: 100%; height: 100%; overflow: visible; }
+  .chart-label { fill: #8e8e89; font-family: "Figtree", sans-serif; font-size: 10px; }
+  .chart-reference { stroke: #acacaa; stroke-dasharray: 4 5; stroke-width: 1; }
+  .chart-band { fill: #eeeee8; opacity: .8; }
+  .chart-line { fill: none; stroke: #141210; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .chart-dot { fill: #141210; stroke: #fcfcfa; stroke-width: 2; cursor: crosshair; }
+  .chart-dot.is-attention { fill: #a36900; }
+  .chart-tooltip { position: absolute; z-index: 2; min-width: 168px; padding: 9px 10px; background: #141210; color: #fcfcfa; font-size: .72rem; line-height: 1.45; pointer-events: none; transform: translate(-50%, calc(-100% - 12px)); }
+  .chart-tooltip[hidden] { display: none; }
+  .chart-tooltip strong { display: block; color: #fefe7d; font-size: .8rem; }
+  .analysis { border-left: 2px solid #fefe7d; padding-left: 12px; color: #535250; font-size: .91rem; font-weight: 300; line-height: 1.58; }
+  .analysis strong { color: #141210; font-weight: 500; }
+  .analysis-meta { margin-top: 11px; color: #8e8e89; font-size: .66rem; line-height: 1.45; }
+  .empty-state { padding: 50px 0; color: #686864; }
+  .health-footer { display: flex; justify-content: space-between; gap: 24px; margin-top: 54px; padding-top: 18px; border-top: 1px solid #eeeee8; color: #8e8e89; font-size: .75rem; font-weight: 300; line-height: 1.55; }
+  .health-footer p:first-child { max-width: 620px; }
+  @media (max-width: 800px) { .intro-grid { grid-template-columns: 1fr 1fr; } .intro-main { grid-column: 1 / -1; min-height: auto; } .marker-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 580px) { .health-page { padding: 24px 16px 40px; } .dashboard-header { padding: 18px 0 34px; } .dashboard-header h1 { font-size: 4rem; } .logout { padding: 8px; } .intro-grid { grid-template-columns: 1fr; } .intro-stat { min-height: 135px; } .toolbar { display: block; padding: 35px 0 20px; } .filter-list { justify-content: flex-start; margin-top: 17px; } .marker-card { min-height: 0; padding: 19px; } .health-footer { display: block; } .health-footer p + p { margin-top: 8px; } }
+</style>
+
+<script>
+  const state = { markers: [], category: "Tous", query: "" };
+  const escapeHtml = (value) => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+  const categoryFor = (name) => {
+    const value = name.toLowerCase();
+    if (/cholest|trigly|apolipoprot|lipoprot/.test(value)) return "Lipides";
+    if (/glyc|insuline|hba1c/.test(value)) return "Glycémie";
+    if (/h[ée]matie|h[ée]moglobine|h[ée]matocrite|leucocyte|neutroph|lymph|plaquette|v\.g\.m|t\.c\.m\.h|c\.c\.m\.h/.test(value)) return "Hématologie";
+    if (/asat|alat|gamma|bilirub|phosphatase/.test(value)) return "Foie";
+    if (/cr[ée]atinine|ur[ée]e|urique|dfg/.test(value)) return "Reins";
+    if (/crp|c.r.p|ferritine/.test(value)) return "Inflammation & fer";
+    if (/testost|cortisol|acth|thyro|tsh|t4|shbg/.test(value)) return "Hormones";
+    if (/vitamine/.test(value)) return "Vitamines";
+    return "Autres";
+  };
+
+  const format = (value) => new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2 }).format(value);
+  const formatDate = (date) => new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" }).format(new Date(`${date}T12:00:00`));
+  const inRange = (point) => (point.reference_low == null || point.value_numeric >= point.reference_low) && (point.reference_high == null || point.value_numeric <= point.reference_high);
+  const lastPoint = (marker) => marker.points.at(-1);
+  const markerStatus = (marker) => {
+    const point = lastPoint(marker);
+    if (point.abnormality === "high" || point.abnormality === "low" || !inRange(point)) return "À regarder";
+    return "Dans la plage";
+  };
+  const fallbackAnalysis = (marker) => {
+    const latest = lastPoint(marker);
+    const previous = marker.points.at(-2);
+    const status = markerStatus(marker);
+    const reference = latest.reference_text || (latest.reference_low != null || latest.reference_high != null ? `référence laboratoire : ${latest.reference_low ?? "–"} à ${latest.reference_high ?? "–"} ${marker.unit}` : "pas de plage de référence fournie");
+    const movement = previous ? (latest.value_numeric > previous.value_numeric ? "en hausse" : latest.value_numeric < previous.value_numeric ? "en baisse" : "stable") : "sans mesure antérieure comparable";
+    const context = latest.exam?.notes || latest.notes;
+    return `${status}. Dernier résultat : ${format(latest.value_numeric)} ${marker.unit}, le ${formatDate(latest.exam.exam_date)} (${reference}). L’évolution est ${movement}${previous ? ` par rapport au ${formatDate(previous.exam.exam_date)}` : ""}.${context ? ` Contexte du laboratoire : ${context}` : ""}`;
+  };
+
+  function prepareMarkers(measurements, analyses) {
+    const analysesByKey = new Map(analyses.map((analysis) => [`${analysis.analyte}::${analysis.unit}`, analysis]));
+    const groups = new Map();
+    for (const measurement of measurements) {
+      if (!measurement.unit || !measurement.exam?.exam_date) continue;
+      const key = `${measurement.analyte}::${measurement.unit}`;
+      if (!groups.has(key)) groups.set(key, { key, name: measurement.analyte, unit: measurement.unit, points: [] });
+      groups.get(key).points.push(measurement);
+    }
+    const latestDate = Math.max(...measurements.map((measurement) => new Date(`${measurement.exam?.exam_date || "1970-01-01"}T12:00:00`).getTime()));
+    const recentCutoff = latestDate - 365 * 24 * 60 * 60 * 1000;
+    return [...groups.values()]
+      .map((marker) => ({ ...marker, category: categoryFor(marker.name), analysis: analysesByKey.get(marker.key)?.analysis }))
+      .filter((marker) => marker.points.length >= 2 || new Date(`${lastPoint(marker).exam.exam_date}T12:00:00`).getTime() >= recentCutoff)
+      .sort((a, b) => Number(markerStatus(b) === "À regarder") - Number(markerStatus(a) === "À regarder") || a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
+  }
+
+  function chart(marker) {
+    const points = marker.points;
+    const values = points.flatMap((point) => [point.value_numeric, point.reference_low, point.reference_high].filter((value) => value != null));
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const padding = Math.max((max - min || max * .1 || 1) * .15, .1);
+    const low = min - padding;
+    const high = max + padding;
+    const width = 600;
+    const height = 175;
+    const left = 4;
+    const right = 4;
+    const top = 12;
+    const bottom = 24;
+    const x = (index) => points.length === 1 ? width / 2 : left + (index / (points.length - 1)) * (width - left - right);
+    const y = (value) => top + ((high - value) / (high - low || 1)) * (height - top - bottom);
+    const path = points.map((point, index) => `${index ? "L" : "M"}${x(index).toFixed(1)} ${y(point.value_numeric).toFixed(1)}`).join(" ");
+    const latest = lastPoint(marker);
+    const referenceLow = latest.reference_low == null ? null : y(latest.reference_low);
+    const referenceHigh = latest.reference_high == null ? null : y(latest.reference_high);
+    const band = referenceLow != null && referenceHigh != null ? `<rect class="chart-band" x="0" y="${Math.min(referenceLow, referenceHigh)}" width="${width}" height="${Math.abs(referenceLow - referenceHigh)}" />` : "";
+    const references = [referenceLow, referenceHigh].filter((value) => value != null).map((value) => `<line class="chart-reference" x1="0" y1="${value}" x2="${width}" y2="${value}" />`).join("");
+    const dots = points.map((point, index) => `<circle class="chart-dot${inRange(point) && point.abnormality !== "high" && point.abnormality !== "low" ? "" : " is-attention"}" cx="${x(index)}" cy="${y(point.value_numeric)}" r="4" data-point="${encodeURIComponent(JSON.stringify({ value: format(point.value_numeric), date: formatDate(point.exam.exam_date), reference: point.reference_text || "Référence non renseignée", laboratory: point.exam.laboratory || "Laboratoire non renseigné" }))}" />`).join("");
+    const dates = points.map((point, index) => `<text class="chart-label" x="${x(index)}" y="${height - 4}" text-anchor="${index === 0 ? "start" : index === points.length - 1 ? "end" : "middle"}">${new Intl.DateTimeFormat("fr-FR", { month: "short", year: "2-digit" }).format(new Date(`${point.exam.exam_date}T12:00:00`))}</text>`).join("");
+    return `<div class="chart-wrap"><div class="chart-tooltip" hidden></div><svg class="chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Évolution de ${marker.name}">${band}${references}<path class="chart-line" d="${path}" />${dots}${dates}</svg></div>`;
+  }
+
+  function renderFilters() {
+    const filters = ["Tous", ...new Set(state.markers.map((marker) => marker.category))];
+    document.querySelector("[data-filters]").innerHTML = filters.map((filter) => `<button type="button" class="filter" data-filter="${filter}" aria-pressed="${state.category === filter}">${filter}</button>`).join("");
+  }
+
+  function renderMarkers() {
+    const query = state.query.trim().toLocaleLowerCase("fr");
+    const visible = state.markers.filter((marker) => (state.category === "Tous" || marker.category === state.category) && marker.name.toLocaleLowerCase("fr").includes(query));
+    document.querySelector("[data-empty-state]").hidden = visible.length > 0;
+    document.querySelector("[data-marker-grid]").innerHTML = visible.map((marker) => {
+      const latest = lastPoint(marker);
+      const status = markerStatus(marker);
+      return `<article class="marker-card"><div class="marker-top"><div><h3 class="marker-name">${escapeHtml(marker.name)}</h3><span class="marker-unit">${escapeHtml(marker.unit)} · ${escapeHtml(marker.category)}</span></div><span class="status${status === "À regarder" ? " status-attention" : ""}">${escapeHtml(status)}</span></div><div class="latest"><strong>${format(latest.value_numeric)}</strong><span>${escapeHtml(marker.unit)}<br>${escapeHtml(formatDate(latest.exam.exam_date))}</span></div>${chart(marker)}<p class="analysis">${escapeHtml(marker.analysis || fallbackAnalysis(marker))}</p><p class="analysis-meta">Chaque résultat reste interprété selon la plage et les conditions de son laboratoire.</p></article>`;
+    }).join("");
+    bindTooltips();
+  }
+
+  function bindTooltips() {
+    document.querySelectorAll(".chart-wrap").forEach((wrap) => {
+      const tooltip = wrap.querySelector(".chart-tooltip");
+      wrap.querySelectorAll("[data-point]").forEach((dot) => {
+        const show = () => {
+          const point = JSON.parse(decodeURIComponent(dot.dataset.point));
+          tooltip.innerHTML = `<strong>${escapeHtml(point.value)}</strong>${escapeHtml(point.date)}<br>${escapeHtml(point.reference)}<br><span>${escapeHtml(point.laboratory)}</span>`;
+          const rect = wrap.getBoundingClientRect();
+          const dotRect = dot.getBoundingClientRect();
+          tooltip.style.left = `${dotRect.left - rect.left}px`;
+          tooltip.style.top = `${dotRect.top - rect.top}px`;
+          tooltip.hidden = false;
+        };
+        dot.addEventListener("mouseenter", show);
+        dot.addEventListener("focus", show);
+        dot.addEventListener("click", show);
+        dot.addEventListener("mouseleave", () => { tooltip.hidden = true; });
+      });
+    });
+  }
+
+  function renderDashboard(data) {
+    state.markers = prepareMarkers(data.measurements, data.analyses);
+    const latestDate = state.markers.length ? Math.max(...state.markers.map((marker) => new Date(`${lastPoint(marker).exam.exam_date}T12:00:00`).getTime())) : null;
+    const attention = state.markers.filter((marker) => markerStatus(marker) === "À regarder");
+    document.querySelector("[data-last-exam]").textContent = latestDate ? `Dernier prélèvement : ${formatDate(new Date(latestDate).toISOString().slice(0, 10))}.` : "Aucun résultat disponible.";
+    document.querySelector("[data-marker-count]").textContent = state.markers.length;
+    document.querySelector("[data-attention-count]").textContent = attention.length;
+    document.querySelector("[data-summary-title]").textContent = attention.length ? `${attention.length} marqueur${attention.length > 1 ? "s" : ""} à remettre en contexte.` : "Les derniers résultats sont dans les plages du laboratoire.";
+    document.querySelector("[data-summary-copy]").textContent = attention.length ? "Une valeur hors plage ne suffit pas à conclure. Lis les évolutions et le contexte de prélèvement avant toute interprétation." : "Les courbes permettent de vérifier la continuité d’un résultat d’un bilan à l’autre, en tenant compte des références propres à chaque laboratoire.";
+    document.querySelector("[data-updated-at]").textContent = `Données chargées le ${new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium", timeStyle: "short" }).format(new Date(data.updatedAt))}.`;
+    renderFilters();
+    renderMarkers();
+  }
+
+  async function loadData() {
+    const response = await fetch("/api/sante/data");
+    if (response.status === 401) return false;
+    if (!response.ok) throw new Error("Impossible de charger les données de santé.");
+    renderDashboard(await response.json());
+    return true;
+  }
+
+  async function openDashboard() {
+    document.querySelector("[data-gate]").hidden = true;
+    document.querySelector("[data-dashboard]").hidden = false;
+    try { if (!await loadData()) closeDashboard(); } catch (error) {
+      document.querySelector("[data-dashboard]").innerHTML = `<p class="form-error">${error.message}</p>`;
+    }
+  }
+
+  function closeDashboard() {
+    document.querySelector("[data-gate]").hidden = false;
+    document.querySelector("[data-dashboard]").hidden = true;
+  }
+
+  document.querySelector("[data-login-form]").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const error = document.querySelector("[data-login-error]");
+    error.textContent = "";
+    const form = event.currentTarget;
+    const response = await fetch("/api/sante/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password: new FormData(form).get("password") }) });
+    if (!response.ok) { error.textContent = (await response.json()).error || "Connexion impossible."; return; }
+    form.reset();
+    openDashboard();
+  });
+  document.querySelector("[data-logout]").addEventListener("click", async () => { await fetch("/api/sante/logout", { method: "POST" }); closeDashboard(); });
+  document.querySelector("[data-search]").addEventListener("input", (event) => { state.query = event.currentTarget.value; renderMarkers(); });
+  document.querySelector("[data-filters]").addEventListener("click", (event) => { const button = event.target.closest("[data-filter]"); if (!button) return; state.category = button.dataset.filter; renderFilters(); renderMarkers(); });
+  loadData().then((authenticated) => { if (authenticated) openDashboard(); }).catch(() => {});
+</script>
